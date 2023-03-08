@@ -1,23 +1,9 @@
 [
   {
-    "objectID": "projects/workflows-multiverse/index.html",
-    "href": "projects/workflows-multiverse/index.html",
-    "title": "Bayesian Workflow and Multiverse Analysis",
-    "section": "",
-    "text": "How can we combine transparent creation of sets of models (multiverse analysis) with recipes for model building and evaluation (Bayesian workflow) to support decision making in Bayesian model building scenarios?"
-  },
-  {
-    "objectID": "projects/workflows-multiverse/index.html#dataset",
-    "href": "projects/workflows-multiverse/index.html#dataset",
-    "title": "Bayesian Workflow and Multiverse Analysis",
-    "section": "Dataset",
-    "text": "Dataset\nFor this case study, we use the dataset brms::epilepsy with 236 observations containing information on the following 9 variables, originally from Thall and Vail (1990) and Breslow and Clayton (1993):5\n\n\\(\\texttt{Age}\\): age of patients in years\n\\(\\texttt{Base}\\): seizure count at 8-weeks baseline\n\\(\\texttt{Trt}\\): 0 or 1 indicating if patient received anti-convulsant therapy\n\\(\\texttt{patient}\\): patient number\n\\(\\texttt{visit}\\): session number from 1 (first visit) to 4 (last visit)\n\\(\\texttt{count}\\): seizure count between two visits\n\\(\\texttt{obs}\\): observation number (unique identifier for each observation)\n\\(\\texttt{zAge}\\): Standardized Age\n\\(\\texttt{zBase}\\): Standardized Base\n\n\n\n\n\n\n\n\n\n\nD\n\n  \n\nA\n\n Poisson(Trt)   \n\nB\n\n Poisson(Trt+zAge)   \n\nA–B\n\n   \n\nC\n\n Negbinom(Trt)   \n\nA–C\n\n   \n\nD\n\n Negbinom(Trt+zAge)   \n\nB–D\n\n   \n\nC–D\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\nD\n\n  \n\nA\n\n Poisson(Trt)   \n\nB\n\n Poisson(Trt+zAge)   \n\nA–B\n\n   \n\nC\n\n Negbinom(Trt)   \n\nA–C\n\n   \n\nD\n\n Negbinom(Trt+zAge)   \n\nB–D\n\n   \n\nC–B\n\n     \n\nC–D\n\n   \n\nD–A"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Anna Elisabeth Riha",
     "section": "",
-    "text": "Bayesian Workflow and Multiverse Analysis\n\n\n\n\n\n\n\nideas\n\n\ncase study\n\n\n\n\n\n\n\n\n\n\n\nInvalid Date\n\n\nAnna Elisabeth Riha\n\n\n\n\n\n\nNo matching items"
+    "text": "No matching items"
   }
 ]
