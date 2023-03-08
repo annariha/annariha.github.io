@@ -1,0 +1,145 @@
+---
+title: "Bayesian Workflow and Multiverse Analysis"
+author: "Anna Elisabeth Riha"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+bibliography: references.bib
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+categories: [ideas, case study]
+---
+
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 25px;
+border-radius: 5px;
+font-style: italic;
+}
+
+</style>
+
+```{r}
+#| message: false
+#| warning: false
+#| include: false
+library(knitr)
+library(kableExtra)
+library(tidyverse)
+library(reactable)
+library(htmltools)
+```
+
+# Research Aim
+
+How can we combine **transparent creation of sets of models** (multiverse analysis) with **recipes for model building and evaluation** (Bayesian workflow) to support decision making in Bayesian model building scenarios?
+
+# Existing work[^1]
+
+[^1]: I added this section to show resources that I am currently drawing from and to situate the following ideas in existing work. Also, this list might miss sth. important and I am happy to get pointers towards relevant resources.
+
+-   Bayesian workflow as introduced in @gelmanetal2020, also discussed in e.g., @martinetal2021 and a blogpost by Michael Betancourt[^2] etc.
+-   Bayesian model evaluation, comparison (e.g., @vehtariojanen2012, @piironenvehtari2017)
+-   prior and likelihood sensitivity checks in $\texttt{priorsense}$ $\texttt{R}$-package[^3] [@kallioinen2021]
+-   (posterior) calibration checks with @saeilynoja2022
+-   model comparison with $\texttt{loo}$ $\texttt{R}$-package [@loo-package2022]
+-   multiverse analysis [@steegenetal2016] and $\texttt{multiverse}$ $\texttt{R}$-package [@sarmaetal2021]
+-   explorable multiverse analyses [@dragicevic2019]
+-   creating multiverse analysis scripts, exploring results with Boba [@liu2021]
+-   survey of visualisation of multiverse analyses [@halletal2022]
+-   modular STAN [@bernstein2020]
+-   modelling multiverse analysis (for machine learning) [@belletal2022]
+
+[^2]: <https://betanalpha.github.io/assets/case_studies/principled_bayesian_workflow.html#1_Questioning_Authority>
+
+[^3]: <https://github.com/n-kall/priorsense>
+
+The following figures show two variants of flowcharts for Bayesian workflows with different levels of detail as well as crucial and optional steps[^4]. Similarities are (1) moving back when needed ($\to$ "iterativeness") and (2) connections between model and computation.
+
+[^4]: Another interesting variant of a flowchart for Bayesian workflow can be found in Michael Betancourt's [blogpost](https://betanalpha.github.io/assets/case_studies/principled_bayesian_workflow.html#1_Questioning_Authority) "Principled Bayesian Workflow", see Appendix [@sec-appendix].
+
+![Bayesian Workflow as introduced in [@gelmanetal2020]](figures/bayesworkflow-illu.png){#fig-bw-gelman height="5%"}
+
+![High-level Bayesian Workflow in [@martinetal2021].](figures/workflow-bayescompbook.png){#fig-bw-martin width="90%"}
+
+# Challenges in Bayesian workflows
+
+-   multi-attribute multi-objective scenarios
+-   navigating necessary vs. nice-to-have steps
+-   stopping criteria and sufficient exploration
+-   iterative model building, while transparent and robust
+-   double-dipping
+-   communicating results of multiple models
+
+<p class="comment">
+How can we combine **transparent creation of sets of models** (multiverse analysis) with **recipes for model building and evaluation** (Bayesian workflow) to support decision making in such scenarios?
+</p>
+
+# Transparent exploration
+
+![Multiverse analysis compared to other approaches, from [@dragicevic2019].](figures/multiverse-illu.png){#fig-mvd width="60%"}
+
+::: {layout-ncol="2" layout-valign="top"}
+![What is a multiverse analysis report? in [@halletal2022].](figures/multiverse-def.png){#fig-mvhall width="50%"}
+
+![Multiverse analysis in Bayesian workflow in [@gelmanetal2020].](figures/multiverse-in-bw.png){#fig-mvbw width="30%"}
+:::
+
+# Example: `brms::epilepsy`
+
+## Dataset
+
+The figures are based on different multiverse analyses using `brms::brm()` from the $\texttt{R}$-package $\texttt{brms}$ [@brms-package2017] and the dataset `brms::epilepsy` with 236 observations containing information on the following 9 variables, originally from Thall and Vail (1990) and Breslow and Clayton (1993):[^17]
+
+[^17]: More information in [brms docs](https://paul-buerkner.github.io/brms/reference/epilepsy.html) and in a [vignette](https://cran.r-project.org/web/packages/bayesian/vignettes/GetStarted.html) introducing the $\texttt{R}$-package $\texttt{bayesian}$.
+
+-   $\texttt{Age}$: age of patients in years
+-   $\texttt{Base}$: seizure count at 8-weeks baseline
+-   $\texttt{Trt}$: 0 or 1 indicating if patient received anti-convulsant therapy
+-   $\texttt{patient}$: patient number
+-   $\texttt{visit}$: session number from 1 (first visit) to 4 (last visit)
+-   $\texttt{count}$: seizure count between two visits
+-   $\texttt{obs}$: observation number (unique identifier for each observation)
+-   $\texttt{zAge}$: Standardized Age
+-   $\texttt{zBase}$: Standardized Base
+
+::: {layout-ncol="2"}
+```{dot}
+//| fig-width: 4
+graph D {
+  
+  A [shape=box,label="Poisson(Trt)"]
+  B [shape=box,label="Poisson(Trt+zAge)"]
+  C [shape=box,label="Negbinom(Trt)"]
+  D [shape=box,label="Negbinom(Trt+zAge)"]
+  
+  A -- B 
+  A -- C 
+  C -- D 
+  B -- D 
+
+}
+```
+
+```{dot}
+//| fig-width: 3
+
+graph D {
+  
+  A [shape=box, label="Poisson(Trt)"]
+  B [shape=box, label="Poisson(Trt+zAge)"]
+  C [shape=box, label="Negbinom(Trt)"]
+  D [shape=box, label="Negbinom(Trt+zAge)"]
+  
+  A -- B -- D
+  A -- C -- D
+  C -- B [color="grey:invis:grey"]
+  D -- A [color="grey:invis:grey"]
+
+}
+```
+:::
+
