@@ -33,8 +33,6 @@ library(reactable)
 library(htmltools)
 ```
 
-# Research Aim
-
 How can we combine **transparent creation of sets of models** (multiverse analysis) with **recipes for model building and evaluation** (Bayesian workflow) to support decision making in Bayesian model building scenarios?
 
 # Existing work[^1]
@@ -59,7 +57,7 @@ How can we combine **transparent creation of sets of models** (multiverse analys
 
 The following figures show two variants of flowcharts for Bayesian workflows with different levels of detail as well as crucial and optional steps[^4]. Similarities are (1) moving back when needed ($\to$ "iterativeness") and (2) connections between model and computation.
 
-[^4]: Another interesting variant of a flowchart for Bayesian workflow can be found in Michael Betancourt's [blogpost](https://betanalpha.github.io/assets/case_studies/principled_bayesian_workflow.html#1_Questioning_Authority) "Principled Bayesian Workflow", see Appendix [@sec-appendix].
+[^4]: Another interesting variant of a flowchart for Bayesian workflow can be found in Michael Betancourt's [blogpost](https://betanalpha.github.io/assets/case_studies/principled_bayesian_workflow.html#1_Questioning_Authority) "Principled Bayesian Workflow".
 
 ![Bayesian Workflow as introduced in [@gelmanetal2020]](figures/bayesworkflow-illu.png){#fig-bw-gelman height="5%"}
 
