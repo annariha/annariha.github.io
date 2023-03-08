@@ -59,9 +59,10 @@ The following figures show two variants of flowcharts for Bayesian workflows wit
 
 [^4]: Another interesting variant of a flowchart for Bayesian workflow can be found in Michael Betancourt's [blogpost](https://betanalpha.github.io/assets/case_studies/principled_bayesian_workflow.html#1_Questioning_Authority) "Principled Bayesian Workflow".
 
+<!--
 ![Bayesian Workflow as introduced in [@gelmanetal2020]](figures/bayesworkflow-illu.png){#fig-bw-gelman height="5%"}
-
 ![High-level Bayesian Workflow in [@martinetal2021].](figures/workflow-bayescompbook.png){#fig-bw-martin width="90%"}
+--->
 
 # Challenges in Bayesian workflows
 
@@ -73,7 +74,7 @@ The following figures show two variants of flowcharts for Bayesian workflows wit
 -   communicating results of multiple models
 
 # Transparent exploration
-
+<!--
 ![Multiverse analysis compared to other approaches, from [@dragicevic2019].](figures/multiverse-illu.png){#fig-mvd width="60%"}
 
 ::: {layout-ncol="2" layout-valign="top"}
@@ -81,6 +82,7 @@ The following figures show two variants of flowcharts for Bayesian workflows wit
 
 ![Multiverse analysis in Bayesian workflow in [@gelmanetal2020].](figures/multiverse-in-bw.png){#fig-mvbw width="30%"}
 :::
+--->
 
 # Example: `brms::epilepsy`
 
