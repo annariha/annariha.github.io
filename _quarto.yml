@@ -1,0 +1,34 @@
+project:
+  type: website
+
+website:
+  title: "Anna Elisabeth Riha"
+  search: 
+    location: navbar
+    type: textbox
+  navbar:
+    background: primary
+    pinned: true
+    left:
+      # - text: About
+      #   href: index.qmd
+      #- text: Research 
+      #  href: research/index.qmd
+      - text: Projects
+        href: projects/index.qmd
+      #- text: Publications
+      #  href: publications/index.qmd
+      #- text: Software
+      #  href: software/index.qmd
+      #- text: CV
+      #  href: cv/index.qmd
+    right:
+      #- icon: envelope
+      #  aria-label: email
+      #  href: "mailto:paul.buerkner@gmail.com"
+      - icon: github
+        href: https://github.com/annariha
+format:
+  html:
+    theme: cosmo
+    css: styles.css
