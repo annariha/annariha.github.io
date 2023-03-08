@@ -194,18 +194,10 @@ font-style: italic;
 <li>modelling multiverse analysis (for machine learning) <span class="citation" data-cites="belletal2022">(<a href="#ref-belletal2022" role="doc-biblioref">Bell et al. 2022</a>)</span></li>
 </ul>
 <p>The following figures show two variants of flowcharts for Bayesian workflows with different levels of detail as well as crucial and optional steps<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Similarities are (1) moving back when needed (<span class="math inline">\(\to\)</span> “iterativeness”) and (2) connections between model and computation.</p>
-<div id="fig-bw-gelman" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="figures/bayesworkflow-illu.png" style="height:5.0%" class="figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1: Bayesian Workflow as introduced in <span class="citation" data-cites="gelmanetal2020">(<a href="#ref-gelmanetal2020" role="doc-biblioref">Gelman et al. 2020</a>)</span></figcaption><p></p>
-</figure>
-</div>
-<div id="fig-bw-martin" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="figures/workflow-bayescompbook.png" class="img-fluid figure-img" style="width:90.0%"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2: High-level Bayesian Workflow in <span class="citation" data-cites="martinetal2021">(<a href="#ref-martinetal2021" role="doc-biblioref">Martin, Kumar, and Lao 2021</a>)</span>.</figcaption><p></p>
-</figure>
-</div>
+<!--
+![Bayesian Workflow as introduced in [@gelmanetal2020]](figures/bayesworkflow-illu.png){#fig-bw-gelman height="5%"}
+![High-level Bayesian Workflow in [@martinetal2021].](figures/workflow-bayescompbook.png){#fig-bw-martin width="90%"}
+--->
 </section>
 <section id="challenges-in-bayesian-workflows" class="level1">
 <h1>Challenges in Bayesian workflows</h1>
@@ -220,32 +212,15 @@ font-style: italic;
 </section>
 <section id="transparent-exploration" class="level1">
 <h1>Transparent exploration</h1>
-<div id="fig-mvd" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="figures/multiverse-illu.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;3: Multiverse analysis compared to other approaches, from <span class="citation" data-cites="dragicevic2019">(<a href="#ref-dragicevic2019" role="doc-biblioref">Dragicevic et al. 2019</a>)</span>.</figcaption><p></p>
-</figure>
-</div>
-<div class="quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 62.5%;justify-content: center;">
-<div id="fig-mvhall" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="figures/multiverse-def.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;4: What is a multiverse analysis report? in <span class="citation" data-cites="halletal2022">(<a href="#ref-halletal2022" role="doc-biblioref">Hall et al. 2022</a>)</span>.</figcaption><p></p>
-</figure>
-</div>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 37.5%;justify-content: center;">
-<div id="fig-mvbw" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="figures/multiverse-in-bw.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;5: Multiverse analysis in Bayesian workflow in <span class="citation" data-cites="gelmanetal2020">(<a href="#ref-gelmanetal2020" role="doc-biblioref">Gelman et al. 2020</a>)</span>.</figcaption><p></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
+<!--
+![Multiverse analysis compared to other approaches, from [@dragicevic2019].](figures/multiverse-illu.png){#fig-mvd width="60%"}
+
+::: {layout-ncol="2" layout-valign="top"}
+![What is a multiverse analysis report? in [@halletal2022].](figures/multiverse-def.png){#fig-mvhall width="50%"}
+
+![Multiverse analysis in Bayesian workflow in [@gelmanetal2020].](figures/multiverse-in-bw.png){#fig-mvbw width="30%"}
+:::
+--->
 </section>
 <section id="example-brmsepilepsy" class="level1">
 <h1>Example: <code>brms::epilepsy</code></h1>
