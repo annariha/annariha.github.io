@@ -2,13 +2,16 @@ project:
   type: website
 
 website:
-  title: "Anna Elisabeth Riha"
+  title: ""
   search: 
     location: navbar
     type: textbox
   navbar:
     background: primary
     pinned: true
+    left: 
+      - icon: projects
+        href: projects
     right:
       #- icon: envelope
       #  aria-label: email
