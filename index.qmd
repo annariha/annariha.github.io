@@ -11,3 +11,6 @@ page-layout: full
 title-block-banner: true
 ---
 
+## About 
+
+I am currently working as a doctoral researcher in the Probabilistic Machine Learning ([PML](https://research.cs.aalto.fi/pml/)) group at Aalto University in Finland, supervised by [Aki Vehtari](https://avehtari.github.io/) and [Antti Oulasvirta](http://users.comnet.aalto.fi/oulasvir/). 
