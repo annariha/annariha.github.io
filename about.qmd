@@ -1,0 +1,15 @@
+---
+title: "About"
+about:
+  template: jolla
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/anna-elisabeth-riha-818426188/
+    - icon: github
+      text: Github
+      href: https://github.com/annariha
+
+---
+
+I am currently working as a doctoral researcher in the Probabilistic Machine Learning ([PML](https://research.cs.aalto.fi/pml/)) group at Aalto University in Finland, supervised by [Aki Vehtari](https://avehtari.github.io/) and [Antti Oulasvirta](http://users.comnet.aalto.fi/oulasvir/). 
