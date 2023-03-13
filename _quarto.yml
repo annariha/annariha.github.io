@@ -20,8 +20,8 @@ website:
       #  href: "mailto:"
       - icon: github
         href: https://github.com/annariha
-    page-footer: 
-    left: "Copyright 2023, Anna Elisabeth Riha" 
+  page-footer: 
+     left: "Copyright 2023, Anna Elisabeth Riha" 
     
 format:
   html:
