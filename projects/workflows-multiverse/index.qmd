@@ -43,10 +43,10 @@ How can we combine **transparent creation of sets of models** (multiverse analys
 
 -   Bayesian workflow as introduced in @gelmanetal2020, also discussed in e.g., @martinetal2021 and a blogpost by Michael Betancourt[^2]
 -   Bayesian model evaluation, and comparison (e.g., @vehtariojanen2012, @piironenvehtari2017)
--   prior and likelihood sensitivity checks in $\texttt{R}$-package $\texttt{priorsense}$[^3] [@kallioinen2021]
+-   prior and likelihood sensitivity checks in $\texttt{R}$-package `priorsense`[^3] [@kallioinen2021]
 -   (posterior) calibration checks with @saeilynoja2022
--   model comparison with $\texttt{R}$-package $\texttt{loo}$ [@loo-package2022]
--   multiverse analysis [@steegenetal2016] and $\texttt{multiverse}$ $\texttt{R}$-package [@sarmaetal2021]
+-   model comparison with $\texttt{R}$-package `loo` [@loo-package2022]
+-   multiverse analysis [@steegenetal2016] and `multiverse` $\texttt{R}$-package [@sarmaetal2021]
 -   explorable multiverse analyses [@dragicevic2019]
 -   creating multiverse analysis scripts, exploring results with Boba [@liu2021]
 -   survey of visualisation of multiverse analyses [@halletal2022]
@@ -164,7 +164,7 @@ Filtering (or flagging) also serves as a tool to indicate that we are in fact at
 
 ## Case Study: `brms::epilepsy`
 
-For this case study, we use the dataset `brms::epilepsy` (@buerknerbrms2017) with 236 observations containing information on the following 9 variables, originally from Thall and Vail (1990) and Breslow and Clayton (1993):[^17]
+For this case study, we use the dataset `brms::epilepsy` from the $\texttt{R}$-package `brms` (@buerknerbrms2017) with 236 observations containing information on the following 9 variables, originally from Thall and Vail (1990) and Breslow and Clayton (1993):[^17]
 
 [^17]: More information, e.g. in [brms docs](https://paul-buerkner.github.io/brms/reference/epilepsy.html) and in a [vignette](https://cran.r-project.org/web/packages/bayesian/vignettes/GetStarted.html) introducing the $\texttt{R}$-package $\texttt{bayesian}$.
 
