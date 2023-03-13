@@ -1,7 +1,7 @@
 ---
 title: "Bayesian Workflow and Multiverse Analysis"
 author: "Anna Elisabeth Riha"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
 bibliography: references.bib
 format: 
   html:
