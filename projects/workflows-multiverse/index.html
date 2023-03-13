@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Anna Elisabeth Riha">
-<meta name="dcterms.date" content="2023-03-08">
+<meta name="dcterms.date" content="2023-03-13">
 
 <title>Anna Elisabeth Riha - Bayesian Workflow and Multiverse Analysis</title>
 <style>
@@ -22,6 +22,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
@@ -79,6 +142,9 @@ div.csl-indent {
   }
 }</script>
 
+<script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
@@ -99,6 +165,12 @@ div.csl-indent {
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../projects/workflows-multiverse/index.html" aria-current="page">
+ <span class="menu-text">Projects</span></a>
+  </li>  
+</ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/annariha"><i class="bi bi-github" role="img">
@@ -120,18 +192,17 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#existing-work1" id="toc-existing-work1" class="nav-link active" data-scroll-target="#existing-work1">Existing work</a></li>
+  <li><a href="#existing-work" id="toc-existing-work" class="nav-link active" data-scroll-target="#existing-work">Existing work</a></li>
   <li><a href="#challenges-in-bayesian-workflows" id="toc-challenges-in-bayesian-workflows" class="nav-link" data-scroll-target="#challenges-in-bayesian-workflows">Challenges in Bayesian workflows</a></li>
-  <li><a href="#transparent-exploration" id="toc-transparent-exploration" class="nav-link" data-scroll-target="#transparent-exploration">Transparent exploration</a></li>
-  <li><a href="#example-brmsepilepsy" id="toc-example-brmsepilepsy" class="nav-link" data-scroll-target="#example-brmsepilepsy">Example: <code>brms::epilepsy</code></a>
-  <ul class="collapse">
-  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset">Dataset</a></li>
-  </ul></li>
+  <li><a href="#transparent-exploration" id="toc-transparent-exploration" class="nav-link" data-scroll-target="#transparent-exploration">Transparent Exploration</a></li>
+  <li><a href="#differences-and-structure-in-a-set-of-models" id="toc-differences-and-structure-in-a-set-of-models" class="nav-link" data-scroll-target="#differences-and-structure-in-a-set-of-models">Differences and structure in a set of models</a></li>
+  <li><a href="#filtering-and-flagging" id="toc-filtering-and-flagging" class="nav-link" data-scroll-target="#filtering-and-flagging">Filtering and Flagging</a></li>
+  <li><a href="#case-study-brmsepilepsy" id="toc-case-study-brmsepilepsy" class="nav-link" data-scroll-target="#case-study-brmsepilepsy">Case Study: <code>brms::epilepsy</code></a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -156,7 +227,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 8, 2023</p>
+      <p class="date">March 13, 2023</p>
     </div>
   </div>
   
@@ -177,15 +248,17 @@ font-style: italic;
 }
 
 </style>
-<p>How can we combine <strong>transparent creation of sets of models</strong> (multiverse analysis) with <strong>recipes for model building and evaluation</strong> (Bayesian workflow) to support decision making in Bayesian model building scenarios?</p>
-<section id="existing-work1" class="level1">
-<h1>Existing work<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h1>
+<p class="comment">
+How can we combine <strong>transparent creation of sets of models</strong> (multiverse analysis) with <strong>recipes for model building and evaluation</strong> (Bayesian workflow) to support decision making in Bayesian model building scenarios?
+</p><p>
+</p><section id="existing-work" class="level2">
+<h2 class="anchored" data-anchor-id="existing-work">Existing work</h2>
 <ul>
-<li>Bayesian workflow as introduced in <span class="citation" data-cites="gelmanetal2020">Gelman et al. (<a href="#ref-gelmanetal2020" role="doc-biblioref">2020</a>)</span>, also discussed in e.g., <span class="citation" data-cites="martinetal2021">Martin, Kumar, and Lao (<a href="#ref-martinetal2021" role="doc-biblioref">2021</a>)</span> and a blogpost by Michael Betancourt<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> etc.</li>
-<li>Bayesian model evaluation, comparison (e.g., <span class="citation" data-cites="vehtariojanen2012">Vehtari and Ojanen (<a href="#ref-vehtariojanen2012" role="doc-biblioref">2012</a>)</span>, <span class="citation" data-cites="piironenvehtari2017">Piironen and Vehtari (<a href="#ref-piironenvehtari2017" role="doc-biblioref">2017</a>)</span>)</li>
-<li>prior and likelihood sensitivity checks in <span class="math inline">\(\texttt{priorsense}\)</span> <span class="math inline">\(\texttt{R}\)</span>-package<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> <span class="citation" data-cites="kallioinen2021">(<a href="#ref-kallioinen2021" role="doc-biblioref">Kallioinen et al. 2021</a>)</span></li>
+<li>Bayesian workflow as introduced in <span class="citation" data-cites="gelmanetal2020">Gelman et al. (<a href="#ref-gelmanetal2020" role="doc-biblioref">2020</a>)</span>, also discussed in e.g., <span class="citation" data-cites="martinetal2021">Martin, Kumar, and Lao (<a href="#ref-martinetal2021" role="doc-biblioref">2021</a>)</span> and a blogpost by Michael Betancourt<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+<li>Bayesian model evaluation, and comparison (e.g., <span class="citation" data-cites="vehtariojanen2012">Vehtari and Ojanen (<a href="#ref-vehtariojanen2012" role="doc-biblioref">2012</a>)</span>, <span class="citation" data-cites="piironenvehtari2017">Piironen and Vehtari (<a href="#ref-piironenvehtari2017" role="doc-biblioref">2017</a>)</span>)</li>
+<li>prior and likelihood sensitivity checks in <span class="math inline">\(\texttt{R}\)</span>-package <span class="math inline">\(\texttt{priorsense}\)</span><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> <span class="citation" data-cites="kallioinen2021">(<a href="#ref-kallioinen2021" role="doc-biblioref">Kallioinen et al. 2021</a>)</span></li>
 <li>(posterior) calibration checks with <span class="citation" data-cites="saeilynoja2022">Säilynoja, Bürkner, and Vehtari (<a href="#ref-saeilynoja2022" role="doc-biblioref">2022</a>)</span></li>
-<li>model comparison with <span class="math inline">\(\texttt{loo}\)</span> <span class="math inline">\(\texttt{R}\)</span>-package <span class="citation" data-cites="loo-package2022">(<a href="#ref-loo-package2022" role="doc-biblioref">Vehtari et al. 2022</a>)</span></li>
+<li>model comparison with <span class="math inline">\(\texttt{R}\)</span>-package <span class="math inline">\(\texttt{loo}\)</span> <span class="citation" data-cites="loo-package2022">(<a href="#ref-loo-package2022" role="doc-biblioref">Vehtari et al. 2022</a>)</span></li>
 <li>multiverse analysis <span class="citation" data-cites="steegenetal2016">(<a href="#ref-steegenetal2016" role="doc-biblioref">Steegen et al. 2016</a>)</span> and <span class="math inline">\(\texttt{multiverse}\)</span> <span class="math inline">\(\texttt{R}\)</span>-package <span class="citation" data-cites="sarmaetal2021">(<a href="#ref-sarmaetal2021" role="doc-biblioref">Sarma et al. 2021</a>)</span></li>
 <li>explorable multiverse analyses <span class="citation" data-cites="dragicevic2019">(<a href="#ref-dragicevic2019" role="doc-biblioref">Dragicevic et al. 2019</a>)</span></li>
 <li>creating multiverse analysis scripts, exploring results with Boba <span class="citation" data-cites="liu2021">(<a href="#ref-liu2021" role="doc-biblioref">Liu et al. 2021</a>)</span></li>
@@ -193,51 +266,81 @@ font-style: italic;
 <li>modular STAN <span class="citation" data-cites="bernstein2020">(<a href="#ref-bernstein2020" role="doc-biblioref">Bernstein, Vákár, and Wing 2020</a>)</span></li>
 <li>modelling multiverse analysis (for machine learning) <span class="citation" data-cites="belletal2022">(<a href="#ref-belletal2022" role="doc-biblioref">Bell et al. 2022</a>)</span></li>
 </ul>
-<p>The following figures show two variants of flowcharts for Bayesian workflows with different levels of detail as well as crucial and optional steps<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Similarities are (1) moving back when needed (<span class="math inline">\(\to\)</span> “iterativeness”) and (2) connections between model and computation.</p>
-<!--
-![Bayesian Workflow as introduced in [@gelmanetal2020]](figures/bayesworkflow-illu.png){#fig-bw-gelman height="5%"}
-![High-level Bayesian Workflow in [@martinetal2021].](figures/workflow-bayescompbook.png){#fig-bw-martin width="90%"}
---->
+<p>The following figures show two variants of flowcharts for Bayesian workflows with different levels of detail as well as crucial and optional steps<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. Similarities are, for example, (1) iterating when needed, and (2) connecting model and computation.</p>
+<div id="fig-bw-gelman" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/bayesworkflow-illu.png" style="height:5.0%" class="figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Bayesian Workflow in <span class="citation" data-cites="gelmanetal2020">(<a href="#ref-gelmanetal2020" role="doc-biblioref">Gelman et al. 2020</a>)</span></figcaption><p></p>
+</figure>
+</div>
+<div id="fig-bw-martin" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/workflow-bayescompbook.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Bayesian Workflow in <span class="citation" data-cites="martinetal2021">(<a href="#ref-martinetal2021" role="doc-biblioref">Martin, Kumar, and Lao 2021</a>)</span>.</figcaption><p></p>
+</figure>
+</div>
 </section>
-<section id="challenges-in-bayesian-workflows" class="level1">
-<h1>Challenges in Bayesian workflows</h1>
+<section id="challenges-in-bayesian-workflows" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="challenges-in-bayesian-workflows">Challenges in Bayesian workflows</h2>
 <ul>
 <li>multi-attribute multi-objective scenarios</li>
-<li>navigating necessary vs.&nbsp;nice-to-have steps</li>
+<li>navigating necessary vs.&nbsp;“nice-to-have” steps</li>
 <li>stopping criteria and sufficient exploration</li>
 <li>iterative model building, while transparent and robust</li>
-<li>double-dipping</li>
 <li>communicating results of multiple models</li>
 </ul>
-</section>
-<section id="transparent-exploration" class="level1">
-<h1>Transparent exploration</h1>
-<!--
-![Multiverse analysis compared to other approaches, from [@dragicevic2019].](figures/multiverse-illu.png){#fig-mvd width="60%"}
 
-::: {layout-ncol="2" layout-valign="top"}
-![What is a multiverse analysis report? in [@halletal2022].](figures/multiverse-def.png){#fig-mvhall width="50%"}
-
-![Multiverse analysis in Bayesian workflow in [@gelmanetal2020].](figures/multiverse-in-bw.png){#fig-mvbw width="30%"}
-:::
---->
-</section>
-<section id="example-brmsepilepsy" class="level1">
-<h1>Example: <code>brms::epilepsy</code></h1>
-<section id="dataset" class="level2">
-<h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
-<p>For this case study, we use the dataset <code>brms::epilepsy</code> with 236 observations containing information on the following 9 variables, originally from Thall and Vail (1990) and Breslow and Clayton (1993):<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<div class="no-row-height column-margin column-container"><div class="">
+<p><strong>What is a “good enough” model?</strong><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 <ul>
-<li><span class="math inline">\(\texttt{Age}\)</span>: age of patients in years</li>
-<li><span class="math inline">\(\texttt{Base}\)</span>: seizure count at 8-weeks baseline</li>
-<li><span class="math inline">\(\texttt{Trt}\)</span>: 0 or 1 indicating if patient received anti-convulsant therapy</li>
-<li><span class="math inline">\(\texttt{patient}\)</span>: patient number</li>
-<li><span class="math inline">\(\texttt{visit}\)</span>: session number from 1 (first visit) to 4 (last visit)</li>
-<li><span class="math inline">\(\texttt{count}\)</span>: seizure count between two visits</li>
-<li><span class="math inline">\(\texttt{obs}\)</span>: observation number (unique identifier for each observation)</li>
-<li><span class="math inline">\(\texttt{zAge}\)</span>: Standardized Age</li>
-<li><span class="math inline">\(\texttt{zBase}\)</span>: Standardized Base</li>
+<li>depends (to some extent) on objectives of the analysis</li>
+<li>domain knowledge</li>
+<li>passing prior predictive checks</li>
+<li>“good” priors</li>
+<li>convergence of sampling algorithms</li>
+<li>posterior calibration</li>
+<li>passing posterior predictive checks</li>
+<li>predictive performance</li>
+<li>explainability</li>
+<li>…</li>
 </ul>
+</div></div></section>
+<section id="transparent-exploration" class="level2">
+<h2 class="anchored" data-anchor-id="transparent-exploration">Transparent Exploration</h2>
+<div id="fig-mvd" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/multiverse-illu.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Multiverse analysis compared to other approaches, from <span class="citation" data-cites="dragicevic2019">(<a href="#ref-dragicevic2019" role="doc-biblioref">Dragicevic et al. 2019</a>)</span>.</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 62.5%;justify-content: center;">
+<div id="fig-mvhall" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/multiverse-def.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4: What is a multiverse analysis report? in <span class="citation" data-cites="halletal2022">(<a href="#ref-halletal2022" role="doc-biblioref">Hall et al. 2022</a>)</span>.</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 37.5%;justify-content: center;">
+<div id="fig-mvbw" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/multiverse-in-bw.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;5: Multiverse analysis in Bayesian workflow in <span class="citation" data-cites="gelmanetal2020">(<a href="#ref-gelmanetal2020" role="doc-biblioref">Gelman et al. 2020</a>)</span>.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Multiverse analysis provides a way to transparently define and fit several models at once (<span class="citation" data-cites="steegenetal2016">Steegen et al. (<a href="#ref-steegenetal2016" role="doc-biblioref">2016</a>)</span>). This allows to define and investigate several models at once.</p>
+<p>In a workflow that requires iterations, this could allow parallel exploration, thereby, increasing efficiency. On the other hand, this exploration of sets of models necessarily depends on researcher/data analyst/user choices, and is subject to computational and cognitive constraints.</p>
+<p>Reasoning on a set of models can be challenging, and dependence structures and different weights of modelling choices are not immediately clear when confronted with a large collection of possible models (see e.g., <span class="citation" data-cites="halletal2022">Hall et al. (<a href="#ref-halletal2022" role="doc-biblioref">2022</a>)</span>).</p>
+</section>
+<section id="differences-and-structure-in-a-set-of-models" class="level2">
+<h2 class="anchored" data-anchor-id="differences-and-structure-in-a-set-of-models">Differences and structure in a set of models</h2>
+<p>Given a set of <span class="math inline">\(m\)</span> models <span class="math inline">\(\mathcal{M} = \{M_1, M_2, ..., M_m\}\)</span>, let <span class="math inline">\(C_1, \cdots, C_k\)</span> denote <span class="math inline">\(k\)</span> different modelling choices. If, for example, <span class="math inline">\(C_1 = \{\text{"poisson"}, \text{"negbinomial"}\}\)</span>, <span class="math inline">\(C_2 = \{\text{"Trt"}\}\)</span> and <span class="math inline">\(C_3 = \{ \text{"no zAge"}, \text{"zAge"} \}\)</span>, one could draw networks of the resulting four models solely based on how much they differ in each of the conditions.</p>
+<p>Below, the left-hand side shows one step differences, while the right-hand side includes two step differences for models created using the above modelling choices <span class="math inline">\(C_1, C_2\)</span> and <span class="math inline">\(C_3\)</span>.</p>
 <div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell quarto-layout-cell" data-fig-width="4" style="flex-basis: 50.0%;justify-content: center;">
@@ -344,10 +447,185 @@ D–A
 </div>
 </div>
 </div>
-
-
-
 </section>
+<section id="filtering-and-flagging" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-and-flagging">Filtering and Flagging</h2>
+<p>What models need further investigation (or can be safely excluded) due to, for example</p>
+<ul>
+<li>prior-data conflict</li>
+<li>convergence issues</li>
+<li>calibration problems for posterior</li>
+<li>problematic posterior predictive checks</li>
+<li>low predictive performance</li>
+</ul>
+<p>Filtering (or flagging) also serves as a tool to indicate that we are in fact at a certain decision point in the Bayesian workflow (e.g., if computation failed, go to “Addressing computational issues (5)”, see <a href="#fig-bw-gelman">Figure&nbsp;1</a>).</p>
+</section>
+<section id="case-study-brmsepilepsy" class="level2">
+<h2 class="anchored" data-anchor-id="case-study-brmsepilepsy">Case Study: <code>brms::epilepsy</code></h2>
+<p>For this case study, we use the dataset <code>brms::epilepsy</code> with 236 observations containing information on the following 9 variables, originally from Thall and Vail (1990) and Breslow and Clayton (1993):<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<ul>
+<li><span class="math inline">\(\texttt{Age}\)</span>: age of patients in years</li>
+<li><span class="math inline">\(\texttt{Base}\)</span>: seizure count at 8-weeks baseline</li>
+<li><span class="math inline">\(\texttt{Trt}\)</span>: 0 or 1 indicating if patient received anti-convulsant therapy</li>
+<li><span class="math inline">\(\texttt{patient}\)</span>: patient number</li>
+<li><span class="math inline">\(\texttt{visit}\)</span>: session number from 1 (first visit) to 4 (last visit)</li>
+<li><span class="math inline">\(\texttt{count}\)</span>: seizure count between two visits</li>
+<li><span class="math inline">\(\texttt{obs}\)</span>: observation number (unique identifier for each observation)</li>
+<li><span class="math inline">\(\texttt{zAge}\)</span>: Standardized Age</li>
+<li><span class="math inline">\(\texttt{zBase}\)</span>: Standardized Base</li>
+</ul>
+<p>First, we create a dataframe of combinations of modelling choices. Here, we consider two different observation families (<code>poisson</code> and <code>negbinomial</code>), two different prior settings (<code>brms</code> default setting and horseshoe prior with <code>df=3</code> for the population-level effects), different combinations of covariates, models with and without random effects on the level of each patient and/or visit, as well as models with and without interaction effect <code>zBase * Trt</code>. This leads to <span class="math inline">\(96\)</span> models.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load data ####</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> brms<span class="sc">::</span>epilepsy </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>outcome_str <span class="ot">&lt;-</span> <span class="st">"count"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># create dataframe of combinations of model components ####</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># observation families</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>families <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">poisson =</span> <span class="fu">poisson</span>(), </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">negbinomial =</span> <span class="fu">negbinomial</span>())</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># priors </span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>priors <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">brms_default =</span> <span class="cn">NULL</span>, </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">brms_horseshoe =</span> <span class="fu">set_prior</span>(<span class="st">"horseshoe(3)"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>combinations_df <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">names</span>(families),</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">prior =</span> priors,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># fixed effects </span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">Trt =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"Trt"</span>), </span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">zBase =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"zBase"</span>),</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">zAge =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"zAge"</span>),</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># random effects, no observation level r.e.</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">patient =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"(1 | patient)"</span>),</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">visit =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"(1 | visit)"</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>combinations_df <span class="ot">&lt;-</span> combinations_df <span class="sc">|&gt;</span> </span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add interaction effect in the rows where treatment was left out, (i.e., where Trt == "")</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">zBaseTrt =</span> <span class="fu">factor</span>(</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">case_when</span>(</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>      Trt <span class="sc">==</span> <span class="st">"Trt"</span> <span class="sc">~</span> <span class="st">""</span>,</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>      Trt <span class="sc">==</span> <span class="st">""</span> <span class="sc">~</span> <span class="st">"zBase * Trt"</span>))) <span class="sc">|&gt;</span> </span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter out rows with interaction and zBase</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(zBaseTrt <span class="sc">==</span> <span class="st">"zBase * Trt"</span> <span class="sc">&amp;</span> combinations_df<span class="sc">$</span>zBase <span class="sc">==</span> <span class="st">"zBase"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, we can fit models in parallel and evaluate the list of models jointly. This allows us to obtain joint summaries of model evaluation metrics for all models. An example of such a summary table is given below with results for the six models with highest PBMA weights and no divergent transitions in the collection of all <span class="math inline">\(96\)</span> models.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table" style="font-size: 11px; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> rhats_raw </th>
+   <th style="text-align:right;"> div_trans </th>
+   <th style="text-align:right;"> elpd_diff </th>
+   <th style="text-align:right;"> se_diff </th>
+   <th style="text-align:right;"> elpd_loo </th>
+   <th style="text-align:right;"> se_elpd_loo </th>
+   <th style="text-align:right;"> p_loo </th>
+   <th style="text-align:right;"> se_p_loo </th>
+   <th style="text-align:right;"> looic </th>
+   <th style="text-align:right;"> se_looic </th>
+   <th style="text-align:right;"> pbma_weight </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> negbinomial(count ~ Trt+zBase+(1 | patient)), brms_default </td>
+   <td style="text-align:right;"> 1.0019177 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> -0.6077353 </td>
+   <td style="text-align:right;"> 0.6633197 </td>
+   <td style="text-align:right;"> -614.7457 </td>
+   <td style="text-align:right;"> 16.99723 </td>
+   <td style="text-align:right;"> 40.61555 </td>
+   <td style="text-align:right;"> 4.271803 </td>
+   <td style="text-align:right;"> 1229.491 </td>
+   <td style="text-align:right;"> 33.99447 </td>
+   <td style="text-align:right;"> 0.1030463 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> negbinomial(count ~ Trt+zBase+zAge+(1 | patient)), brms_default </td>
+   <td style="text-align:right;"> 1.0009256 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> -0.9609591 </td>
+   <td style="text-align:right;"> 0.7357013 </td>
+   <td style="text-align:right;"> -615.0990 </td>
+   <td style="text-align:right;"> 16.93908 </td>
+   <td style="text-align:right;"> 40.88040 </td>
+   <td style="text-align:right;"> 4.235912 </td>
+   <td style="text-align:right;"> 1230.198 </td>
+   <td style="text-align:right;"> 33.87816 </td>
+   <td style="text-align:right;"> 0.0732736 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> negbinomial(count ~ zBase * Trt+(1 | patient)), brms_default </td>
+   <td style="text-align:right;"> 0.9999913 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> -1.0315128 </td>
+   <td style="text-align:right;"> 0.6751808 </td>
+   <td style="text-align:right;"> -615.1695 </td>
+   <td style="text-align:right;"> 17.04660 </td>
+   <td style="text-align:right;"> 39.84465 </td>
+   <td style="text-align:right;"> 4.046008 </td>
+   <td style="text-align:right;"> 1230.339 </td>
+   <td style="text-align:right;"> 34.09320 </td>
+   <td style="text-align:right;"> 0.0674200 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> negbinomial(count ~ zBase * Trt+zAge+(1 | patient)), brms_default </td>
+   <td style="text-align:right;"> 1.0012496 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> -1.4176538 </td>
+   <td style="text-align:right;"> 0.8658291 </td>
+   <td style="text-align:right;"> -615.5557 </td>
+   <td style="text-align:right;"> 17.02404 </td>
+   <td style="text-align:right;"> 41.58619 </td>
+   <td style="text-align:right;"> 4.331625 </td>
+   <td style="text-align:right;"> 1231.111 </td>
+   <td style="text-align:right;"> 34.04808 </td>
+   <td style="text-align:right;"> 0.0465748 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> negbinomial(count ~ Trt+(1 | patient)), brms_default </td>
+   <td style="text-align:right;"> 1.0041909 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> -4.5562196 </td>
+   <td style="text-align:right;"> 3.1165026 </td>
+   <td style="text-align:right;"> -618.6942 </td>
+   <td style="text-align:right;"> 17.24316 </td>
+   <td style="text-align:right;"> 46.92558 </td>
+   <td style="text-align:right;"> 4.449165 </td>
+   <td style="text-align:right;"> 1237.388 </td>
+   <td style="text-align:right;"> 34.48633 </td>
+   <td style="text-align:right;"> 0.0158738 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> negbinomial(count ~ Trt+zAge+(1 | patient)), brms_default </td>
+   <td style="text-align:right;"> 1.0010792 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> -4.6430282 </td>
+   <td style="text-align:right;"> 3.0686439 </td>
+   <td style="text-align:right;"> -618.7810 </td>
+   <td style="text-align:right;"> 17.17285 </td>
+   <td style="text-align:right;"> 46.73492 </td>
+   <td style="text-align:right;"> 4.444467 </td>
+   <td style="text-align:right;"> 1237.562 </td>
+   <td style="text-align:right;"> 34.34569 </td>
+   <td style="text-align:right;"> 0.0139103 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+
+
+
 </section>
 
 
@@ -357,6 +635,9 @@ Bell, Samuel J., Onno P. Kampmana, Jesse Dodge, and Neil D. Lawrence. 2022. <spa
 </div>
 <div id="ref-bernstein2020" class="csl-entry" role="doc-biblioentry">
 Bernstein, Ryan, Matthijs Vákár, and Jeannette Wing. 2020. <span>“<span class="nocase">Transforming Probabilistic Programs for Model Checking</span>.”</span> In <em>Proceedings of the 2020 <span>ACM</span>-<span>IMS</span> on Foundations of Data Science Conference</em>. <span>ACM</span>. <a href="https://doi.org/10.1145/3412815.3416896">https://doi.org/10.1145/3412815.3416896</a>.
+</div>
+<div id="ref-buerkneretal2022" class="csl-entry" role="doc-biblioentry">
+Bürkner, Paul-Christian, Maximilian Scholz, and Stefan T. Radev. 2022. <span>“Some Models Are Useful, but How Do We Know Which Ones? Towards a Unified Bayesian Model Taxonomy.”</span> arXiv. <a href="https://doi.org/10.48550/ARXIV.2209.02439">https://doi.org/10.48550/ARXIV.2209.02439</a>.
 </div>
 <div id="ref-dragicevic2019" class="csl-entry" role="doc-biblioentry">
 Dragicevic, Pierre, Yvonne Jansen, Abhraneel Sarma, Matthew Kay, and Fanny Chevalier. 2019. <span>“<span class="nocase">Increasing the transparency of research papers with explorable multiverse analyses</span>.”</span> <em>Proceedings of the 2019 CHI Conference on Human Factors in Computing Systems</em>.
@@ -375,6 +656,9 @@ Liu, Yang, Alex Kale, Tim Althoff, and Jeffrey Heer. 2021. <span>“Boba: Author
 </div>
 <div id="ref-martinetal2021" class="csl-entry" role="doc-biblioentry">
 Martin, Osvaldo A., Ravin Kumar, and Junpeng Lao. 2021. <em><span class="nocase">Bayesian Modeling and Computation in Python</span></em>. <span>Boca Raton</span>. <a href="https://bayesiancomputationbook.com/welcome.html">https://bayesiancomputationbook.com/welcome.html</a>.
+</div>
+<div id="ref-projpred-package2022" class="csl-entry" role="doc-biblioentry">
+Piironen, Juho, Markus Paasiniemi, Alejandro Catalina, Frank Weber, and Aki Vehtari. 2022. <span>“<span class="nocase">projpred</span>: Projection Predictive Feature Selection.”</span> <a href="https://mc-stan.org/projpred/">https://mc-stan.org/projpred/</a>.
 </div>
 <div id="ref-piironenvehtari2017" class="csl-entry" role="doc-biblioentry">
 Piironen, Juho, and Aki Vehtari. 2017. <span>“Comparison of Bayesian Predictive Methods for Model Selection.”</span> <em>Statistics and Computing</em> 27: 711–35. <a href="https://doi.org/10.1007/s11222-016-9649-y">https://doi.org/10.1007/s11222-016-9649-y</a>.
@@ -397,11 +681,11 @@ Vehtari, Aki, and Janne Ojanen. 2012. <span>“<span class="nocase">A survey of 
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>I added this section to show resources that I am currently drawing from and to situate the following ideas in existing work. Also, this list might miss sth. important and I am happy to get pointers towards relevant resources.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p><a href="https://betanalpha.github.io/assets/case_studies/principled_bayesian_workflow.html#1_Questioning_Authority" class="uri">https://betanalpha.github.io/assets/case_studies/principled_bayesian_workflow.html#1_Questioning_Authority</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p><a href="https://github.com/n-kall/priorsense" class="uri">https://github.com/n-kall/priorsense</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>Another interesting variant of a flowchart for Bayesian workflow can be found in Michael Betancourt’s <a href="https://betanalpha.github.io/assets/case_studies/principled_bayesian_workflow.html#1_Questioning_Authority">blogpost</a> “Principled Bayesian Workflow”.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>More information in <a href="https://paul-buerkner.github.io/brms/reference/epilepsy.html">brms docs</a> and in a <a href="https://cran.r-project.org/web/packages/bayesian/vignettes/GetStarted.html">vignette</a> introducing the <span class="math inline">\(\texttt{R}\)</span>-package <span class="math inline">\(\texttt{bayesian}\)</span>.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p><a href="https://betanalpha.github.io/assets/case_studies/principled_bayesian_workflow.html#1_Questioning_Authority" class="uri">https://betanalpha.github.io/assets/case_studies/principled_bayesian_workflow.html#1_Questioning_Authority</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://github.com/n-kall/priorsense" class="uri">https://github.com/n-kall/priorsense</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Another interesting variant of a flowchart for Bayesian workflow can be found in Michael Betancourt’s <a href="https://betanalpha.github.io/assets/case_studies/principled_bayesian_workflow.html#1_Questioning_Authority">blogpost</a> “Principled Bayesian Workflow”.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>This is connected to the concept of a reference model (e.g., <span class="citation" data-cites="vehtariojanen2012">Vehtari and Ojanen (<a href="#ref-vehtariojanen2012" role="doc-biblioref">2012</a>)</span> and for projection predictive inference <span class="citation" data-cites="projpred-package2022">(<a href="#ref-projpred-package2022" role="doc-biblioref">Piironen et al. 2022</a>)</span>) as well as ideas on Bayesian model taxonomy as outlined, for example, by <span class="citation" data-cites="buerkneretal2022">Bürkner, Scholz, and Radev (<a href="#ref-buerkneretal2022" role="doc-biblioref">2022</a>)</span>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>More information, e.g.&nbsp;in <a href="https://paul-buerkner.github.io/brms/reference/epilepsy.html">brms docs</a> and in a <a href="https://cran.r-project.org/web/packages/bayesian/vignettes/GetStarted.html">vignette</a> introducing the <span class="math inline">\(\texttt{R}\)</span>-package <span class="math inline">\(\texttt{bayesian}\)</span>.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -538,6 +822,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2023, Anna Elisabeth Riha</div>   
+  </div>
+</footer>
 
 
 
