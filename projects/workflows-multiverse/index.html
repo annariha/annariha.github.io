@@ -165,13 +165,11 @@ div.csl-indent {
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="../../projects/workflows-multiverse/index.html" aria-current="page">
- <span class="menu-text">Projects</span></a>
-  </li>  
-</ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/annariha"><i class="bi bi-github" role="img">
 </i> 
@@ -256,10 +254,10 @@ How can we combine <strong>transparent creation of sets of models</strong> (mult
 <ul>
 <li>Bayesian workflow as introduced in <span class="citation" data-cites="gelmanetal2020">Gelman et al. (<a href="#ref-gelmanetal2020" role="doc-biblioref">2020</a>)</span>, also discussed in e.g., <span class="citation" data-cites="martinetal2021">Martin, Kumar, and Lao (<a href="#ref-martinetal2021" role="doc-biblioref">2021</a>)</span> and a blogpost by Michael Betancourt<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
 <li>Bayesian model evaluation, and comparison (e.g., <span class="citation" data-cites="vehtariojanen2012">Vehtari and Ojanen (<a href="#ref-vehtariojanen2012" role="doc-biblioref">2012</a>)</span>, <span class="citation" data-cites="piironenvehtari2017">Piironen and Vehtari (<a href="#ref-piironenvehtari2017" role="doc-biblioref">2017</a>)</span>)</li>
-<li>prior and likelihood sensitivity checks in <span class="math inline">\(\texttt{R}\)</span>-package <span class="math inline">\(\texttt{priorsense}\)</span><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> <span class="citation" data-cites="kallioinen2021">(<a href="#ref-kallioinen2021" role="doc-biblioref">Kallioinen et al. 2021</a>)</span></li>
+<li>prior and likelihood sensitivity checks in <span class="math inline">\(\texttt{R}\)</span>-package <code>priorsense</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> <span class="citation" data-cites="kallioinen2021">(<a href="#ref-kallioinen2021" role="doc-biblioref">Kallioinen et al. 2021</a>)</span></li>
 <li>(posterior) calibration checks with <span class="citation" data-cites="saeilynoja2022">Säilynoja, Bürkner, and Vehtari (<a href="#ref-saeilynoja2022" role="doc-biblioref">2022</a>)</span></li>
-<li>model comparison with <span class="math inline">\(\texttt{R}\)</span>-package <span class="math inline">\(\texttt{loo}\)</span> <span class="citation" data-cites="loo-package2022">(<a href="#ref-loo-package2022" role="doc-biblioref">Vehtari et al. 2022</a>)</span></li>
-<li>multiverse analysis <span class="citation" data-cites="steegenetal2016">(<a href="#ref-steegenetal2016" role="doc-biblioref">Steegen et al. 2016</a>)</span> and <span class="math inline">\(\texttt{multiverse}\)</span> <span class="math inline">\(\texttt{R}\)</span>-package <span class="citation" data-cites="sarmaetal2021">(<a href="#ref-sarmaetal2021" role="doc-biblioref">Sarma et al. 2021</a>)</span></li>
+<li>model comparison with <span class="math inline">\(\texttt{R}\)</span>-package <code>loo</code> <span class="citation" data-cites="loo-package2022">(<a href="#ref-loo-package2022" role="doc-biblioref">Vehtari et al. 2022</a>)</span></li>
+<li>multiverse analysis <span class="citation" data-cites="steegenetal2016">(<a href="#ref-steegenetal2016" role="doc-biblioref">Steegen et al. 2016</a>)</span> and <code>multiverse</code> <span class="math inline">\(\texttt{R}\)</span>-package <span class="citation" data-cites="sarmaetal2021">(<a href="#ref-sarmaetal2021" role="doc-biblioref">Sarma et al. 2021</a>)</span></li>
 <li>explorable multiverse analyses <span class="citation" data-cites="dragicevic2019">(<a href="#ref-dragicevic2019" role="doc-biblioref">Dragicevic et al. 2019</a>)</span></li>
 <li>creating multiverse analysis scripts, exploring results with Boba <span class="citation" data-cites="liu2021">(<a href="#ref-liu2021" role="doc-biblioref">Liu et al. 2021</a>)</span></li>
 <li>survey of visualisation of multiverse analyses <span class="citation" data-cites="halletal2022">(<a href="#ref-halletal2022" role="doc-biblioref">Hall et al. 2022</a>)</span></li>
@@ -462,7 +460,7 @@ D–A
 </section>
 <section id="case-study-brmsepilepsy" class="level2">
 <h2 class="anchored" data-anchor-id="case-study-brmsepilepsy">Case Study: <code>brms::epilepsy</code></h2>
-<p>For this case study, we use the dataset <code>brms::epilepsy</code> (<span class="citation" data-cites="buerknerbrms2017">Bürkner (<a href="#ref-buerknerbrms2017" role="doc-biblioref">2017</a>)</span>) with 236 observations containing information on the following 9 variables, originally from Thall and Vail (1990) and Breslow and Clayton (1993):<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<p>For this case study, we use the dataset <code>brms::epilepsy</code> from the <span class="math inline">\(\texttt{R}\)</span>-package <code>brms</code> (<span class="citation" data-cites="buerknerbrms2017">Bürkner (<a href="#ref-buerknerbrms2017" role="doc-biblioref">2017</a>)</span>) with 236 observations containing information on the following 9 variables, originally from Thall and Vail (1990) and Breslow and Clayton (1993):<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
 <ul>
 <li><span class="math inline">\(\texttt{Age}\)</span>: age of patients in years</li>
 <li><span class="math inline">\(\texttt{Base}\)</span>: seizure count at 8-weeks baseline</li>
