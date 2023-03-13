@@ -9,12 +9,20 @@ website:
   navbar:
     background: primary
     pinned: true
+    left:
+      # - text: About
+      #   href: index.qmd
+      - text: Projects 
+        href: projects/workflows-multiverse/index.qmd
     right:
       #- icon: envelope
       #  aria-label: email
       #  href: "mailto:"
       - icon: github
         href: https://github.com/annariha
+    page-footer: 
+    left: "Copyright 2023, Anna Elisabeth Riha" 
+    
 format:
   html:
     theme: flatly

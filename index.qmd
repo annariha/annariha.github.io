@@ -1,14 +1,12 @@
 ---
-title: ""
-listing:
-  contents: projects
-  sort: "date desc"
-  type: default
-  categories: true
-  sort-ui: false
-  filter-ui: false
+comments: false
 page-layout: full
-title-block-banner: true
+format:
+  html: 
+    margin-top: 0em
+    margin-bottom: 0em
+aliases:
+  - /about
 ---
 
 ## About 
