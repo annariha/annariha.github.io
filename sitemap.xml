@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://annariha.github.io/projects/multiverse-eeg-cash-aid/index.html</loc>
+    <lastmod>2023-08-18T11:41:31.263Z</lastmod>
+  </url>
+  <url>
     <loc>https://annariha.github.io/projects/workflows-multiverse/index.html</loc>
-    <lastmod>2023-03-13T15:56:21.095Z</lastmod>
+    <lastmod>2023-08-18T11:41:31.979Z</lastmod>
   </url>
   <url>
     <loc>https://annariha.github.io/index.html</loc>
-    <lastmod>2023-03-13T15:56:21.447Z</lastmod>
+    <lastmod>2023-08-18T11:41:32.235Z</lastmod>
   </url>
   <url>
     <loc>https://annariha.github.io/about.html</loc>
-    <lastmod>2023-03-13T15:56:21.783Z</lastmod>
+    <lastmod>2023-08-18T11:41:32.475Z</lastmod>
   </url>
 </urlset>
