@@ -1,0 +1,140 @@
+---
+title: "Cash aid and brain activity - a multiverse analysis"
+date: 2023-5-30
+author: 
+  - name: Anna Elisabeth Riha
+    url: https://anna.riha.github.io
+citation: true
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+categories: [case studies]
+---
+
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 25px;
+border-radius: 5px;
+font-style: italic;
+}
+
+</style>
+
+[Under construction] This is an example of using the $\texttt{multiverse}$ package (Sarma et al. (2021)) to analyse and compare different candidate models for connections between cash aid for mothers and brain activity in babies. Starting from the [paper](https://www.pnas.org/doi/pdf/10.1073/pnas.2115649119) by Troller-Renfree et al. (2022), Andrew Gelman walks through different candidate models in his [blogpost](https://statmodeling.stat.columbia.edu/2022/01/25/im-skeptical-of-that-claim-that-cash-aid-to-poor-mothers-increases-brain-activity-in-babies/). The data is available [here](https://www.openicpsr.org/openicpsr/project/159422/version/V2/view;jsessionid=744DEB563344619A12721CB4868A04E7?path=/openicpsr/159422/fcr:versions/V2/Troller-Renfree-et-al.--2022--PNAS&type=folder).
+
+```{r}
+#| warning: false
+#| message: false 
+#| echo: false 
+# load packages 
+if(!requireNamespace("pacman"))install.packages("pacman")
+pacman::p_load(here, haven, tictoc, purrr, parallel, brms, Matrix, tidyverse, 
+               tidybayes, transport, bayesplot, cowplot, RColorBrewer,
+               loo, multiverse, priorsense)
+# set seed
+set.seed(42424242)
+# set # of cores 
+nc <- parallel::detectCores() - 1
+# load data 
+path <- here::here("data", "pnas_povreductioneeg.dta")
+data_eeg <- read_dta(path)
+# data without NAs in absalpha
+withoutNA <- !is.na(data_eeg$absalpha)
+data_eeg <- data_eeg[withoutNA,]
+# helper functions (from Andrew Gelman's code)
+mean_impute <- function(a) ifelse(is.na(a), mean(a[!is.na(a)]), a)
+standardize <- function(a) (a - mean(a))/(2*sd(a))
+```
+
+```{r}
+#| warning: false
+#| message: false 
+#| include: false
+
+M_eeg = multiverse()
+
+inside(M_eeg, {
+  
+  # preprocessing (from Andrew Gelman's example on blog)
+  df <- data_eeg %>%
+    mutate(
+      girl = as.numeric(cfemalea0),
+      birthweight = as.numeric(cweightlba0_r),
+      gestage = as.numeric(cgestagewksa0_r),
+      momedu = mean_impute(as.numeric(momeduyrsa0)),
+      income = mean_impute(as.numeric(hhrevisedincomea0)),
+      white = as.numeric(mracea0) == 1,
+      black = as.numeric(mracea0) == 2,
+      momhealth = as.numeric(mgoodhealtha0),
+      smoking = as.numeric(mcigduringavgwka0_r),
+      drinking = as.numeric(malcduringavgwka0_r)
+    )
+  
+  # 1. different pre_score definitions - pre_score1 from Andrews code
+  df <- df %>%
+    mutate(pre_score = branch(pre_score_calculation,
+                    "prescore_ag" ~ standardize(birthweight) + standardize(gestage) + 
+                      standardize(momedu) + standardize(income) + white - black + 
+                      standardize(momhealth) - standardize(smoking) - standardize(drinking),
+                    "prescore_h" ~ standardize(birthweight) + standardize(gestage) +
+                      standardize(momhealth) - standardize(smoking) - standardize(drinking)
+                    ))
+  
+  # 2. include different variables: treat, pre_score, girl 
+  # 3. normal vs. log-normal model 
+  mod_eeg <- brm(absalpha ~ 
+               branch(formula, 
+                      "eq_1" ~ treat,
+                      "eq_2" ~ treat + pre_score,
+                      "eq_3" ~ treat + pre_score + girl,
+                      "eq_4" ~ treat + girl + birthweight + gestage + 
+                      momedu + income + white + black + momhealth + 
+                      smoking + drinking
+                      ),
+             data = df, 
+             family = 
+               branch(family, 
+                      "normal" ~ gaussian(), 
+                      "lognormal" ~ lognormal()),
+             cores = nc,
+             save_pars = save_pars(all = TRUE))
+})
+```
+
+```{r}
+#| warning: false
+#| message: false 
+#| include: false
+# execute entire multiverse analysis
+execute_multiverse(M_eeg)
+```
+
+```{r}
+#| warning: false
+#| message: false 
+#| include: false
+# adjust extract_variables from multiverse to work with other objects 
+extract_vars_df <- function (x, ..., .results = .results){
+  .results <- enquo(.results)
+  mutate(x, extracted = lapply(!!.results, multiverse:::extract_from_env, ...)) %>%
+    # added the below code instead of using unnest_wider()
+    # adapted from https://stackoverflow.com/questions/49689927/unnest-a-list-column-directly-into-several-columns
+    mutate(r = map(extracted, ~ data.frame(t(.)))) %>%
+    unnest(r) %>%
+    select(-extracted)
+}
+```
+
+```{r}
+#| warning: false
+#| message: false 
+#| include: false
+# extract brmsfit-objects 
+multi_eeg <- M_eeg %>% 
+  multiverse::expand() %>% 
+  extract_vars_df(mod_eeg)
+```
