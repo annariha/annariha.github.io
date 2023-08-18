@@ -1,6 +1,6 @@
 ---
-title: "Bayesian Workflow and Multiverse Analysis"
-date: 23/05/2023
+title: "Bayesian workflows and multiverse analysis"
+date: 2023-05-23
 author: 
   - name: Anna Elisabeth Riha
     url: https://anna.riha.github.io
@@ -10,7 +10,7 @@ format:
   html:
     toc: true
     toc-depth: 3
-categories: [ideas, case study]
+categories: [ideas, case studies]
 ---
 
 <style>
