@@ -1,0 +1,401 @@
+---
+title: "Iterative filtering for multiverse analyses of treatment effects"
+date: 2023-05-23
+author: 
+  - name: 
+      given: Anna Elisabeth
+      family: Riha
+    url: https://anna.riha.github.io
+citation: true
+bibliography: references.bib
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: true
+categories: [case studies]
+---
+
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 10px;
+margin-right: 25px;
+border-radius: 5px;
+font-style: italic;
+}
+
+</style>
+
+```{css}
+#| echo: false
+p {
+  text-align: justify
+}
+```
+
+```{r}
+#| message: false
+#| warning: false
+
+library(here)
+library(readr)
+library(tictoc)
+library(knitr)
+library(kableExtra)
+library(tinytable)
+library(reactable)
+library(htmltools)
+library(tidyverse)
+library(brms)
+library(future)
+library(furrr)
+library(cmdstanr)
+
+# load helper functions
+helpers <- list.files(path = here::here("projects", "workflows-multiverse"), pattern = "*.R$", full.names = TRUE)
+sapply(helpers, source)
+```
+
+<p class="comment">
+How can we combine **transparent creation of sets of models** (multiverse analysis) with **recipes for model building and evaluation** (Bayesian workflow) to support Bayesian model building?
+<p>
+
+Bayesian model building consists of several intertwined tasks and can involve the iterative consideration of various candidate models (see, e.g., @gelmanetal2020, @martinetal2021). 
+Aspects like model evaluation, model criticism and model comparison can motivate the consideration of multiple models and are essential when searching for models that are sufficient for accurate prediction and robust decision-making (see, e.g., @vehtariojanen2012, @piironenvehtari2017).
+
+We propose iterative filtering for multiverse analysis to balance the advantages of a joint investigation of multiple candidate models with the potentially overwhelming tasks of evaluating and comparing multiple models at once. 
+
+Recommendations from Bayesian workflows and utilities of Bayesian models provide filtering criteria. 
+In particular, we are (for now) focusing on filtering out largely inferior models and identifying minimum viable candidate models for further analyses. 
+A minimum viable Bayesian model is a model that 
+
+- allows to obtain reliable posterior samples
+- has sufficient predictive abilities
+
+Why do we care about these aspects? 
+
+First, we cannot trust conclusions implied by a model if we are not able to obtain reliable posterior samples in the first place. 
+Since we rely on approximations, we need to check whether computation was successful, for example, via convergence checks.
+Secondly, if a model lacks predictive abilities, it is not useful for decision making. 
+
+## Analysing an anticonvulsant for patients with epilepsy
+
+Let's see how iterative filtering can be applied to multiverse analyses of anticonvulsant therapy for patients with epilepsy. 
+
+We use the dataset `brms::epilepsy` from the $\texttt{R}$-package `brms` (@buerknerbrms2017) with `r NROW(brms::epilepsy)` observations of `r length(unique(brms::epilepsy$patient))` patients, originally from Thall and Vail (1990) and Breslow and Clayton (1993).
+The data contains information on:
+
+-   $\texttt{Trt}$: 0 or 1 if patient received anticonvulsant therapy
+-   $\texttt{Age}$: age of patients in years
+-   $\texttt{Base}$: seizure count at 8-week baseline
+-   $\texttt{zAge}$: standardised age
+-   $\texttt{zBase}$: standardised baseline
+-   $\texttt{patient}$: patient number
+-   $\texttt{visit}$: session number from 1 (first visit) to 4 (last visit)
+-   $\texttt{obs}$: unique identifier for each observation
+-   $\texttt{count}$: seizure count between two visits.
+
+Here is a quick glimpse: 
+```{r}
+tt(head(brms::epilepsy, 3))
+```
+
+## An initial multiverse of models 
+
+To analyse the effect of anticonvulsant therapy, we are interested in the number of seizures, that is, non-negative counts. 
+We choose models with Poisson and negative Binomial distributional families for the observations because they are suitable for non-negative integers. 
+We want to investigate models with default priors in `brms` as well as models with a horseshoe prior with three degrees of freedom for the population-level effects. 
+Additionally, we evaluate different combinations of covariates as well as models with and without interaction effect `zBase*Trt`. The combination of these modelling choices leads to $2 \times 2 \times 6 = 24$ candidate models.  
+
+```{r}
+# create dataframe of combinations of model components ####
+combinations_df <- expand.grid(
+  family = names(list(poisson = poisson(), negbinomial = negbinomial())),
+  prior = list(brms_default = "NULL", brms_horseshoe = "horseshoe(3)"),
+  # population-level effects
+  Trt = c("", "Trt"), 
+  zBase = c("", "zBase"),
+  zAge = c("", "zAge")
+)
+
+combinations_df <- combinations_df |> 
+  # add interaction effect in the rows where treatment was left out, (i.e., where Trt == "")
+  mutate(zBaseTrt = factor(
+    case_when(
+      Trt == "Trt" ~ "",
+      Trt == "" ~ "zBase * Trt"))) |> 
+  # filter out rows with interaction and zBase
+  filter(!(zBaseTrt == "zBase * Trt" & combinations_df$zBase == "zBase"))
+
+outcome_str <- "count" 
+
+combinations_df <- combinations_df |>  
+  # add outcome name 
+  mutate(outcome = rep_len(outcome_str, NROW(combinations_df))) |>
+  # add prior names for easier summarising, plotting etc. 
+  mutate(priors = names(combinations_df$prior)) |>
+  # reorder to have outcome name, family and treatment effects first 
+  select(outcome, family, priors, prior, Trt, zBaseTrt, everything())
+```
+
+```{r}
+models_combs_df <- combinations_df |>
+  mutate(modelnames = apply(combinations_df, 1, build_name)) |>
+  mutate(formula = apply(combinations_df, 1, build_formula_string))
+
+# workhorse: fit models ####
+tic()
+future::plan(multisession)
+models_combs_df$modelfits <- combinations_df |>
+  group_nest(row_number()) |>
+  pull(data) |>
+  furrr::future_map(~build_fit(.x, dataset = brms::epilepsy), .options=furrr_options(seed=TRUE))
+future::plan(sequential)
+toc()
+
+# add draws df ####
+models_combs_df <- models_combs_df |>
+  mutate(model_id = paste0("Model ", row_number())) |>
+  mutate(draws_df = purrr::map(purrr::map(modelfits, pluck), posterior::as_draws_df))
+```
+
+## Evaluating the multiverse 
+
+```{r}
+# load results for initial multiverse of 24 models 
+initial_multiverse <- readr::read_rds(here::here("data", "initial_multiverse.rds"))
+```
+
+## Filtering 
+
+## Extending the filtered set of models 
+
+```{r}
+# load results for 192 models
+extended_multiverse <- readr::read_rds(here::here("data", "models_combs_df.rds"))
+```
+
+## Stabilising likelihoods with integration 
+
+The function takes as input a row of a dataframe containing modelling choices and the name of the outcome where each row corresponds to one set of modelling choices, that is, one model in the multiverse. 
+This function uses the helper function `build_fit()` which is using `brms::brm()` to fit one model based on a row vector of modelling choices. 
+
+```{r}
+build_loglik <- function(row, ...){
+  
+  # get model fit ####
+  modelfit = build_fit(row, ...)
+  # get posterior draws
+  draws_df = posterior::as_draws_df(modelfit)
+  
+  # reformat draws to get z's and sd ####
+  input_df <- draws_df |> 
+    tidyr::nest(rs = starts_with("r_obs"),
+                sd = matches("sd_obs__Intercept")) |>
+    mutate(rs = map(rs, unlist),
+           sd = map_dbl(sd, ~matrix(unlist(.x), ncol = 1))) |>
+    rowwise() |>
+    mutate(zs = list(unlist(rs) / sd))
+  
+  # extract linpred ####
+  # from brms docs: "[posterior] draws before applying any link functions or other transformations"
+  lin_pred = brms::posterior_linpred(modelfit)
+  # standardized group-level effects
+  zs_df = data.frame(matrix(unlist(input_df$zs), ncol=NROW(modelfit$data), byrow=T))
+  # actual group-level effects
+  rs_df = data.frame(matrix(unlist(input_df$rs), ncol=NROW(modelfit$data), byrow=T)) 
+  lin_pred_without = lin_pred - rs_df # different values across iterations, same value for each obs
+  
+  # outcome ####
+  outcome_name = row[["outcome"]]
+  outcome = as.numeric(unlist(modelfit$data[outcome_name]))
+  
+  # results for all observations and iterations with integrate() ####
+  log_lik = matrix(data=NA, nrow=brms::nchains(modelfit)*brms::niterations(modelfit), ncol=NROW(modelfit$data))
+  # iterate to get loglik
+  for (i in seq(NROW(input_df))){
+    for (j in seq(NROW(modelfit$data))){
+      zs <- zs_df[i,j]
+      sd_obs <- input_df$sd[i]
+      linpreds_minus_re <- lin_pred_without[i,j]
+      y <- as.numeric(outcome[j])
+      integrand <- function(zs, 
+                            sd_obs,
+                            y, 
+                            linpreds_minus_re){
+        # function defines integrand for integrate()
+        # in Stan code: std_normal_lpdf(z_1)
+        z_term <- dnorm(zs,
+                        mean = 0, 
+                        sd = 1,
+                        log = TRUE)
+        # in Stan code: poisson_log_lpmf(Yi[1] | r_1_1 + linpred_minus_re)
+        fit_term <- dpois(x = y, 
+                          lambda = exp((zs*sd_obs)  + linpreds_minus_re),
+                          log = TRUE)
+        result = exp(z_term + fit_term)
+        return(result)
+      }
+      #print(paste0("Iteration: ", i, " Observation: ", j, " sd_obs: ", sd_obs, " linpreds: ", linpreds_minus_re, " y: ", y))
+      log_lik[i,j] <- log(integrate(integrand, 
+                                    lower = -Inf,
+                                    upper = Inf,
+                                    sd_obs = sd_obs,
+                                    y = y,
+                                    linpreds_minus_re = linpreds_minus_re)$value)
+    }
+  }
+  # add names to matrix 
+  colnames(log_lik) <- paste0("log_lik[", seq(NROW(modelfit$data)), "]")
+  # convert matrix of log_lik values to array
+  log_lik_array <- array(log_lik, c(brms::niterations(modelfit), brms::nchains(modelfit), NROW(modelfit$data)))
+  # set dimnames of array
+  dimnames(log_lik_array) <- list(iteration = seq(brms::niterations(modelfit)),
+                                  chain = seq(brms::nchains(modelfit)),
+                                  variable =  paste0("log_lik[", seq(NROW(modelfit$data)), "]"))
+  # convert into draws array
+  log_lik_array <- posterior::as_draws(log_lik_array)
+  # output: a log-likelihood array 
+  return(log_lik_array)
+}
+```
+
+## Existing work
+
+-   
+-   prior and likelihood sensitivity checks in $\texttt{R}$-package `priorsense`[^3] [@kallioinen2021]
+-   (posterior) calibration checks with @saeilynoja2022
+-   model comparison with $\texttt{R}$-package `loo` [@loo-package2022]
+-   multiverse analysis [@steegenetal2016] and `multiverse` $\texttt{R}$-package [@sarmaetal2021]
+-   explorable multiverse analyses [@dragicevic2019]
+-   creating multiverse analysis scripts, exploring results with Boba [@liu2021]
+-   survey of visualisation of multiverse analyses [@halletal2022]
+-   modular STAN [@bernstein2020]
+-   modelling multiverse analysis (for machine learning) [@belletal2022]
+
+[^2]: <https://betanalpha.github.io/assets/case_studies/principled_bayesian_workflow.html#1_Questioning_Authority>
+
+[^3]: <https://github.com/n-kall/priorsense>
+
+The following figures show two variants of flowcharts for Bayesian workflows with different levels of detail as well as crucial and optional steps[^4]. Similarities are, for example, (1) iterating when needed, and (2) connecting model and computation.
+
+[^4]: Another interesting variant of a flowchart for Bayesian workflow can be found in Michael Betancourt's [blogpost](https://betanalpha.github.io/assets/case_studies/principled_bayesian_workflow.html#1_Questioning_Authority) "Principled Bayesian Workflow".
+
+![Bayesian Workflow in [@gelmanetal2020]](figures/bayesworkflow-illu.png){#fig-bw-gelman height="5%"}
+
+![Bayesian Workflow in [@martinetal2021].](figures/workflow-bayescompbook.png){#fig-bw-martin width="90%"}
+
+## Challenges in Bayesian workflows
+
+-   multi-attribute multi-objective scenarios
+-   navigating necessary vs. "nice-to-have" steps
+-   stopping criteria and sufficient exploration
+-   iterative model building, while transparent and robust
+-   communicating results of multiple models
+
+::: {.column-margin}
+**What is a "good enough" model?**[^5]
+
+[^5]: This is connected to the concept of a reference model (e.g., @vehtariojanen2012 and for projection predictive inference [@projpred-package2022]) as well as ideas on Bayesian model taxonomy as outlined, for example, by @buerkneretal2022.
+
+-   depends (to some extent) on objectives of the analysis
+-   domain knowledge
+- passing prior predictive checks
+-   "good" priors
+-   convergence of sampling algorithms
+-   posterior calibration
+- passing posterior predictive checks
+-   predictive performance
+-   explainability
+- ...
+:::
+
+## Transparent Exploration 
+
+![Multiverse analysis compared to other approaches, from [@dragicevic2019].](figures/multiverse-illu.png){#fig-mvd width="60%"}
+
+::: {layout-ncol="2" layout-valign="top"}
+![What is a multiverse analysis report? in [@halletal2022].](figures/multiverse-def.png){#fig-mvhall width="50%"}
+
+![Multiverse analysis in Bayesian workflow in [@gelmanetal2020].](figures/multiverse-in-bw.png){#fig-mvbw width="30%"}
+:::
+
+Multiverse analysis provides a way to transparently define and fit several models at once (@steegenetal2016). This allows to define and investigate several models at once. 
+
+In a workflow that requires iterations, this could allow parallel exploration, thereby, increasing efficiency. 
+On the other hand, this exploration of sets of models necessarily depends on researcher/data analyst/user choices, and is subject to computational and cognitive constraints. 
+
+Reasoning on a set of models can be challenging, and dependence structures and different weights of modelling choices are not immediately clear when confronted with a large collection of possible models (see e.g., @halletal2022). 
+
+## Differences and structure in a set of models 
+
+Given a set of $m$ models $\mathcal{M} = \{M_1, M_2, ..., M_m\}$, let $C_1, \cdots, C_k$ denote $k$ different modelling choices. If, for example, $C_1 = \{\text{"poisson"}, \text{"negbinomial"}\}$, $C_2 = \{\text{"Trt"}\}$ and $C_3 = \{ \text{"no zAge"}, \text{"zAge"} \}$, one could draw networks of the resulting four models solely based on how much they differ in each of the conditions. 
+
+Below, the left-hand side shows one step differences, while the right-hand side includes two step differences for models created using the above modelling choices $C_1, C_2$ and $C_3$.
+
+::: {layout-ncol="2"}
+```{dot}
+//| fig-width: 4
+graph D {
+  
+  A [shape=box,label="Poisson(Trt)"]
+  B [shape=box,label="Poisson(Trt+zAge)"]
+  C [shape=box,label="Negbinom(Trt)"]
+  D [shape=box,label="Negbinom(Trt+zAge)"]
+  
+  A -- B 
+  A -- C 
+  C -- D 
+  B -- D 
+
+}
+```
+
+```{dot}
+//| fig-width: 3
+
+graph D {
+  
+  A [shape=box, label="Poisson(Trt)"]
+  B [shape=box, label="Poisson(Trt+zAge)"]
+  C [shape=box, label="Negbinom(Trt)"]
+  D [shape=box, label="Negbinom(Trt+zAge)"]
+  
+  A -- B -- D
+  A -- C -- D
+  C -- B [color="grey:invis:grey"]
+  D -- A [color="grey:invis:grey"]
+
+}
+```
+:::
+
+## Filtering and Flagging
+
+What models need further investigation (or can be safely excluded) due to, for example
+
+-   prior-data conflict
+-   convergence issues
+-   calibration problems for posterior
+-   problematic posterior predictive checks
+-   insufficient predictive performance
+
+Filtering (or flagging) also serves as a tool to indicate that we are in fact at a certain decision point in the Bayesian workflow (e.g., if computation failed, go to "Addressing computational issues (5)", see @fig-bw-gelman).
+
+
+
+Then, we can fit models in parallel and evaluate the list of models jointly. This allows us to obtain joint summaries of model evaluation metrics for all models. An example of such a summary table is given below with results for the six models with highest PBMA weights and no divergent transitions in the collection of all $96$ models.  
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+
+kable_df_epi <- readr::read_rds(here::here("data", "kable_df_epi.rds")) 
+
+knitr::kable(kable_df_epi) %>%
+  kableExtra::kable_styling(font_size = 11)
+```

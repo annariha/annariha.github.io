@@ -1,0 +1,5 @@
+# Options specified here will apply to all case studies in this folder - this setup is inspired by https://samanthacsik.github.io/posts/2022-10-24-quarto-blogs/
+
+freeze: auto # prevents posts from re-rendering unless explicitly told to do so (for more, see https://quarto.org/docs/projects/code-execution.html#freeze)
+
+title-block-banner: true # enable banner style title blocks (see https://quarto.org/docs/authoring/title-blocks.html)
