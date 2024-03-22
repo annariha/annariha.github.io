@@ -48,8 +48,10 @@ project:
 format:
   html:
     fontsize: 1.1em
-    theme: flatly
-    css: styles.css
+    theme: 
+      - flatly
+      - html/styles.scss
+    #css: styles.css
     toc: false
     code-link: true
     anchor-sections: true
