@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.551">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Anna Elisabeth Riha">
+<meta name="dcterms.date" content="2023-05-23">
+
+<title>Anna Elisabeth Riha - Iterative filtering for multiverse analyses of treatment effects</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Anna Elisabeth Riha</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects/index.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../casestudies.html"> 
+<span class="menu-text">Case studies</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/annariha"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/anna-elisabeth-riha-818426188/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Iterative filtering for multiverse analyses of treatment effects</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">multiverse analysis</div>
+                <div class="quarto-category">Bayesian workflows</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p><a href="https://anna.riha.github.io">Anna Elisabeth Riha</a> <a href="https://orcid.org/0009-0003-8396-906X" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">May 23, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#analysing-an-anticonvulsant-for-patients-with-epilepsy" id="toc-analysing-an-anticonvulsant-for-patients-with-epilepsy" class="nav-link active" data-scroll-target="#analysing-an-anticonvulsant-for-patients-with-epilepsy">Analysing an anticonvulsant for patients with epilepsy</a></li>
+  <li><a href="#an-initial-multiverse-of-models" id="toc-an-initial-multiverse-of-models" class="nav-link" data-scroll-target="#an-initial-multiverse-of-models">An initial multiverse of models</a></li>
+  <li><a href="#evaluating-the-multiverse" id="toc-evaluating-the-multiverse" class="nav-link" data-scroll-target="#evaluating-the-multiverse">Evaluating the multiverse</a></li>
+  <li><a href="#filtering" id="toc-filtering" class="nav-link" data-scroll-target="#filtering">Filtering</a></li>
+  <li><a href="#extending-the-filtered-set-of-models" id="toc-extending-the-filtered-set-of-models" class="nav-link" data-scroll-target="#extending-the-filtered-set-of-models">Extending the filtered set of models</a></li>
+  <li><a href="#stabilising-likelihoods-with-integration" id="toc-stabilising-likelihoods-with-integration" class="nav-link" data-scroll-target="#stabilising-likelihoods-with-integration">Stabilising likelihoods with integration</a></li>
+  <li><a href="#existing-work" id="toc-existing-work" class="nav-link" data-scroll-target="#existing-work">Existing work</a></li>
+  <li><a href="#challenges-in-bayesian-workflows" id="toc-challenges-in-bayesian-workflows" class="nav-link" data-scroll-target="#challenges-in-bayesian-workflows">Challenges in Bayesian workflows</a></li>
+  <li><a href="#transparent-exploration" id="toc-transparent-exploration" class="nav-link" data-scroll-target="#transparent-exploration">Transparent Exploration</a></li>
+  <li><a href="#differences-and-structure-in-a-set-of-models" id="toc-differences-and-structure-in-a-set-of-models" class="nav-link" data-scroll-target="#differences-and-structure-in-a-set-of-models">Differences and structure in a set of models</a></li>
+  <li><a href="#filtering-and-flagging" id="toc-filtering-and-flagging" class="nav-link" data-scroll-target="#filtering-and-flagging">Filtering and Flagging</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
+
+
+
+
+
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 10px;
+margin-right: 25px;
+border-radius: 5px;
+font-style: italic;
+}
+
+</style>
+<div class="cell">
+<style type="text/css">
+p {
+  text-align: justify
+}
+</style>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tictoc)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tinytable)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reactable)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(htmltools)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(brms)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(future)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(furrr)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cmdstanr)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># load helper functions</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>helpers <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"projects"</span>, <span class="st">"workflows-multiverse"</span>), <span class="at">pattern =</span> <span class="st">"*.R$"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(helpers, source)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>named list()</code></pre>
+</div>
+</div>
+<p class="comment">
+How can we combine <strong>transparent creation of sets of models</strong> (multiverse analysis) with <strong>recipes for model building and evaluation</strong> (Bayesian workflow) to support Bayesian model building?
+</p><p>
+</p><p>Bayesian model building consists of several intertwined tasks and can involve the iterative consideration of various candidate models (see, e.g., <span class="citation" data-cites="gelmanetal2020">Gelman et al. (<a href="#ref-gelmanetal2020" role="doc-biblioref">2020</a>)</span>, <span class="citation" data-cites="martinetal2021">Martin, Kumar, and Lao (<a href="#ref-martinetal2021" role="doc-biblioref">2021</a>)</span>). Aspects like model evaluation, model criticism and model comparison can motivate the consideration of multiple models and are essential when searching for models that are sufficient for accurate prediction and robust decision-making (see, e.g., <span class="citation" data-cites="vehtariojanen2012">Vehtari and Ojanen (<a href="#ref-vehtariojanen2012" role="doc-biblioref">2012</a>)</span>, <span class="citation" data-cites="piironenvehtari2017">Piironen and Vehtari (<a href="#ref-piironenvehtari2017" role="doc-biblioref">2017</a>)</span>).</p>
+<p>We propose iterative filtering for multiverse analysis to balance the advantages of a joint investigation of multiple candidate models with the potentially overwhelming tasks of evaluating and comparing multiple models at once.</p>
+<p>Recommendations from Bayesian workflows and utilities of Bayesian models provide filtering criteria. In particular, we are (for now) focusing on filtering out largely inferior models and identifying minimum viable candidate models for further analyses. A minimum viable Bayesian model is a model that</p>
+<ul>
+<li>allows to obtain reliable posterior samples</li>
+<li>has sufficient predictive abilities</li>
+</ul>
+<p>Why do we care about these aspects?</p>
+<p>First, we cannot trust conclusions implied by a model if we are not able to obtain reliable posterior samples in the first place. Since we rely on approximations, we need to check whether computation was successful, for example, via convergence checks. Secondly, if a model lacks predictive abilities, it is not useful for decision making.</p>
+<section id="analysing-an-anticonvulsant-for-patients-with-epilepsy" class="level2">
+<h2 class="anchored" data-anchor-id="analysing-an-anticonvulsant-for-patients-with-epilepsy">Analysing an anticonvulsant for patients with epilepsy</h2>
+<p>Let’s see how iterative filtering can be applied to multiverse analyses of anticonvulsant therapy for patients with epilepsy.</p>
+<p>We use the dataset <code>brms::epilepsy</code> from the <span class="math inline">\(\texttt{R}\)</span>-package <code>brms</code> (<span class="citation" data-cites="buerknerbrms2017">Bürkner (<a href="#ref-buerknerbrms2017" role="doc-biblioref">2017</a>)</span>) with 236 observations of 59 patients, originally from Thall and Vail (1990) and Breslow and Clayton (1993). The data contains information on:</p>
+<ul>
+<li><span class="math inline">\(\texttt{Trt}\)</span>: 0 or 1 if patient received anticonvulsant therapy</li>
+<li><span class="math inline">\(\texttt{Age}\)</span>: age of patients in years</li>
+<li><span class="math inline">\(\texttt{Base}\)</span>: seizure count at 8-week baseline</li>
+<li><span class="math inline">\(\texttt{zAge}\)</span>: standardised age</li>
+<li><span class="math inline">\(\texttt{zBase}\)</span>: standardised baseline</li>
+<li><span class="math inline">\(\texttt{patient}\)</span>: patient number</li>
+<li><span class="math inline">\(\texttt{visit}\)</span>: session number from 1 (first visit) to 4 (last visit)</li>
+<li><span class="math inline">\(\texttt{obs}\)</span>: unique identifier for each observation</li>
+<li><span class="math inline">\(\texttt{count}\)</span>: seizure count between two visits.</li>
+</ul>
+<p>Here is a quick glimpse:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tt</span>(<span class="fu">head</span>(brms<span class="sc">::</span>epilepsy, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+ 
+
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tinytable_p9z69qfdsevn3f90p7j6</title>
+    <style>
+.table td.tinytable_css_tlswyp4n4cpsd7tnjtf3, .table th.tinytable_css_tlswyp4n4cpsd7tnjtf3 {    border-bottom: solid 0.1em #d3d8dc; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+  
+
+  
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_p9z69qfdsevn3f90p7j6" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+        <thead>
+        
+              <tr>
+                <th scope="col">Age</th>
+                <th scope="col">Base</th>
+                <th scope="col">Trt</th>
+                <th scope="col">patient</th>
+                <th scope="col">visit</th>
+                <th scope="col">count</th>
+                <th scope="col">obs</th>
+                <th scope="col">zAge</th>
+                <th scope="col">zBase</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td>31</td>
+                  <td>11</td>
+                  <td>0</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>5</td>
+                  <td>1</td>
+                  <td> 0.4249950</td>
+                  <td>-0.7571728</td>
+                </tr>
+                <tr>
+                  <td>30</td>
+                  <td>11</td>
+                  <td>0</td>
+                  <td>2</td>
+                  <td>1</td>
+                  <td>3</td>
+                  <td>2</td>
+                  <td> 0.2652835</td>
+                  <td>-0.7571728</td>
+                </tr>
+                <tr>
+                  <td>25</td>
+                  <td> 6</td>
+                  <td>0</td>
+                  <td>3</td>
+                  <td>1</td>
+                  <td>2</td>
+                  <td>3</td>
+                  <td>-0.5332740</td>
+                  <td>-0.9444033</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      function styleCell_tinytable_m7txss2d8nkoa70nyz9s(i, j, css_id) {
+        var table = document.getElementById("tinytable_p9z69qfdsevn3f90p7j6");
+        table.rows[i].cells[j].classList.add(css_id);
+      }
+      function insertSpanRow(i, colspan, content) {
+        var table = document.getElementById('tinytable_p9z69qfdsevn3f90p7j6');
+        var newRow = table.insertRow(i);
+        var newCell = newRow.insertCell(0);
+        newCell.setAttribute("colspan", colspan);
+        // newCell.innerText = content;
+        // this may be unsafe, but innerText does not interpret <br>
+        newCell.innerHTML = content;
+      }
+      function spanCell_tinytable_m7txss2d8nkoa70nyz9s(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_p9z69qfdsevn3f90p7j6");
+        const targetRow = table.rows[i];
+        const targetCell = targetRow.cells[j];
+        for (let r = 0; r < rowspan; r++) {
+          // Only start deleting cells to the right for the first row (r == 0)
+          if (r === 0) {
+            // Delete cells to the right of the target cell in the first row
+            for (let c = colspan - 1; c > 0; c--) {
+              if (table.rows[i + r].cells[j + c]) {
+                table.rows[i + r].deleteCell(j + c);
+              }
+            }
+          }
+          // For rows below the first, delete starting from the target column
+          if (r > 0) {
+            for (let c = colspan - 1; c >= 0; c--) {
+              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
+                table.rows[i + r].deleteCell(j);
+              }
+            }
+          }
+        }
+        // Set rowspan and colspan of the target cell
+        targetCell.rowSpan = rowspan;
+        targetCell.colSpan = colspan;
+      }
+
+window.addEventListener('load', function () { styleCell_tinytable_m7txss2d8nkoa70nyz9s(0, 0, 'tinytable_css_tlswyp4n4cpsd7tnjtf3') })
+window.addEventListener('load', function () { styleCell_tinytable_m7txss2d8nkoa70nyz9s(0, 1, 'tinytable_css_tlswyp4n4cpsd7tnjtf3') })
+window.addEventListener('load', function () { styleCell_tinytable_m7txss2d8nkoa70nyz9s(0, 2, 'tinytable_css_tlswyp4n4cpsd7tnjtf3') })
+window.addEventListener('load', function () { styleCell_tinytable_m7txss2d8nkoa70nyz9s(0, 3, 'tinytable_css_tlswyp4n4cpsd7tnjtf3') })
+window.addEventListener('load', function () { styleCell_tinytable_m7txss2d8nkoa70nyz9s(0, 4, 'tinytable_css_tlswyp4n4cpsd7tnjtf3') })
+window.addEventListener('load', function () { styleCell_tinytable_m7txss2d8nkoa70nyz9s(0, 5, 'tinytable_css_tlswyp4n4cpsd7tnjtf3') })
+window.addEventListener('load', function () { styleCell_tinytable_m7txss2d8nkoa70nyz9s(0, 6, 'tinytable_css_tlswyp4n4cpsd7tnjtf3') })
+window.addEventListener('load', function () { styleCell_tinytable_m7txss2d8nkoa70nyz9s(0, 7, 'tinytable_css_tlswyp4n4cpsd7tnjtf3') })
+window.addEventListener('load', function () { styleCell_tinytable_m7txss2d8nkoa70nyz9s(0, 8, 'tinytable_css_tlswyp4n4cpsd7tnjtf3') })
+    </script>
+
+  
+
+
+</div>
+</div>
+</section>
+<section id="an-initial-multiverse-of-models" class="level2">
+<h2 class="anchored" data-anchor-id="an-initial-multiverse-of-models">An initial multiverse of models</h2>
+<p>To analyse the effect of anticonvulsant therapy, we are interested in the number of seizures, that is, non-negative counts. We choose models with Poisson and negative Binomial distributional families for the observations because they are suitable for non-negative integers. We want to investigate models with default priors in <code>brms</code> as well as models with a horseshoe prior with three degrees of freedom for the population-level effects. Additionally, we evaluate different combinations of covariates as well as models with and without interaction effect <code>zBase*Trt</code>. The combination of these modelling choices leads to <span class="math inline">\(2 \times 2 \times 6 = 24\)</span> candidate models.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create dataframe of combinations of model components ####</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>combinations_df <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">names</span>(<span class="fu">list</span>(<span class="at">poisson =</span> <span class="fu">poisson</span>(), <span class="at">negbinomial =</span> <span class="fu">negbinomial</span>())),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">prior =</span> <span class="fu">list</span>(<span class="at">brms_default =</span> <span class="st">"NULL"</span>, <span class="at">brms_horseshoe =</span> <span class="st">"horseshoe(3)"</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># population-level effects</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Trt =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"Trt"</span>), </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">zBase =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"zBase"</span>),</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">zAge =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"zAge"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>combinations_df <span class="ot">&lt;-</span> combinations_df <span class="sc">|&gt;</span> </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add interaction effect in the rows where treatment was left out, (i.e., where Trt == "")</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">zBaseTrt =</span> <span class="fu">factor</span>(</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">case_when</span>(</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>      Trt <span class="sc">==</span> <span class="st">"Trt"</span> <span class="sc">~</span> <span class="st">""</span>,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>      Trt <span class="sc">==</span> <span class="st">""</span> <span class="sc">~</span> <span class="st">"zBase * Trt"</span>))) <span class="sc">|&gt;</span> </span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter out rows with interaction and zBase</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(zBaseTrt <span class="sc">==</span> <span class="st">"zBase * Trt"</span> <span class="sc">&amp;</span> combinations_df<span class="sc">$</span>zBase <span class="sc">==</span> <span class="st">"zBase"</span>))</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>outcome_str <span class="ot">&lt;-</span> <span class="st">"count"</span> </span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>combinations_df <span class="ot">&lt;-</span> combinations_df <span class="sc">|&gt;</span>  </span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add outcome name </span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">outcome =</span> <span class="fu">rep_len</span>(outcome_str, <span class="fu">NROW</span>(combinations_df))) <span class="sc">|&gt;</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add prior names for easier summarising, plotting etc. </span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">priors =</span> <span class="fu">names</span>(combinations_df<span class="sc">$</span>prior)) <span class="sc">|&gt;</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># reorder to have outcome name, family and treatment effects first </span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(outcome, family, priors, prior, Trt, zBaseTrt, <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>models_combs_df <span class="ot">&lt;-</span> combinations_df <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">modelnames =</span> <span class="fu">apply</span>(combinations_df, <span class="dv">1</span>, build_name)) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">formula =</span> <span class="fu">apply</span>(combinations_df, <span class="dv">1</span>, build_formula_string))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># workhorse: fit models ####</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>future<span class="sc">::</span><span class="fu">plan</span>(multisession)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>models_combs_df<span class="sc">$</span>modelfits <span class="ot">&lt;-</span> combinations_df <span class="sc">|&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_nest</span>(<span class="fu">row_number</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(data) <span class="sc">|&gt;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  furrr<span class="sc">::</span><span class="fu">future_map</span>(<span class="sc">~</span><span class="fu">build_fit</span>(.x, <span class="at">dataset =</span> brms<span class="sc">::</span>epilepsy), <span class="at">.options=</span><span class="fu">furrr_options</span>(<span class="at">seed=</span><span class="cn">TRUE</span>))</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>future<span class="sc">::</span><span class="fu">plan</span>(sequential)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span>()</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># add draws df ####</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>models_combs_df <span class="ot">&lt;-</span> models_combs_df <span class="sc">|&gt;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model_id =</span> <span class="fu">paste0</span>(<span class="st">"Model "</span>, <span class="fu">row_number</span>())) <span class="sc">|&gt;</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">draws_df =</span> purrr<span class="sc">::</span><span class="fu">map</span>(purrr<span class="sc">::</span><span class="fu">map</span>(modelfits, pluck), posterior<span class="sc">::</span>as_draws_df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="evaluating-the-multiverse" class="level2">
+<h2 class="anchored" data-anchor-id="evaluating-the-multiverse">Evaluating the multiverse</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load results for initial multiverse of 24 models </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>initial_multiverse <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_rds</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"initial_multiverse.rds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="filtering" class="level2">
+<h2 class="anchored" data-anchor-id="filtering">Filtering</h2>
+</section>
+<section id="extending-the-filtered-set-of-models" class="level2">
+<h2 class="anchored" data-anchor-id="extending-the-filtered-set-of-models">Extending the filtered set of models</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load results for 192 models</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#extended_multiverse &lt;- readr::read_rds(here::here("data", "models_combs_df.rds"))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="stabilising-likelihoods-with-integration" class="level2">
+<h2 class="anchored" data-anchor-id="stabilising-likelihoods-with-integration">Stabilising likelihoods with integration</h2>
+<p>The function takes as input a row of a dataframe containing modelling choices and the name of the outcome where each row corresponds to one set of modelling choices, that is, one model in the multiverse. This function uses the helper function <code>build_fit()</code> which is using <code>brms::brm()</code> to fit one model based on a row vector of modelling choices.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>build_loglik <span class="ot">&lt;-</span> <span class="cf">function</span>(row, ...){</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get model fit ####</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  modelfit <span class="ot">=</span> <span class="fu">build_fit</span>(row, ...)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get posterior draws</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  draws_df <span class="ot">=</span> posterior<span class="sc">::</span><span class="fu">as_draws_df</span>(modelfit)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># reformat draws to get z's and sd ####</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  input_df <span class="ot">&lt;-</span> draws_df <span class="sc">|&gt;</span> </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">nest</span>(<span class="at">rs =</span> <span class="fu">starts_with</span>(<span class="st">"r_obs"</span>),</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">sd =</span> <span class="fu">matches</span>(<span class="st">"sd_obs__Intercept"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">rs =</span> <span class="fu">map</span>(rs, unlist),</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">sd =</span> <span class="fu">map_dbl</span>(sd, <span class="sc">~</span><span class="fu">matrix</span>(<span class="fu">unlist</span>(.x), <span class="at">ncol =</span> <span class="dv">1</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rowwise</span>() <span class="sc">|&gt;</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">zs =</span> <span class="fu">list</span>(<span class="fu">unlist</span>(rs) <span class="sc">/</span> sd))</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># extract linpred ####</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># from brms docs: "[posterior] draws before applying any link functions or other transformations"</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  lin_pred <span class="ot">=</span> brms<span class="sc">::</span><span class="fu">posterior_linpred</span>(modelfit)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># standardized group-level effects</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  zs_df <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="fu">matrix</span>(<span class="fu">unlist</span>(input_df<span class="sc">$</span>zs), <span class="at">ncol=</span><span class="fu">NROW</span>(modelfit<span class="sc">$</span>data), <span class="at">byrow=</span>T))</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># actual group-level effects</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  rs_df <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="fu">matrix</span>(<span class="fu">unlist</span>(input_df<span class="sc">$</span>rs), <span class="at">ncol=</span><span class="fu">NROW</span>(modelfit<span class="sc">$</span>data), <span class="at">byrow=</span>T)) </span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  lin_pred_without <span class="ot">=</span> lin_pred <span class="sc">-</span> rs_df <span class="co"># different values across iterations, same value for each obs</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># outcome ####</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>  outcome_name <span class="ot">=</span> row[[<span class="st">"outcome"</span>]]</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>  outcome <span class="ot">=</span> <span class="fu">as.numeric</span>(<span class="fu">unlist</span>(modelfit<span class="sc">$</span>data[outcome_name]))</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># results for all observations and iterations with integrate() ####</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>  log_lik <span class="ot">=</span> <span class="fu">matrix</span>(<span class="at">data=</span><span class="cn">NA</span>, <span class="at">nrow=</span>brms<span class="sc">::</span><span class="fu">nchains</span>(modelfit)<span class="sc">*</span>brms<span class="sc">::</span><span class="fu">niterations</span>(modelfit), <span class="at">ncol=</span><span class="fu">NROW</span>(modelfit<span class="sc">$</span>data))</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># iterate to get loglik</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(<span class="fu">NROW</span>(input_df))){</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="fu">seq</span>(<span class="fu">NROW</span>(modelfit<span class="sc">$</span>data))){</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>      zs <span class="ot">&lt;-</span> zs_df[i,j]</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>      sd_obs <span class="ot">&lt;-</span> input_df<span class="sc">$</span>sd[i]</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>      linpreds_minus_re <span class="ot">&lt;-</span> lin_pred_without[i,j]</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>      y <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(outcome[j])</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>      integrand <span class="ot">&lt;-</span> <span class="cf">function</span>(zs, </span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>                            sd_obs,</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>                            y, </span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>                            linpreds_minus_re){</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>        <span class="co"># function defines integrand for integrate()</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>        <span class="co"># in Stan code: std_normal_lpdf(z_1)</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>        z_term <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(zs,</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>                        <span class="at">mean =</span> <span class="dv">0</span>, </span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>                        <span class="at">sd =</span> <span class="dv">1</span>,</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>                        <span class="at">log =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>        <span class="co"># in Stan code: poisson_log_lpmf(Yi[1] | r_1_1 + linpred_minus_re)</span></span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>        fit_term <span class="ot">&lt;-</span> <span class="fu">dpois</span>(<span class="at">x =</span> y, </span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>                          <span class="at">lambda =</span> <span class="fu">exp</span>((zs<span class="sc">*</span>sd_obs)  <span class="sc">+</span> linpreds_minus_re),</span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>                          <span class="at">log =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>        result <span class="ot">=</span> <span class="fu">exp</span>(z_term <span class="sc">+</span> fit_term)</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>        <span class="fu">return</span>(result)</span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>      <span class="co">#print(paste0("Iteration: ", i, " Observation: ", j, " sd_obs: ", sd_obs, " linpreds: ", linpreds_minus_re, " y: ", y))</span></span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>      log_lik[i,j] <span class="ot">&lt;-</span> <span class="fu">log</span>(<span class="fu">integrate</span>(integrand, </span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">lower =</span> <span class="sc">-</span><span class="cn">Inf</span>,</span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">upper =</span> <span class="cn">Inf</span>,</span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">sd_obs =</span> sd_obs,</span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">y =</span> y,</span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">linpreds_minus_re =</span> linpreds_minus_re)<span class="sc">$</span>value)</span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add names to matrix </span></span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>(log_lik) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"log_lik["</span>, <span class="fu">seq</span>(<span class="fu">NROW</span>(modelfit<span class="sc">$</span>data)), <span class="st">"]"</span>)</span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>  <span class="co"># convert matrix of log_lik values to array</span></span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>  log_lik_array <span class="ot">&lt;-</span> <span class="fu">array</span>(log_lik, <span class="fu">c</span>(brms<span class="sc">::</span><span class="fu">niterations</span>(modelfit), brms<span class="sc">::</span><span class="fu">nchains</span>(modelfit), <span class="fu">NROW</span>(modelfit<span class="sc">$</span>data)))</span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set dimnames of array</span></span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dimnames</span>(log_lik_array) <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">iteration =</span> <span class="fu">seq</span>(brms<span class="sc">::</span><span class="fu">niterations</span>(modelfit)),</span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">chain =</span> <span class="fu">seq</span>(brms<span class="sc">::</span><span class="fu">nchains</span>(modelfit)),</span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">variable =</span>  <span class="fu">paste0</span>(<span class="st">"log_lik["</span>, <span class="fu">seq</span>(<span class="fu">NROW</span>(modelfit<span class="sc">$</span>data)), <span class="st">"]"</span>))</span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>  <span class="co"># convert into draws array</span></span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a>  log_lik_array <span class="ot">&lt;-</span> posterior<span class="sc">::</span><span class="fu">as_draws</span>(log_lik_array)</span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a>  <span class="co"># output: a log-likelihood array </span></span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(log_lik_array)</span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="existing-work" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="existing-work">Existing work</h2>
+<ul>
+<li></li>
+<li>prior and likelihood sensitivity checks in <span class="math inline">\(\texttt{R}\)</span>-package <code>priorsense</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <span class="citation" data-cites="kallioinen2021">(<a href="#ref-kallioinen2021" role="doc-biblioref">Kallioinen et al. 2021</a>)</span></li>
+<li>(posterior) calibration checks with <span class="citation" data-cites="saeilynoja2022">Säilynoja, Bürkner, and Vehtari (<a href="#ref-saeilynoja2022" role="doc-biblioref">2022</a>)</span></li>
+<li>model comparison with <span class="math inline">\(\texttt{R}\)</span>-package <code>loo</code> <span class="citation" data-cites="loo-package2022">(<a href="#ref-loo-package2022" role="doc-biblioref">Vehtari et al. 2022</a>)</span></li>
+<li>multiverse analysis <span class="citation" data-cites="steegenetal2016">(<a href="#ref-steegenetal2016" role="doc-biblioref">Steegen et al. 2016</a>)</span> and <code>multiverse</code> <span class="math inline">\(\texttt{R}\)</span>-package <span class="citation" data-cites="sarmaetal2021">(<a href="#ref-sarmaetal2021" role="doc-biblioref">Sarma et al. 2021</a>)</span></li>
+<li>explorable multiverse analyses <span class="citation" data-cites="dragicevic2019">(<a href="#ref-dragicevic2019" role="doc-biblioref">Dragicevic et al. 2019</a>)</span></li>
+<li>creating multiverse analysis scripts, exploring results with Boba <span class="citation" data-cites="liu2021">(<a href="#ref-liu2021" role="doc-biblioref">Liu et al. 2021</a>)</span></li>
+<li>survey of visualisation of multiverse analyses <span class="citation" data-cites="halletal2022">(<a href="#ref-halletal2022" role="doc-biblioref">Hall et al. 2022</a>)</span></li>
+<li>modular STAN <span class="citation" data-cites="bernstein2020">(<a href="#ref-bernstein2020" role="doc-biblioref">Bernstein, Vákár, and Wing 2020</a>)</span></li>
+<li>modelling multiverse analysis (for machine learning) <span class="citation" data-cites="belletal2022">(<a href="#ref-belletal2022" role="doc-biblioref">Bell et al. 2022</a>)</span></li>
+</ul>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;<a href="https://github.com/n-kall/priorsense" class="uri">https://github.com/n-kall/priorsense</a></p></div><div id="fn2"><p><sup>2</sup>&nbsp;Another interesting variant of a flowchart for Bayesian workflow can be found in Michael Betancourt’s <a href="https://betanalpha.github.io/assets/case_studies/principled_bayesian_workflow.html#1_Questioning_Authority">blogpost</a> “Principled Bayesian Workflow”.</p></div></div><p>The following figures show two variants of flowcharts for Bayesian workflows with different levels of detail as well as crucial and optional steps<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Similarities are, for example, (1) iterating when needed, and (2) connecting model and computation.</p>
+<div id="fig-bw-gelman" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div aria-describedby="fig-bw-gelman-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/bayesworkflow-illu.png" style="height:5.0%" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-margin quarto-float-caption quarto-float-fig margin-caption" id="fig-bw-gelman-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Bayesian Workflow in <span class="citation" data-cites="gelmanetal2020">(<a href="#ref-gelmanetal2020" role="doc-biblioref">Gelman et al. 2020</a>)</span>
+</figcaption>
+</figure>
+</div>
+<div id="fig-bw-martin" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div aria-describedby="fig-bw-martin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/workflow-bayescompbook.png" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-margin quarto-float-caption quarto-float-fig margin-caption" id="fig-bw-martin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Bayesian Workflow in <span class="citation" data-cites="martinetal2021">(<a href="#ref-martinetal2021" role="doc-biblioref">Martin, Kumar, and Lao 2021</a>)</span>.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="challenges-in-bayesian-workflows" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="challenges-in-bayesian-workflows">Challenges in Bayesian workflows</h2>
+<ul>
+<li>multi-attribute multi-objective scenarios</li>
+<li>navigating necessary vs.&nbsp;“nice-to-have” steps</li>
+<li>stopping criteria and sufficient exploration</li>
+<li>iterative model building, while transparent and robust</li>
+<li>communicating results of multiple models</li>
+</ul>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><strong>What is a “good enough” model?</strong><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<ul>
+<li>depends (to some extent) on objectives of the analysis</li>
+<li>domain knowledge</li>
+<li>passing prior predictive checks</li>
+<li>“good” priors</li>
+<li>convergence of sampling algorithms</li>
+<li>posterior calibration</li>
+<li>passing posterior predictive checks</li>
+<li>predictive performance</li>
+<li>explainability</li>
+<li>…</li>
+</ul>
+<div id="fn3"><p><sup>3</sup>&nbsp;This is connected to the concept of a reference model (e.g., <span class="citation" data-cites="vehtariojanen2012">Vehtari and Ojanen (<a href="#ref-vehtariojanen2012" role="doc-biblioref">2012</a>)</span> and for projection predictive inference <span class="citation" data-cites="projpred-package2022">(<a href="#ref-projpred-package2022" role="doc-biblioref">Piironen et al. 2022</a>)</span>) as well as ideas on Bayesian model taxonomy as outlined, for example, by <span class="citation" data-cites="buerkneretal2022">Bürkner, Scholz, and Radev (<a href="#ref-buerkneretal2022" role="doc-biblioref">2022</a>)</span>.</p></div></div></div></section>
+<section id="transparent-exploration" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="transparent-exploration">Transparent Exploration</h2>
+<div id="fig-mvd" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div aria-describedby="fig-mvd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/multiverse-illu.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-margin quarto-float-caption quarto-float-fig margin-caption" id="fig-mvd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Multiverse analysis compared to other approaches, from <span class="citation" data-cites="dragicevic2019">(<a href="#ref-dragicevic2019" role="doc-biblioref">Dragicevic et al. 2019</a>)</span>.
+</figcaption>
+</figure>
+</div>
+<div>
+
+</div>
+<div class="quarto-layout-panel page-columns page-full" data-layout-ncol="2">
+<div class="quarto-layout-row quarto-layout-valign-top page-columns page-full">
+<div class="quarto-layout-cell page-columns page-full" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-mvhall" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div aria-describedby="fig-mvhall-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/multiverse-def.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-margin quarto-float-caption quarto-float-fig margin-caption" id="fig-mvhall-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: What is a multiverse analysis report? in <span class="citation" data-cites="halletal2022">(<a href="#ref-halletal2022" role="doc-biblioref">Hall et al. 2022</a>)</span>.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell page-columns page-full" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-mvbw" class="quarto-figure quarto-figure-center quarto-float anchored page-columns page-full">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div aria-describedby="fig-mvbw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/multiverse-in-bw.png" class="img-fluid figure-img" style="width:30.0%">
+</div>
+<figcaption class="quarto-float-caption-margin quarto-float-caption quarto-float-fig margin-caption" id="fig-mvbw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Multiverse analysis in Bayesian workflow in <span class="citation" data-cites="gelmanetal2020">(<a href="#ref-gelmanetal2020" role="doc-biblioref">Gelman et al. 2020</a>)</span>.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Multiverse analysis provides a way to transparently define and fit several models at once (<span class="citation" data-cites="steegenetal2016">Steegen et al. (<a href="#ref-steegenetal2016" role="doc-biblioref">2016</a>)</span>). This allows to define and investigate several models at once.</p>
+<p>In a workflow that requires iterations, this could allow parallel exploration, thereby, increasing efficiency. On the other hand, this exploration of sets of models necessarily depends on researcher/data analyst/user choices, and is subject to computational and cognitive constraints.</p>
+<p>Reasoning on a set of models can be challenging, and dependence structures and different weights of modelling choices are not immediately clear when confronted with a large collection of possible models (see e.g., <span class="citation" data-cites="halletal2022">Hall et al. (<a href="#ref-halletal2022" role="doc-biblioref">2022</a>)</span>).</p>
+</section>
+<section id="differences-and-structure-in-a-set-of-models" class="level2">
+<h2 class="anchored" data-anchor-id="differences-and-structure-in-a-set-of-models">Differences and structure in a set of models</h2>
+<p>Given a set of <span class="math inline">\(m\)</span> models <span class="math inline">\(\mathcal{M} = \{M_1, M_2, ..., M_m\}\)</span>, let <span class="math inline">\(C_1, \cdots, C_k\)</span> denote <span class="math inline">\(k\)</span> different modelling choices. If, for example, <span class="math inline">\(C_1 = \{\text{"poisson"}, \text{"negbinomial"}\}\)</span>, <span class="math inline">\(C_2 = \{\text{"Trt"}\}\)</span> and <span class="math inline">\(C_3 = \{ \text{"no zAge"}, \text{"zAge"} \}\)</span>, one could draw networks of the resulting four models solely based on how much they differ in each of the conditions.</p>
+<p>Below, the left-hand side shows one step differences, while the right-hand side includes two step differences for models created using the above modelling choices <span class="math inline">\(C_1, C_2\)</span> and <span class="math inline">\(C_3\)</span>.</p>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="cell quarto-layout-cell" data-fig-width="4" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<svg width="384" height="480" viewbox="0.00 0.00 250.48 188.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
+<title>D</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-184 246.48,-184 246.48,4 -4,4"></polygon>
+<!-- A -->
+<g id="node1" class="node">
+<title>A</title>
+<polygon fill="none" stroke="black" points="169.72,-180 83.72,-180 83.72,-144 169.72,-144 169.72,-180"></polygon>
+<text text-anchor="middle" x="126.72" y="-157.8" font-family="Times,serif" font-size="14.00">Poisson(Trt)</text>
+</g>
+<!-- B -->
+<g id="node2" class="node">
+<title>B</title>
+<polygon fill="none" stroke="black" points="123.65,-108 -0.22,-108 -0.22,-72 123.65,-72 123.65,-108"></polygon>
+<text text-anchor="middle" x="61.72" y="-85.8" font-family="Times,serif" font-size="14.00">Poisson(Trt+zAge)</text>
+</g>
+<!-- A&#45;&#45;B -->
+<g id="edge1" class="edge">
+<title>A--B</title>
+<path fill="none" stroke="black" d="M110.65,-143.7C100.57,-132.85 87.64,-118.92 77.6,-108.1"></path>
+</g>
+<!-- C -->
+<g id="node3" class="node">
+<title>C</title>
+<polygon fill="none" stroke="black" points="242.25,-108 141.18,-108 141.18,-72 242.25,-72 242.25,-108"></polygon>
+<text text-anchor="middle" x="191.72" y="-85.8" font-family="Times,serif" font-size="14.00">Negbinom(Trt)</text>
+</g>
+<!-- A&#45;&#45;C -->
+<g id="edge2" class="edge">
+<title>A--C</title>
+<path fill="none" stroke="black" d="M142.78,-143.7C152.86,-132.85 165.79,-118.92 175.83,-108.1"></path>
+</g>
+<!-- D -->
+<g id="node4" class="node">
+<title>D</title>
+<polygon fill="none" stroke="black" points="196.18,-36 57.25,-36 57.25,0 196.18,0 196.18,-36"></polygon>
+<text text-anchor="middle" x="126.72" y="-13.8" font-family="Times,serif" font-size="14.00">Negbinom(Trt+zAge)</text>
+</g>
+<!-- B&#45;&#45;D -->
+<g id="edge4" class="edge">
+<title>B--D</title>
+<path fill="none" stroke="black" d="M77.78,-71.7C87.86,-60.85 100.79,-46.92 110.83,-36.1"></path>
+</g>
+<!-- C&#45;&#45;D -->
+<g id="edge3" class="edge">
+<title>C--D</title>
+<path fill="none" stroke="black" d="M175.65,-71.7C165.57,-60.85 152.64,-46.92 142.6,-36.1"></path>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<div class="cell quarto-layout-cell" data-fig-width="3" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<svg width="288" height="480" viewbox="0.00 0.00 229.20 260.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 256)">
+<title>D</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-256 225.2,-256 225.2,4 -4,4"></polygon>
+<!-- A -->
+<g id="node1" class="node">
+<title>A</title>
+<polygon fill="none" stroke="black" points="168.72,-252 82.72,-252 82.72,-216 168.72,-216 168.72,-252"></polygon>
+<text text-anchor="middle" x="125.72" y="-229.8" font-family="Times,serif" font-size="14.00">Poisson(Trt)</text>
+</g>
+<!-- B -->
+<g id="node2" class="node">
+<title>B</title>
+<polygon fill="none" stroke="black" points="123.65,-108 -0.22,-108 -0.22,-72 123.65,-72 123.65,-108"></polygon>
+<text text-anchor="middle" x="61.72" y="-85.8" font-family="Times,serif" font-size="14.00">Poisson(Trt+zAge)</text>
+</g>
+<!-- A&#45;&#45;B -->
+<g id="edge1" class="edge">
+<title>A--B</title>
+<path fill="none" stroke="black" d="M97.75,-215.83C85.64,-206.79 72.67,-194.54 65.72,-180 54.71,-156.98 56.23,-126.66 58.7,-108.02"></path>
+</g>
+<!-- C -->
+<g id="node3" class="node">
+<title>C</title>
+<polygon fill="none" stroke="black" points="176.25,-180 75.18,-180 75.18,-144 176.25,-144 176.25,-180"></polygon>
+<text text-anchor="middle" x="125.72" y="-157.8" font-family="Times,serif" font-size="14.00">Negbinom(Trt)</text>
+</g>
+<!-- A&#45;&#45;C -->
+<g id="edge3" class="edge">
+<title>A--C</title>
+<path fill="none" stroke="black" d="M125.72,-215.7C125.72,-204.85 125.72,-190.92 125.72,-180.1"></path>
+</g>
+<!-- D -->
+<g id="node4" class="node">
+<title>D</title>
+<polygon fill="none" stroke="black" points="221.18,-36 82.25,-36 82.25,0 221.18,0 221.18,-36"></polygon>
+<text text-anchor="middle" x="151.72" y="-13.8" font-family="Times,serif" font-size="14.00">Negbinom(Trt+zAge)</text>
+</g>
+<!-- B&#45;&#45;D -->
+<g id="edge2" class="edge">
+<title>B--D</title>
+<path fill="none" stroke="black" d="M83.96,-71.7C97.91,-60.85 115.82,-46.92 129.73,-36.1"></path>
+</g>
+<!-- C&#45;&#45;B -->
+<g id="edge5" class="edge">
+<title>C--B</title>
+<path fill="none" stroke="grey" d="M108.42,-145.05C98.5,-134.2 85.76,-120.27 75.88,-109.45"></path>
+<path fill="none" stroke="transparent" d="M109.9,-143.7C99.98,-132.85 87.24,-118.92 77.36,-108.1"></path>
+<path fill="none" stroke="grey" d="M111.37,-142.35C101.45,-131.5 88.72,-117.57 78.83,-106.75"></path>
+</g>
+<!-- C&#45;&#45;D -->
+<g id="edge4" class="edge">
+<title>C--D</title>
+<path fill="none" stroke="black" d="M128.85,-143.87C133.85,-116.58 143.57,-63.52 148.57,-36.19"></path>
+</g>
+<!-- D&#45;&#45;A -->
+<g id="edge6" class="edge">
+<title>D--A</title>
+<path fill="none" stroke="grey" d="M163.8,-35.23C180.62,-65.66 209.73,-129.95 187.54,-180.82 180.46,-196.15 167.52,-208.41 155.17,-217.58"></path>
+<path fill="none" stroke="transparent" d="M162.05,-36.2C178.8,-66.48 207.91,-130.78 185.72,-180 179.09,-194.7 166.15,-206.96 153.98,-215.97"></path>
+<path fill="none" stroke="grey" d="M160.3,-37.17C176.98,-67.31 206.09,-131.6 183.89,-179.18 177.71,-193.25 164.77,-205.51 152.79,-214.36"></path>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="filtering-and-flagging" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-and-flagging">Filtering and Flagging</h2>
+<p>What models need further investigation (or can be safely excluded) due to, for example</p>
+<ul>
+<li>prior-data conflict</li>
+<li>convergence issues</li>
+<li>calibration problems for posterior</li>
+<li>problematic posterior predictive checks</li>
+<li>insufficient predictive performance</li>
+</ul>
+<p>Filtering (or flagging) also serves as a tool to indicate that we are in fact at a certain decision point in the Bayesian workflow (e.g., if computation failed, go to “Addressing computational issues (5)”, see <a href="#fig-bw-gelman" class="quarto-xref">Figure&nbsp;1</a>).</p>
+<p>Then, we can fit models in parallel and evaluate the list of models jointly. This allows us to obtain joint summaries of model evaluation metrics for all models. An example of such a summary table is given below with results for the six models with highest PBMA weights and no divergent transitions in the collection of all <span class="math inline">\(96\)</span> models.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">rhats_raw</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">div_trans</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">elpd_diff</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">se_diff</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">elpd_loo</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">se_elpd_loo</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p_loo</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">se_p_loo</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">looic</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">se_looic</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">pbma_weight</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">negbinomial(count ~ Trt+zBase+(1 | patient)), brms_default</td>
+<td style="text-align: right;">1.0019177</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-0.6077353</td>
+<td style="text-align: right;">0.6633197</td>
+<td style="text-align: right;">-614.7457</td>
+<td style="text-align: right;">16.99723</td>
+<td style="text-align: right;">40.61555</td>
+<td style="text-align: right;">4.271803</td>
+<td style="text-align: right;">1229.491</td>
+<td style="text-align: right;">33.99447</td>
+<td style="text-align: right;">0.1030463</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">negbinomial(count ~ Trt+zBase+zAge+(1 | patient)), brms_default</td>
+<td style="text-align: right;">1.0009256</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-0.9609591</td>
+<td style="text-align: right;">0.7357013</td>
+<td style="text-align: right;">-615.0990</td>
+<td style="text-align: right;">16.93908</td>
+<td style="text-align: right;">40.88040</td>
+<td style="text-align: right;">4.235912</td>
+<td style="text-align: right;">1230.198</td>
+<td style="text-align: right;">33.87816</td>
+<td style="text-align: right;">0.0732736</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">negbinomial(count ~ zBase * Trt+(1 | patient)), brms_default</td>
+<td style="text-align: right;">0.9999913</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-1.0315128</td>
+<td style="text-align: right;">0.6751808</td>
+<td style="text-align: right;">-615.1695</td>
+<td style="text-align: right;">17.04660</td>
+<td style="text-align: right;">39.84465</td>
+<td style="text-align: right;">4.046008</td>
+<td style="text-align: right;">1230.339</td>
+<td style="text-align: right;">34.09320</td>
+<td style="text-align: right;">0.0674200</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">negbinomial(count ~ zBase * Trt+zAge+(1 | patient)), brms_default</td>
+<td style="text-align: right;">1.0012496</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-1.4176538</td>
+<td style="text-align: right;">0.8658291</td>
+<td style="text-align: right;">-615.5557</td>
+<td style="text-align: right;">17.02404</td>
+<td style="text-align: right;">41.58619</td>
+<td style="text-align: right;">4.331625</td>
+<td style="text-align: right;">1231.111</td>
+<td style="text-align: right;">34.04808</td>
+<td style="text-align: right;">0.0465748</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">negbinomial(count ~ Trt+(1 | patient)), brms_default</td>
+<td style="text-align: right;">1.0041909</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-4.5562196</td>
+<td style="text-align: right;">3.1165026</td>
+<td style="text-align: right;">-618.6942</td>
+<td style="text-align: right;">17.24316</td>
+<td style="text-align: right;">46.92558</td>
+<td style="text-align: right;">4.449165</td>
+<td style="text-align: right;">1237.388</td>
+<td style="text-align: right;">34.48633</td>
+<td style="text-align: right;">0.0158738</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">negbinomial(count ~ Trt+zAge+(1 | patient)), brms_default</td>
+<td style="text-align: right;">1.0010792</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-4.6430282</td>
+<td style="text-align: right;">3.0686439</td>
+<td style="text-align: right;">-618.7810</td>
+<td style="text-align: right;">17.17285</td>
+<td style="text-align: right;">46.73492</td>
+<td style="text-align: right;">4.444467</td>
+<td style="text-align: right;">1237.562</td>
+<td style="text-align: right;">34.34569</td>
+<td style="text-align: right;">0.0139103</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div>
+
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-belletal2022" class="csl-entry" role="listitem">
+Bell, Samuel J., Onno P. Kampmana, Jesse Dodge, and Neil D. Lawrence. 2022. <span>“Modeling the Machine Learning Multiverse.”</span> <em>arXiv</em>. <a href="https://doi.org/10.48550/arXiv.2206.05985">https://doi.org/10.48550/arXiv.2206.05985</a>.
+</div>
+<div id="ref-bernstein2020" class="csl-entry" role="listitem">
+Bernstein, Ryan, Matthijs Vákár, and Jeannette Wing. 2020. <span>“<span class="nocase">Transforming Probabilistic Programs for Model Checking</span>.”</span> In <em>Proceedings of the 2020 <span>ACM</span>-<span>IMS</span> on Foundations of Data Science Conference</em>. <span>ACM</span>. <a href="https://doi.org/10.1145/3412815.3416896">https://doi.org/10.1145/3412815.3416896</a>.
+</div>
+<div id="ref-buerknerbrms2017" class="csl-entry" role="listitem">
+Bürkner, Paul-Christian. 2017. <span>“<span class="nocase">brms</span>: An <span>R</span> Package for <span>Bayesian</span> Multilevel Models Using <span>Stan</span>.”</span> <em>Journal of Statistical Software</em> 80 (1): 1–28. <a href="https://doi.org/10.18637/jss.v080.i01">https://doi.org/10.18637/jss.v080.i01</a>.
+</div>
+<div id="ref-buerkneretal2022" class="csl-entry" role="listitem">
+Bürkner, Paul-Christian, Maximilian Scholz, and Stefan T. Radev. 2022. <span>“Some Models Are Useful, but How Do We Know Which Ones? Towards a Unified Bayesian Model Taxonomy.”</span> arXiv. <a href="https://doi.org/10.48550/ARXIV.2209.02439">https://doi.org/10.48550/ARXIV.2209.02439</a>.
+</div>
+<div id="ref-dragicevic2019" class="csl-entry" role="listitem">
+Dragicevic, Pierre, Yvonne Jansen, Abhraneel Sarma, Matthew Kay, and Fanny Chevalier. 2019. <span>“<span class="nocase">Increasing the transparency of research papers with explorable multiverse analyses</span>.”</span> <em>Proceedings of the 2019 CHI Conference on Human Factors in Computing Systems</em>.
+</div>
+<div id="ref-gelmanetal2020" class="csl-entry" role="listitem">
+Gelman, Andrew, Aki Vehtari, Daniel Simpson, Charles C. Margossian, Bob Carpenter, Yuling Yao, Lauren Kennedy, Jonah Gabry, Paul-Christian Bürkner, and Martin Modrák. 2020. <span>“<span>Bayesian Workflow</span>.”</span> <em>arXiv</em>. <a href="https://doi.org/10.48550/ARXIV.2011.01808">https://doi.org/10.48550/ARXIV.2011.01808</a>.
+</div>
+<div id="ref-halletal2022" class="csl-entry" role="listitem">
+Hall, Brian D., Yang Liu, Yvonne Jansen, Pierre Dragicevic, Fanny Chevalier, and Matthew Kay. 2022. <span>“A Survey of Tasks and Visualizations in Multiverse Analysis Reports.”</span> <em>Computer Graphics Forum 41, No. 1</em>. <a href="https://doi.org/10.1111/cgf.14443">https://doi.org/10.1111/cgf.14443</a>.
+</div>
+<div id="ref-kallioinen2021" class="csl-entry" role="listitem">
+Kallioinen, Noa, Topi Paananen, Paul-Christian Bürkner, and Aki Vehtari. 2021. <span>“Detecting and Diagnosing Prior and Likelihood Sensitivity with Power-Scaling.”</span> arXiv. <a href="https://doi.org/10.48550/ARXIV.2107.14054">https://doi.org/10.48550/ARXIV.2107.14054</a>.
+</div>
+<div id="ref-liu2021" class="csl-entry" role="listitem">
+Liu, Yang, Alex Kale, Tim Althoff, and Jeffrey Heer. 2021. <span>“Boba: Authoring and Visualizing Multiverse Analyses.”</span> <em><span>IEEE</span> Transactions on Visualization and Computer Graphics</em> 27 (2): 1753–63. <a href="https://doi.org/10.1109/tvcg.2020.3028985">https://doi.org/10.1109/tvcg.2020.3028985</a>.
+</div>
+<div id="ref-martinetal2021" class="csl-entry" role="listitem">
+Martin, Osvaldo A., Ravin Kumar, and Junpeng Lao. 2021. <em><span class="nocase">Bayesian Modeling and Computation in Python</span></em>. <span>Boca Raton</span>. <a href="https://bayesiancomputationbook.com/welcome.html">https://bayesiancomputationbook.com/welcome.html</a>.
+</div>
+<div id="ref-projpred-package2022" class="csl-entry" role="listitem">
+Piironen, Juho, Markus Paasiniemi, Alejandro Catalina, Frank Weber, and Aki Vehtari. 2022. <span>“<span class="nocase">projpred</span>: Projection Predictive Feature Selection.”</span> <a href="https://mc-stan.org/projpred/">https://mc-stan.org/projpred/</a>.
+</div>
+<div id="ref-piironenvehtari2017" class="csl-entry" role="listitem">
+Piironen, Juho, and Aki Vehtari. 2017. <span>“Comparison of Bayesian Predictive Methods for Model Selection.”</span> <em>Statistics and Computing</em> 27: 711–35. <a href="https://doi.org/10.1007/s11222-016-9649-y">https://doi.org/10.1007/s11222-016-9649-y</a>.
+</div>
+<div id="ref-saeilynoja2022" class="csl-entry" role="listitem">
+Säilynoja, Teemu, Paul-Christian Bürkner, and Aki Vehtari. 2022. <span>“Graphical Test for Discrete Uniformity and Its Applications in Goodness of Fit Evaluation and Multiple Sample Comparison.”</span> <em>Statistics and Computing 32</em>. <a href="https://doi.org/10.1007/s11222-022-10090-6">https://doi.org/10.1007/s11222-022-10090-6</a>.
+</div>
+<div id="ref-sarmaetal2021" class="csl-entry" role="listitem">
+Sarma, Abhraneel, Alex Kale, Michael Moon, Nathan Taback, Fanny Chevalier, Jessica Hullman, and Matthew Kay. 2021. <span>“<span class="nocase">multiverse: Multiplexing Alternative Data Analyses in R Notebooks (Version 0.6.0)</span>.”</span> <em>OSF Preprints</em>. <a href="https://github.com/MUCollective/multiverse">https://github.com/MUCollective/multiverse</a>.
+</div>
+<div id="ref-steegenetal2016" class="csl-entry" role="listitem">
+Steegen, Sara, Francis Tuerlinckx, Andrew Gelman, and Wolf Vanpaemel. 2016. <span>“<span class="nocase">Increasing Transparency Through a Multiverse Analysis</span>.”</span> <em>Perspectives on Psychological Science</em> 11 (5): 702–12.
+</div>
+<div id="ref-loo-package2022" class="csl-entry" role="listitem">
+Vehtari, Aki, Jonah Gabry, Mans Magnusson, Yuling Yao, Paul-Christian Bürkner, Topi Paananen, and Andrew Gelman. 2022. <span>“Loo: Efficient Leave-One-Out Cross-Validation and WAIC for Bayesian Models.”</span> <a href="https://mc-stan.org/loo/">https://mc-stan.org/loo/</a>.
+</div>
+<div id="ref-vehtariojanen2012" class="csl-entry" role="listitem">
+Vehtari, Aki, and Janne Ojanen. 2012. <span>“<span class="nocase">A survey of Bayesian predictive methods for model assessment, selection and comparison</span>.”</span> <em>Statistics Surveys</em> 6 (none): 142–228. <a href="https://doi.org/10.1214/12-SS102">https://doi.org/10.1214/12-SS102</a>.
+</div>
+</div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{riha2023,
+  author = {Riha, Anna Elisabeth},
+  title = {Iterative Filtering for Multiverse Analyses of Treatment
+    Effects},
+  date = {2023-05-23},
+  url = {https://annariha.github.io//casestudies/workflows-multiverse},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-riha2023" class="csl-entry quarto-appendix-citeas" role="listitem">
+Riha, Anna Elisabeth. 2023. <span>“Iterative Filtering for Multiverse
+Analyses of Treatment Effects.”</span> May 23, 2023. <a href="https://annariha.github.io//casestudies/workflows-multiverse">https://annariha.github.io//casestudies/workflows-multiverse</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/annariha\.github\.io\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Copyright 2024, Anna Elisabeth Riha</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p><span class="faux-block"><a href="https://github.com/annariha/annariha.github.io">View source on GitHub</a></span></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -1,9 +1,12 @@
 [
   {
-    "listing": "/index.html",
+    "listing": "/blog.html",
+    "items": []
+  },
+  {
+    "listing": "/casestudies.html",
     "items": [
-      "/projects/multiverse-eeg-cash-aid/index.html",
-      "/projects/workflows-multiverse/index.html"
+      "/casestudies/workflows-multiverse/index.html"
     ]
   }
 ]
