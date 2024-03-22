@@ -1,12 +1,28 @@
 ---
-title: ""
-listing:
-  contents: projects
-  sort: "date desc"
-  type: default
-  categories: true
-  sort-ui: false
-  filter-ui: false
-page-layout: full
-title-block-banner: true
+about:
+  template: jolla
+  id: about-block
+  image: "images/anna_el_riha_picture_small.png"
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/anna-elisabeth-riha-818426188/
+    - icon: github
+      text: Github
+      href: https://github.com/annariha
 ---
+
+::: {#about-block}
+:::
+
+I am a doctoral researcher in the [Probabilistic Machine Learning](https://research.cs.aalto.fi/pml/) group at Aalto University supervised by [Aki Vehtari](https://avehtari.github.io/) and [Antti Oulasvirta](http://users.comnet.aalto.fi/oulasvir/). 
+
+My research interests lie in Bayesian data analysis, modelling workflows, iteration in model building and metastatistics. 
+I am interested in interdisciplinary perspectives on Bayesian workflows and building bridges between method development and applied research. 
+
+On this website, you will find information about my research projects as well as case studies and a blog with occasional random musings. 
+Please feel free to contact me if you have any questions or would like to discuss potential projects.
+
+Before my current position, I completed my MSc in Statistics at Humboldt University Berlin with a [thesis project](https://edoc.hu-berlin.de/handle/18452/22837) on hyperprior sensitivity of wrapped Gaussian processes including an application to wind data, supervised by [Nadja Klein](https://rc-trust.ai/klein/) and [Thomas Kneib](https://www.uni-goettingen.de/de/prof.+dr.+thomas+kneib/264255.html). 
+During my studies, I also worked as a research assistant in the group of [Andreas Brandmaier](https://www.mpib-berlin.mpg.de/staff/andreas-brandmaier) in the project "Formal Methods in Lifespan Psychology" at Max Planck Institute for Human Development in Berlin. 
+Before, I earned my BSc degree in Economics with a focus on Empirical Economics and a minor in Sociology from University Potsdam where I wrote my Bachelor thesis under the supervision of [Marco Caliendo](https://caliendo.de/). 
