@@ -142,9 +142,13 @@ combinations_df <- combinations_df |>
   select(outcome, family, priors, prior, Trt, zBaseTrt, everything())
 ```
 
+For the sake of simplicity, we load the data containing modelfits of all objects. 
+Below is the code that generates this dataframe.
+We set `#| eval: false` since we are not evaluating the code chunk here. 
+
 ```{r}
 #| eval: false
-#| 
+
 models_combs_df <- combinations_df |>
   mutate(modelnames = apply(combinations_df, 1, build_name)) |>
   mutate(formula = apply(combinations_df, 1, build_formula_string))
@@ -268,7 +272,6 @@ build_loglik <- function(row, ...){
 
 ## Existing work
 
--   
 -   prior and likelihood sensitivity checks in $\texttt{R}$-package `priorsense`[^3] [@kallioinen2021]
 -   (posterior) calibration checks with @saeilynoja2022
 -   model comparison with $\texttt{R}$-package `loo` [@loo-package2022]
