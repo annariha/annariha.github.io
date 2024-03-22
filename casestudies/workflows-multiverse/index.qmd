@@ -6,14 +6,15 @@ author:
       given: Anna Elisabeth
       family: Riha
     url: https://anna.riha.github.io
-citation: true
+    orcid: 0009-0003-8396-906X
 bibliography: references.bib
 format: 
   html:
     toc: true
     toc-depth: 3
     code-fold: true
-categories: [case studies]
+categories: [multiverse analysis, Bayesian workflows]
+citation: true
 ---
 
 <style>
