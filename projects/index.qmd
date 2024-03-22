@@ -1,0 +1,22 @@
+---
+title: Projects
+---
+
+## Supporting Bayesian workflows with iterative filtering for multiverse analysis
+
+<!--
+<img src="project_1_banner.png" style="height: 100%; width: 100%; object-fit: contain" onclick="window.open('add link to arxiv here', 'blank');"/>
+TODO: add link to arxiv here and below
+--->
+
+<a href=" " target="_blank">arXiv Preprint</a> | <a href="https://github.com/annariha/multi-workflows" target="_blank">Code (soon)</a><br>
+
+When building statistical models for Bayesian data analysis tasks, required and optional iterative adjustments and various modelling choices can give rise to numerous candidate models. 
+In particular, checks and evaluations throughout the modelling process can motivate changes to an existing model or the consideration of alternative models to ultimately obtain models of sufficient quality for the problem at hand. 
+Additionally, failing to consider alternative models can lead to overconfidence in the predictive or inferential ability of a chosen model. 
+The search for suitable models requires modellers to work with multiple models without jeopardising the validity of their results. Multiverse analysis offers a framework for transparent creation of multiple models at once based on different sensible modelling choices, but the number of candidate models arising in the combination of iterations and modelling choices can become overwhelming in practice. 
+Motivated by these challenges, this work proposes iterative filtering for multiverse analysis to support efficient and consistent assessment of multiple models and meaningful filtering towards fewer models of higher quality across different modelling contexts. 
+Given that causal constraints have been taken into account, we show how multiverse analysis can be combined with recommendations from established Bayesian modelling workflows to identify promising candidate models by assessing predictive abilities and, if needed, tending to computational issues.
+We illustrate our suggested approach in common data analysis scenarios using real-world data.
+
+----
