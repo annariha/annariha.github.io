@@ -143,6 +143,8 @@ combinations_df <- combinations_df |>
 ```
 
 ```{r}
+#| eval: false
+#| 
 models_combs_df <- combinations_df |>
   mutate(modelnames = apply(combinations_df, 1, build_name)) |>
   mutate(formula = apply(combinations_df, 1, build_formula_string))
