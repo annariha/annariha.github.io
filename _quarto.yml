@@ -1,4 +1,4 @@
-# This setup was inpsired by https://github.com/marvinschmitt/quarto-website-template/ and 
+# This setup was inspired by https://github.com/marvinschmitt/quarto-website-template/ and https://samanthacsik.github.io/posts/2022-10-24-quarto-blogs/
 website:
   title: "Anna Elisabeth Riha"
   #favicon: 
