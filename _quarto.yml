@@ -10,11 +10,11 @@ website:
       - text: "Projects"
         href: projects/index.qmd      
       - text: "Case studies"
-        href: casestudies.qmd
+        href: casestudies/index.qmd
         #- "Teaching & Talks"
         #- "CV"
       - text: "Blog"
-        href: blog.qmd
+        href: blogposts/index.qmd
     right:
       - icon: github
         href: https://github.com/annariha
