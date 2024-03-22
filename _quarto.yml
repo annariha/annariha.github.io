@@ -1,25 +1,58 @@
-project:
-  type: website
-
+# This setup was inpsired by https://github.com/marvinschmitt/quarto-website-template/ and 
 website:
   title: "Anna Elisabeth Riha"
-  search: 
-    location: navbar
-    type: textbox
+  #favicon: 
+  
   navbar:
     background: primary
     pinned: true
+    left: 
+      - text: "Projects"
+        href: projects/index.qmd      
+      - text: "Case studies"
+        href: casestudies.qmd
+        #- "Teaching & Talks"
+        #- "CV"
+      - text: "Blog"
+        href: blog.qmd
     right:
+      - icon: github
+        href: https://github.com/annariha
+      - icon: linkedin
+        href: https://www.linkedin.com/in/anna-elisabeth-riha-818426188/
       #- icon: envelope
       #  aria-label: email
       #  href: "mailto:"
-      - about.qmd
-      - icon: github
-        href: https://github.com/annariha
-  page-footer: 
-     left: "Copyright 2023, Anna Elisabeth Riha" 
+  
+  search: 
+    location: navbar
+    type: textbox
     
+  page-footer: 
+     left: "Copyright 2024, Anna Elisabeth Riha"
+     #left: |
+     # <span class="faux-block">&#169; 2023 Marvin Schmitt CC BY-SA 4.0</span>
+     right: |
+      <span class="faux-block"><a href="https://github.com/annariha/annariha.github.io">View source on GitHub</a></span>
+
+project:
+  type: website
+  output-dir: docs
+  
+  preview: 
+    port: 22222
+    browser: true
+    watch-inputs: true
+    navigate: true
+
 format:
   html:
+    fontsize: 1.1em
     theme: flatly
     css: styles.css
+    toc: false
+    code-link: true
+    anchor-sections: true
+    fig-cap-location: margin
+    reference-location: margin
+    footnotes-hover: true
