@@ -178,7 +178,7 @@ initial_multiverse <- readr::read_rds(here::here("data", "initial_multiverse.rds
 
 ```{r}
 # load results for 192 models
-extended_multiverse <- readr::read_rds(here::here("data", "models_combs_df.rds"))
+#extended_multiverse <- readr::read_rds(here::here("data", "models_combs_df.rds"))
 ```
 
 ## Stabilising likelihoods with integration 
