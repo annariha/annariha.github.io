@@ -1,9 +1,11 @@
 ---
 title: "Case studies"
 # This setup is inspired by https://samanthacsik.github.io/posts/2022-10-24-quarto-blogs/
-listing: 
-  contents: casestudies # all Quarto docs in the `casestudies` directory will be included on the case studies listing page
+
+listing:
+  contents: "**/index.qmd"
+  sort: "date desc"
   type: grid # or `default` or `table`; each type has its own set of yaml options to include
-  sort: "date desc" # can also sort on more than one field
+  #sort: "date desc" # can also sort on more than one field
   categories: true # allows you to sort posts by assigned categories 
 ---
