@@ -1,10 +1,10 @@
 [
   {
-    "listing": "/blog.html",
+    "listing": "/blogposts/index.html",
     "items": []
   },
   {
-    "listing": "/casestudies.html",
+    "listing": "/casestudies/index.html",
     "items": [
       "/casestudies/workflows-multiverse/index.html"
     ]
