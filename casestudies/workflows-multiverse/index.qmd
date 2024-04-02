@@ -290,9 +290,9 @@ The following figures show two variants of flowcharts for Bayesian workflows wit
 
 [^4]: Another interesting variant of a flowchart for Bayesian workflow can be found in Michael Betancourt's [blogpost](https://betanalpha.github.io/assets/case_studies/principled_bayesian_workflow.html#1_Questioning_Authority) "Principled Bayesian Workflow".
 
-![Bayesian Workflow in [@gelmanetal2020]](figures/bayesworkflow-illu.png){#fig-bw-gelman height="5%"}
+![Bayesian Workflow in [@gelmanetal2020]](bayesworkflow-illu.png){#fig-bw-gelman height="5%"}
 
-![Bayesian Workflow in [@martinetal2021].](figures/workflow-bayescompbook.png){#fig-bw-martin width="90%"}
+![Bayesian Workflow in [@martinetal2021].](workflow-bayescompbook.png){#fig-bw-martin width="90%"}
 
 ## Challenges in Bayesian workflows
 
@@ -321,12 +321,12 @@ The following figures show two variants of flowcharts for Bayesian workflows wit
 
 ## Transparent Exploration 
 
-![Multiverse analysis compared to other approaches, from [@dragicevic2019].](figures/multiverse-illu.png){#fig-mvd width="60%"}
+![Multiverse analysis compared to other approaches, from [@dragicevic2019].](images/multiverse-illu.png){#fig-mvd width="60%"}
 
 ::: {layout-ncol="2" layout-valign="top"}
-![What is a multiverse analysis report? in [@halletal2022].](figures/multiverse-def.png){#fig-mvhall width="50%"}
+![What is a multiverse analysis report? in [@halletal2022].](multiverse-def.png){#fig-mvhall width="50%"}
 
-![Multiverse analysis in Bayesian workflow in [@gelmanetal2020].](figures/multiverse-in-bw.png){#fig-mvbw width="30%"}
+![Multiverse analysis in Bayesian workflow in [@gelmanetal2020].](multiverse-in-bw.png){#fig-mvbw width="30%"}
 :::
 
 Multiverse analysis provides a way to transparently define and fit several models at once (@steegenetal2016). This allows to define and investigate several models at once. 
