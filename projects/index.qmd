@@ -6,7 +6,7 @@ title: Projects
 
 ![](project_multiverse_iterative_filtering.png)
 
-<a href=" " target="_blank">arXiv Preprint (soon)</a> | <a href="https://github.com/annariha/multi-workflows" target="_blank">Code</a><br>
+<a href="https://arxiv.org/abs/2404.01688" target="_blank">arXiv Preprint</a> | <a href="https://github.com/annariha/multi-workflows" target="_blank">Code</a><br>
 
 When building statistical models for Bayesian data analysis tasks, required and optional iterative adjustments and different modelling choices can give rise to numerous candidate models. 
 In particular, checks and evaluations throughout the modelling process can motivate changes to an existing model or the consideration of alternative models to ultimately obtain models of sufficient quality for the problem at hand. 
