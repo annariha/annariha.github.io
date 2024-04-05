@@ -56,17 +56,6 @@
       ],
       "Hash": "dffb4d94a00be1b4a4507e53ab95bd90"
     },
-    "KernSmooth": {
-      "Package": "KernSmooth",
-      "Version": "2.23-22",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "stats"
-      ],
-      "Hash": "2fecebc3047322fa5930f74fae5de70f"
-    },
     "MASS": {
       "Package": "MASS",
       "Version": "7.3-60",
@@ -189,18 +178,6 @@
       ],
       "Hash": "4f57884290cc75ab22f4af9e9d4ca862"
     },
-    "arrayhelpers": {
-      "Package": "arrayhelpers",
-      "Version": "1.1-0",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "methods",
-        "svUnit",
-        "utils"
-      ],
-      "Hash": "3d4e52d458784c335af3846f2de64f75"
-    },
     "askpass": {
       "Package": "askpass",
       "Version": "1.2.0",
@@ -251,20 +228,6 @@
         "utils"
       ],
       "Hash": "9c4f6ab31da906185d23e69a88595cf7"
-    },
-    "berryFunctions": {
-      "Package": "berryFunctions",
-      "Version": "1.22.0",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "abind",
-        "grDevices",
-        "graphics",
-        "stats",
-        "utils"
-      ],
-      "Hash": "a87019ef14c2632d7b68a3c661af6ec4"
     },
     "bit": {
       "Package": "bit",
@@ -433,16 +396,6 @@
       ],
       "Hash": "f61dbaec772ccd2e17705c1e872e9e7c"
     },
-    "cetcolor": {
-      "Package": "cetcolor",
-      "Version": "0.2.0",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R"
-      ],
-      "Hash": "7ce578b42e7ab7f15a730247c224ed33"
-    },
     "checkmate": {
       "Package": "checkmate",
       "Version": "2.3.0",
@@ -514,13 +467,6 @@
       ],
       "Hash": "c089a619a7fae175d149d89164f8c7d8"
     },
-    "collections": {
-      "Package": "collections",
-      "Version": "0.3.7",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Hash": "90a0eda114ab0bef170ddbf5ef0cd93f"
-    },
     "colorspace": {
       "Package": "colorspace",
       "Version": "2.1-0",
@@ -572,23 +518,6 @@
         "rlang"
       ],
       "Hash": "bb097fccb22d156624fd07cd2894ddb6"
-    },
-    "cowplot": {
-      "Package": "cowplot",
-      "Version": "1.1.1",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "ggplot2",
-        "grDevices",
-        "grid",
-        "gtable",
-        "methods",
-        "rlang",
-        "scales"
-      ],
-      "Hash": "b418e8423699d11c7f2087c2bfd07da2"
     },
     "cpp11": {
       "Package": "cpp11",
@@ -852,16 +781,6 @@
       ],
       "Hash": "1a0a9a3d5083d0d573c4214576f1e690"
     },
-    "formatR": {
-      "Package": "formatR",
-      "Version": "1.14",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R"
-      ],
-      "Hash": "63cb26d12517c7863f5abb006c5e0f25"
-    },
     "fs": {
       "Package": "fs",
       "Version": "1.6.3",
@@ -903,20 +822,6 @@
         "utils"
       ],
       "Hash": "e57e292737f7a4efa9d8a91c5908222c"
-    },
-    "future.apply": {
-      "Package": "future.apply",
-      "Version": "1.11.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "future",
-        "globals",
-        "parallel",
-        "utils"
-      ],
-      "Hash": "ba4be138fe47eac3e16a6deaa4da106e"
     },
     "gargle": {
       "Package": "gargle",
@@ -1564,32 +1469,6 @@
       ],
       "Hash": "4f50122dc256b1b6996a4703fecea821"
     },
-    "multiverse": {
-      "Package": "multiverse",
-      "Version": "0.6.1",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "R6",
-        "berryFunctions",
-        "collections",
-        "dplyr",
-        "evaluate",
-        "formatR",
-        "future.apply",
-        "knitr",
-        "magrittr",
-        "methods",
-        "purrr",
-        "rlang",
-        "rstudioapi",
-        "tibble",
-        "tidyr",
-        "tidyselect"
-      ],
-      "Hash": "d09d3bde330f0198ecd81339fd9942f9"
-    },
     "munsell": {
       "Package": "munsell",
       "Version": "0.5.0",
@@ -1653,20 +1532,6 @@
       ],
       "Hash": "2a0dc8c6adfb6f032e4d4af82d258ab5"
     },
-    "pacman": {
-      "Package": "pacman",
-      "Version": "0.5.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "methods",
-        "remotes",
-        "stats",
-        "utils"
-      ],
-      "Hash": "b37932b67288bc62bb81686b2f337a7d"
-    },
     "parallelly": {
       "Package": "parallelly",
       "Version": "1.36.0",
@@ -1678,19 +1543,6 @@
         "utils"
       ],
       "Hash": "bca377e1c87ec89ebed77bba00635b2e"
-    },
-    "philentropy": {
-      "Package": "philentropy",
-      "Version": "0.7.0",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "KernSmooth",
-        "R",
-        "Rcpp",
-        "poorman"
-      ],
-      "Hash": "e2e0ff4e1a3d3d414ffb485f3c391df6"
     },
     "pillar": {
       "Package": "pillar",
@@ -1748,16 +1600,6 @@
       ],
       "Hash": "6b8177fd19982f0020743fadbfdbd933"
     },
-    "poorman": {
-      "Package": "poorman",
-      "Version": "0.2.7",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R"
-      ],
-      "Hash": "d0bb8a425a213bc38f2cf8f14ded8941"
-    },
     "posterior": {
       "Package": "posterior",
       "Version": "1.5.0",
@@ -1789,34 +1631,6 @@
         "R"
       ],
       "Hash": "6b01fc98b1e86c4f705ce9dcfd2f57c7"
-    },
-    "priorsense": {
-      "Package": "priorsense",
-      "Version": "0.0.0.9000",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "n-kall",
-      "RemoteRepo": "priorsense",
-      "RemoteRef": "master",
-      "RemoteSha": "f5e69b5f3fcb1613c3236e116aae5a131fd88311",
-      "Requirements": [
-        "R",
-        "cetcolor",
-        "checkmate",
-        "ggplot2",
-        "loo",
-        "matrixStats",
-        "methods",
-        "philentropy",
-        "posterior",
-        "rlang",
-        "stats",
-        "tibble",
-        "transport",
-        "utils"
-      ],
-      "Hash": "d3e6ac9c04de6d981bc1922e1ddfc06d"
     },
     "processx": {
       "Package": "processx",
@@ -1996,20 +1810,6 @@
         "tibble"
       ],
       "Hash": "76c9e04c712a05848ae7a23d2f170a40"
-    },
-    "remotes": {
-      "Package": "remotes",
-      "Version": "2.4.2.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "methods",
-        "stats",
-        "tools",
-        "utils"
-      ],
-      "Hash": "63d15047eb239f95160112bcadc4fcb9"
     },
     "renv": {
       "Package": "renv",
@@ -2339,17 +2139,6 @@
       ],
       "Hash": "960e2ae9e09656611e0b8214ad543207"
     },
-    "svUnit": {
-      "Package": "svUnit",
-      "Version": "1.0.6",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "utils"
-      ],
-      "Hash": "894d0aff9585344af4ab78e2b4d60ab7"
-    },
     "svglite": {
       "Package": "svglite",
       "Version": "2.1.2",
@@ -2448,31 +2237,6 @@
         "methods"
       ],
       "Hash": "2c6c63f3f4f103d41cb2aae1ab1c7ce1"
-    },
-    "tidybayes": {
-      "Package": "tidybayes",
-      "Version": "3.0.6",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "arrayhelpers",
-        "cli",
-        "coda",
-        "dplyr",
-        "ggdist",
-        "ggplot2",
-        "magrittr",
-        "methods",
-        "posterior",
-        "rlang",
-        "tibble",
-        "tidyr",
-        "tidyselect",
-        "vctrs",
-        "withr"
-      ],
-      "Hash": "3853596458d8b9c81f7b39ee920c5319"
     },
     "tidyr": {
       "Package": "tidyr",
@@ -2583,23 +2347,6 @@
         "xfun"
       ],
       "Hash": "8f96d229b7311beb32b94cf413b13f84"
-    },
-    "transport": {
-      "Package": "transport",
-      "Version": "0.14-6",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "Rcpp",
-        "RcppEigen",
-        "data.table",
-        "grDevices",
-        "graphics",
-        "methods",
-        "stats"
-      ],
-      "Hash": "4971cd2350badbda56b09e1003800d75"
     },
     "tzdb": {
       "Package": "tzdb",
