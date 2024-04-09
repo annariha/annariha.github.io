@@ -246,7 +246,8 @@ window.Quarto = {
   <li><a href="#analysing-an-anticonvulsant-for-patients-with-epilepsy" id="toc-analysing-an-anticonvulsant-for-patients-with-epilepsy" class="nav-link active" data-scroll-target="#analysing-an-anticonvulsant-for-patients-with-epilepsy">Analysing an anticonvulsant for patients with epilepsy</a></li>
   <li><a href="#an-initial-multiverse-of-models" id="toc-an-initial-multiverse-of-models" class="nav-link" data-scroll-target="#an-initial-multiverse-of-models">An initial multiverse of models</a></li>
   <li><a href="#evaluating-the-multiverse" id="toc-evaluating-the-multiverse" class="nav-link" data-scroll-target="#evaluating-the-multiverse">Evaluating the multiverse</a></li>
-  <li><a href="#filtering-by-predictive-abilities" id="toc-filtering-by-predictive-abilities" class="nav-link" data-scroll-target="#filtering-by-predictive-abilities">Filtering by predictive abilities</a></li>
+  <li><a href="#filtering-with-predictive-density-estimates" id="toc-filtering-with-predictive-density-estimates" class="nav-link" data-scroll-target="#filtering-with-predictive-density-estimates">Filtering with predictive density estimates</a></li>
+  <li><a href="#filtering-with-posterior-predictive-checks" id="toc-filtering-with-posterior-predictive-checks" class="nav-link" data-scroll-target="#filtering-with-posterior-predictive-checks">Filtering with posterior predictive checks</a></li>
   <li><a href="#what-comes-next" id="toc-what-comes-next" class="nav-link" data-scroll-target="#what-comes-next">What comes next?</a></li>
   <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix">Appendix</a>
   <ul class="collapse">
@@ -308,7 +309,10 @@ Can we combine <strong>transparent creation of sets of models</strong> (multiver
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(furrr)</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cmdstanr)</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggdist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggdist)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(latex2exp)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Let’s see how iterative filtering can be applied to multiverse analyses of anticonvulsant therapy for patients with epilepsy.</p>
@@ -337,9 +341,9 @@ Can we combine <strong>transparent creation of sets of models</strong> (multiver
   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tinytable_3kxw48aqpyamev7gfdbf</title>
+    <title>tinytable_6ivhi0q5gkkgacnxiru8</title>
     <style>
-.table td.tinytable_css_3h9canobndb31hj66u3w, .table th.tinytable_css_3h9canobndb31hj66u3w {    border-bottom: solid 0.1em #d3d8dc; }
+.table td.tinytable_css_lk5yye3138q4lzgg79f0, .table th.tinytable_css_lk5yye3138q4lzgg79f0 {    border-bottom: solid 0.1em #d3d8dc; }
     </style>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -357,7 +361,7 @@ Can we combine <strong>transparent creation of sets of models</strong> (multiver
 
   
     <div class="container">
-      <table class="table table-borderless" id="tinytable_3kxw48aqpyamev7gfdbf" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-borderless" id="tinytable_6ivhi0q5gkkgacnxiru8" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         <thead>
         
               <tr>
@@ -412,12 +416,12 @@ Can we combine <strong>transparent creation of sets of models</strong> (multiver
     </div>
 
     <script>
-      function styleCell_tinytable_9phklkdfvqtbcsm8fq01(i, j, css_id) {
-        var table = document.getElementById("tinytable_3kxw48aqpyamev7gfdbf");
+      function styleCell_tinytable_v3705wait9fodx524v08(i, j, css_id) {
+        var table = document.getElementById("tinytable_6ivhi0q5gkkgacnxiru8");
         table.rows[i].cells[j].classList.add(css_id);
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_3kxw48aqpyamev7gfdbf');
+        var table = document.getElementById('tinytable_6ivhi0q5gkkgacnxiru8');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -425,8 +429,8 @@ Can we combine <strong>transparent creation of sets of models</strong> (multiver
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_tinytable_9phklkdfvqtbcsm8fq01(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_3kxw48aqpyamev7gfdbf");
+      function spanCell_tinytable_v3705wait9fodx524v08(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_6ivhi0q5gkkgacnxiru8");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -453,15 +457,15 @@ Can we combine <strong>transparent creation of sets of models</strong> (multiver
         targetCell.colSpan = colspan;
       }
 
-window.addEventListener('load', function () { styleCell_tinytable_9phklkdfvqtbcsm8fq01(0, 0, 'tinytable_css_3h9canobndb31hj66u3w') })
-window.addEventListener('load', function () { styleCell_tinytable_9phklkdfvqtbcsm8fq01(0, 1, 'tinytable_css_3h9canobndb31hj66u3w') })
-window.addEventListener('load', function () { styleCell_tinytable_9phklkdfvqtbcsm8fq01(0, 2, 'tinytable_css_3h9canobndb31hj66u3w') })
-window.addEventListener('load', function () { styleCell_tinytable_9phklkdfvqtbcsm8fq01(0, 3, 'tinytable_css_3h9canobndb31hj66u3w') })
-window.addEventListener('load', function () { styleCell_tinytable_9phklkdfvqtbcsm8fq01(0, 4, 'tinytable_css_3h9canobndb31hj66u3w') })
-window.addEventListener('load', function () { styleCell_tinytable_9phklkdfvqtbcsm8fq01(0, 5, 'tinytable_css_3h9canobndb31hj66u3w') })
-window.addEventListener('load', function () { styleCell_tinytable_9phklkdfvqtbcsm8fq01(0, 6, 'tinytable_css_3h9canobndb31hj66u3w') })
-window.addEventListener('load', function () { styleCell_tinytable_9phklkdfvqtbcsm8fq01(0, 7, 'tinytable_css_3h9canobndb31hj66u3w') })
-window.addEventListener('load', function () { styleCell_tinytable_9phklkdfvqtbcsm8fq01(0, 8, 'tinytable_css_3h9canobndb31hj66u3w') })
+window.addEventListener('load', function () { styleCell_tinytable_v3705wait9fodx524v08(0, 0, 'tinytable_css_lk5yye3138q4lzgg79f0') })
+window.addEventListener('load', function () { styleCell_tinytable_v3705wait9fodx524v08(0, 1, 'tinytable_css_lk5yye3138q4lzgg79f0') })
+window.addEventListener('load', function () { styleCell_tinytable_v3705wait9fodx524v08(0, 2, 'tinytable_css_lk5yye3138q4lzgg79f0') })
+window.addEventListener('load', function () { styleCell_tinytable_v3705wait9fodx524v08(0, 3, 'tinytable_css_lk5yye3138q4lzgg79f0') })
+window.addEventListener('load', function () { styleCell_tinytable_v3705wait9fodx524v08(0, 4, 'tinytable_css_lk5yye3138q4lzgg79f0') })
+window.addEventListener('load', function () { styleCell_tinytable_v3705wait9fodx524v08(0, 5, 'tinytable_css_lk5yye3138q4lzgg79f0') })
+window.addEventListener('load', function () { styleCell_tinytable_v3705wait9fodx524v08(0, 6, 'tinytable_css_lk5yye3138q4lzgg79f0') })
+window.addEventListener('load', function () { styleCell_tinytable_v3705wait9fodx524v08(0, 7, 'tinytable_css_lk5yye3138q4lzgg79f0') })
+window.addEventListener('load', function () { styleCell_tinytable_v3705wait9fodx524v08(0, 8, 'tinytable_css_lk5yye3138q4lzgg79f0') })
     </script>
 
   
@@ -632,7 +636,7 @@ window.addEventListener('load', function () { styleCell_tinytable_9phklkdfvqtbcs
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>} </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Given the estimates of elpd for all models, we compare the predictive abilities by assessing differences in elpd and associated standard errors of the differences for each model using <code>loo::loo_compare()</code>.</p>
+<p>We compare models in the set of models <span class="math inline">\(M = \{M_1, \cdots, M_K\}\)</span> with <span class="math inline">\(K = 24\)</span> using the difference in estimated <span class="math inline">\(\mathrm{elpd}^k\)</span> of each model <span class="math inline">\(M_k\)</span> compared to the model with the highest estimated . Given the estimates of elpd for all 24 models, we assess differences in elpd and associated standard errors of the differences for each model using <code>loo::loo_compare()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>comparisons_df <span class="ot">&lt;-</span> loo<span class="sc">::</span><span class="fu">loo_compare</span>(loos_default)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>comparisons_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -665,12 +669,161 @@ poisson(count ~ Trt+zAge), brms_horseshoe             -999.6     233.9 </code></
 </div>
 </div>
 </section>
-<section id="filtering-by-predictive-abilities" class="level2">
-<h2 class="anchored" data-anchor-id="filtering-by-predictive-abilities">Filtering by predictive abilities</h2>
-<p>We filter out models with largely inferior predictive abilities using estimated elpd and visual posterior predictive checks.</p>
+<section id="filtering-with-predictive-density-estimates" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-with-predictive-density-estimates">Filtering with predictive density estimates</h2>
+<p>To filter out models with largely inferior predictive abilities, we can identify a set of models with indistinguishable predictive performance compared to the best model as<br>
+<span class="math display">\[ \left\{ M_l: 0 \in \left[\Delta \widehat{\textrm{elpd}}^l \pm 2 \widehat{\text{se}}\left(\Delta \widehat{\textrm{elpd}}^l\right)\right] \right\}_{l=1, \cdots, L \leq K}.\]</span> To assess the reliability of the estimates for elpd, we count the number of Pareto-<span class="math inline">\(\hat{k}\)</span> diagnostics <span class="math inline">\(&gt; 0.7\)</span> for each of the models.</p>
 <div class="cell">
-
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add sum of Pareto k's &gt; 0.7 for all models with default LOO ####</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>comparisons_df <span class="ot">&lt;-</span> <span class="fu">merge</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  comparisons_df, </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_dbl</span>(purrr<span class="sc">::</span><span class="fu">map</span>(loos_default, <span class="sc">~</span>.x<span class="sc">$</span>diagnostics<span class="sc">$</span>pareto_k), <span class="sc">~</span><span class="fu">sum</span>(.x<span class="sc">&gt;</span><span class="fl">0.7</span>)),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">by=</span><span class="st">"row.names"</span>) </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># set rownames to model names for merging</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(comparisons_df) <span class="ot">&lt;-</span> comparisons_df<span class="sc">$</span>Row.names</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># select everything despite Row.names</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>comparisons_df <span class="ot">&lt;-</span> comparisons_df[<span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(comparisons_df)]</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># set descriptive name for new column </span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(comparisons_df)[<span class="fu">ncol</span>(comparisons_df)] <span class="ot">&lt;-</span> <span class="st">"n_high_pareto_ks"</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co"># add loo comparison table with default LOO ####</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>full_df <span class="ot">=</span> <span class="fu">merge</span>(initial_multiverse, comparisons_df, <span class="at">by=</span><span class="dv">0</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co"># set row names to model names</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(full_df) <span class="ot">&lt;-</span> full_df<span class="sc">$</span>Row.names</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co"># select everything despite Row.names</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>full_df <span class="ot">=</span> full_df[<span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(full_df)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>We visualise differences in estimated elpd and associated standard errors for all models and the remaining set of models indistinguishable by predictive performance. Models coloured in <span style="color:red;">red</span> are models with one or more Pareto-<span class="math inline">\(\hat{k}\)</span> greater than 0.7.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># settings for all plots</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>            <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>, </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">strip.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">panel.background =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">8</span>),</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>                  <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">8</span>),</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>                  <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">8</span>),</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>                  <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">8</span>)))</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># prepare data for plotting </span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>df_plot <span class="ot">&lt;-</span> full_df <span class="sc">|&gt;</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">high_pareto_ks =</span> <span class="fu">ifelse</span>(n_high_pareto_ks <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="st">"yes"</span>, <span class="st">"no"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(elpd_diff) <span class="sc">|&gt;</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model_id =</span> forcats<span class="sc">::</span><span class="fu">fct_inorder</span>(model_id)) <span class="sc">|&gt;</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(modelnames, family, elpd_diff, se_diff, n_high_pareto_ks, model_id, high_pareto_ks)</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="co"># create plot for all models</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>plot_elpddiffs <span class="ot">&lt;-</span> </span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> df_plot, <span class="fu">aes</span>(elpd_diff, model_id, <span class="at">col =</span> high_pareto_ks, <span class="at">shape =</span> family)) <span class="sc">+</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">xmin=</span>elpd_diff<span class="sc">-</span>se_diff, <span class="at">xmax=</span>elpd_diff<span class="sc">+</span>se_diff), <span class="at">fatten =</span> .<span class="dv">5</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"gray"</span>) <span class="sc">+</span> </span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"All models"</span>) <span class="sc">+</span> </span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Models"</span>) <span class="sc">+</span> </span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">TeX</span>(<span class="st">"$</span><span class="sc">\\</span><span class="st">Delta </span><span class="sc">\\</span><span class="st">widehat{elpd}$"</span>)) <span class="sc">+</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"yes"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"no"</span> <span class="ot">=</span> <span class="st">"black"</span>)) <span class="sc">+</span> </span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"poisson"</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"negbinomial"</span> <span class="ot">=</span> <span class="dv">6</span>))</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="co"># create plot for filtered set of models </span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>df_plot_filtered <span class="ot">&lt;-</span> df_plot <span class="sc">|&gt;</span></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(elpd_diff <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>se_diff <span class="sc">&gt;=</span> <span class="dv">0</span>) </span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>plot_elpddiffs_filtered <span class="ot">&lt;-</span> </span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> df_plot_filtered, <span class="fu">aes</span>(elpd_diff, model_id, <span class="at">col =</span> high_pareto_ks, <span class="at">shape =</span> family)) <span class="sc">+</span></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">xmin=</span>elpd_diff<span class="sc">-</span>se_diff, <span class="at">xmax=</span>elpd_diff<span class="sc">+</span>se_diff), <span class="at">fatten =</span> .<span class="dv">5</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"gray"</span>) <span class="sc">+</span> </span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Filtered set of models"</span>) <span class="sc">+</span> </span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">TeX</span>(<span class="st">"$</span><span class="sc">\\</span><span class="st">Delta </span><span class="sc">\\</span><span class="st">widehat{elpd}$"</span>)) <span class="sc">+</span></span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"yes"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"no"</span> <span class="ot">=</span> <span class="st">"black"</span>)) <span class="sc">+</span> </span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"poisson"</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"negbinomial"</span> <span class="ot">=</span> <span class="dv">6</span>)) <span class="sc">+</span> </span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.y =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>plot <span class="ot">&lt;-</span> plot_elpddiffs <span class="sc">|</span> plot_elpddiffs_filtered</span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>plot </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="filtering-with-posterior-predictive-checks" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-with-posterior-predictive-checks">Filtering with posterior predictive checks</h2>
+<p>In the left subplot, elpd results where Pareto-<span class="math inline">\(\hat k\)</span> diagnostic indicated unreliable computation for PSIS-LOO-CV are highlighted with <span style="color:red;">red</span> colour. Instead of using computationally more intensive CV approaches, we can use posterior predictive checking to rule out these models. For the given multiverse, all models with high Pareto-<span class="math inline">\(\hat k\)</span> assume a Poisson distribution as the distributional family for the observations.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># helper function</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>get_one_ecdf_overlay <span class="ot">&lt;-</span> <span class="cf">function</span>(df, y, <span class="at">model_char =</span> <span class="st">""</span>, <span class="at">fontsize=</span><span class="dv">8</span>){</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set ggplot theme</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_set</span>(<span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>              <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">strip.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">panel.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span>fontsize),</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span>fontsize),</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>                    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span>fontsize),</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>                    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span>fontsize)))</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># bayesplot colour scheme</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  bayesplot<span class="sc">::</span><span class="fu">color_scheme_set</span>(<span class="st">"gray"</span>)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get predictions for one model </span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  yrep <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(model_id <span class="sc">==</span> model_char) <span class="sc">|&gt;</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(ypred)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get model family</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  modelfamily <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(model_id <span class="sc">==</span> model_char) <span class="sc">|&gt;</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">family =</span> <span class="fu">recode</span>(family, <span class="st">"poisson"</span> <span class="ot">=</span> <span class="st">"Poisson"</span>, <span class="st">"negbinomial"</span> <span class="ot">=</span> <span class="st">"Negative Binomial"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(family)</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get model name </span></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>  modelname_long <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(model_id <span class="sc">==</span> model_char) <span class="sc">|&gt;</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(modelnames)</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># remove info on prior for plotting </span></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>  modelname <span class="ot">&lt;-</span> <span class="fu">substr</span>(modelname_long,<span class="dv">1</span>,<span class="fu">regexpr</span>(<span class="st">","</span>,modelname_long)<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># create plot</span></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>  plot <span class="ot">&lt;-</span> <span class="fu">ppc_ecdf_overlay</span>(<span class="at">y =</span> y, <span class="at">yrep =</span> yrep[[<span class="dv">1</span>]][<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>,], <span class="at">discrete =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">trans=</span><span class="st">"pseudo_log"</span>, </span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>                       <span class="at">breaks=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">20</span>, <span class="dv">50</span>, <span class="dv">100</span>), </span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>                       <span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">110</span>)) <span class="sc">+</span></span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste0</span>(modelfamily))</span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(plot)</span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a><span class="co"># create two example plots </span></span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>plot_ppc_ecdf_model_22 <span class="ot">&lt;-</span> <span class="fu">get_one_ecdf_overlay</span>(full_df, brms<span class="sc">::</span>epilepsy<span class="sc">$</span>count, <span class="at">model_char =</span> <span class="st">"Model 22"</span>) <span class="sc">+</span></span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>)</span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>plot_ppc_ecdf_model_21 <span class="ot">&lt;-</span> <span class="fu">get_one_ecdf_overlay</span>(full_df, brms<span class="sc">::</span>epilepsy<span class="sc">$</span>count, <span class="at">model_char =</span> <span class="st">"Model 21"</span>) <span class="sc">+</span> </span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a><span class="co"># arrange </span></span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a>plot_ppc_ecdf_model_22_21 <span class="ot">&lt;-</span> plot_ppc_ecdf_model_22 <span class="sc">|</span> plot_ppc_ecdf_model_21</span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a>plot_ppc_ecdf_model_22_21</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The above plot shows posterior predictive checking results for the best performing model among models assuming a Poisson distribution (Model 21) and its counterpart that differs only with respect to the chosen distributional family for the observations (Model 22). The results suggest that the Poisson model is not an appropriate choice for this data.</p>
 </section>
 <section id="what-comes-next" class="level2">
 <h2 class="anchored" data-anchor-id="what-comes-next">What comes next?</h2>
