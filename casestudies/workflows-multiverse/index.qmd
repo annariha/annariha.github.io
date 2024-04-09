@@ -35,6 +35,20 @@ p {
 }
 ```
 
+<p class="comment">
+Can we combine **transparent creation of sets of models** (multiverse analysis) with **recipes for model building and evaluation** (Bayesian workflows) to support Bayesian modelling?
+<p>
+
+Bayesian modelling workflows consist of several intertwined tasks and can involve the iterative consideration of various candidate models (see, e.g., @gelmanetal2020, @martinetal2021). 
+Aspects like computation checks, model evaluation, model criticism and model comparison can motivate the consideration of multiple models and are essential when searching for models that are sufficient for obtaining accurate predictions and enabling robust decision-making (see, e.g., @ohaganbayesian2004, @vehtariojanen2012, @piironenvehtari2017, @burknermodels2023).
+
+Multiverse analysis provides a framework to transparently investigate several models at once (@steegenetal2016). 
+But reasoning on a set of models can be challenging, and dependence structures and different weights of modelling choices are not immediately clear when confronted with a large collection of possible models (see e.g., @halletal2022). 
+
+In this [preprint](https://arxiv.org/abs/2404.01688), we propose iterative filtering for multiverse analysis to balance the advantages of a joint investigation of multiple candidate models with the potentially overwhelming tasks of evaluating and comparing multiple models at once. 
+
+## Analysing an anticonvulsant for patients with epilepsy
+
 ```{r}
 #| message: false
 #| warning: false
@@ -56,21 +70,10 @@ library(furrr)
 library(cmdstanr)
 library(ggplot2)
 library(ggdist)
+library(patchwork)
+library(latex2exp)
+library(bayesplot)
 ```
-
-<p class="comment">
-Can we combine **transparent creation of sets of models** (multiverse analysis) with **recipes for model building and evaluation** (Bayesian workflows) to support Bayesian modelling?
-<p>
-
-Bayesian modelling workflows consist of several intertwined tasks and can involve the iterative consideration of various candidate models (see, e.g., @gelmanetal2020, @martinetal2021). 
-Aspects like computation checks, model evaluation, model criticism and model comparison can motivate the consideration of multiple models and are essential when searching for models that are sufficient for obtaining accurate predictions and enabling robust decision-making (see, e.g., @ohaganbayesian2004, @vehtariojanen2012, @piironenvehtari2017, @burknermodels2023).
-
-Multiverse analysis provides a framework to transparently investigate several models at once (@steegenetal2016). 
-But reasoning on a set of models can be challenging, and dependence structures and different weights of modelling choices are not immediately clear when confronted with a large collection of possible models (see e.g., @halletal2022). 
-
-In this [preprint](https://arxiv.org/abs/2404.01688), we propose iterative filtering for multiverse analysis to balance the advantages of a joint investigation of multiple candidate models with the potentially overwhelming tasks of evaluating and comparing multiple models at once. 
-
-## Analysing an anticonvulsant for patients with epilepsy
 
 Let's see how iterative filtering can be applied to multiverse analyses of anticonvulsant therapy for patients with epilepsy. 
 
@@ -229,12 +232,11 @@ build_fit <- function(row, dataset, ...){
 
 ## Evaluating the multiverse 
 
-We use the `loo` package [@vehtariloo2020] to obtain estimates of expected log predictive densities (elpd) with PSIS-LOO-CV using `loo::loo()` and compare the predictive abilities of the models using `loo::loo_compare()`. 
+We use the `loo` package [@vehtariloo2020] to obtain estimates of expected log predictive densities (elpd) with PSIS-LOO-CV using `loo::loo()`. 
 For the purpose of this illustration, we load the loo-objects for all models that have been previously obtained and just present the code that was used to get the results for all models below.
 
 ```{r}
 #| code-fold: show
-#| eval: false 
 
 loos_default <- readr::read_rds(here::here("data", "loos_default.rds"))
 ```
@@ -260,7 +262,6 @@ names(loos_default) <- initial_multiverse$modelnames
 ```
 
 The above code uses the following helper function `build_loos()` as a wrapper around `loo::loo()` to obtain estimates for elpd with PSIS-LOO-CV for one row in `initial_multiverse`. 
-
 ```{r}
 #| code-fold: true
 #| eval: false
@@ -273,9 +274,164 @@ build_loos <- function(row, dataset, ...){
 } 
 ```
 
-## Filtering by predictive abilities 
+We compare models in the set of models $M = \{M_1, \cdots, M_K\}$ with $K = 24$ using the difference in estimated $\mathrm{elpd}^k$ of each model $M_k$ compared to the model with the highest estimated \textrm{elpd}.
+Given the estimates of elpd for all 24 models, we assess differences in elpd and associated standard errors of the differences for each model using `loo::loo_compare()`. 
 
-We filter out models with largely inferior predictive abilities using estimated elpd and visual posterior predictive checks. 
+```{r}
+comparisons_df <- loo::loo_compare(loos_default)
+comparisons_df
+```
+
+## Filtering with predictive density estimates
+
+To filter out models with largely inferior predictive abilities, we can identify a set of models with indistinguishable predictive performance compared to the best model as  
+$$ \left\{ M_l: 0 \in \left[\Delta \widehat{\textrm{elpd}}^l \pm 2 \widehat{\text{se}}\left(\Delta \widehat{\textrm{elpd}}^l\right)\right] \right\}_{l=1, \cdots, L \leq K}.$$
+To assess the reliability of the estimates for elpd, we count the number of Pareto-$\hat{k}$ diagnostics $> 0.7$ for each of the models. 
+
+```{r}
+# add sum of Pareto k's > 0.7 for all models with default LOO ####
+comparisons_df <- merge(
+  comparisons_df, 
+  purrr::map_dbl(purrr::map(loos_default, ~.x$diagnostics$pareto_k), ~sum(.x>0.7)),
+  by="row.names") 
+
+# set rownames to model names for merging
+rownames(comparisons_df) <- comparisons_df$Row.names
+# select everything despite Row.names
+comparisons_df <- comparisons_df[2:length(comparisons_df)]
+# set descriptive name for new column 
+colnames(comparisons_df)[ncol(comparisons_df)] <- "n_high_pareto_ks"
+
+# add loo comparison table with default LOO ####
+full_df = merge(initial_multiverse, comparisons_df, by=0)
+# set row names to model names
+rownames(full_df) <- full_df$Row.names
+# select everything despite Row.names
+full_df = full_df[2:length(full_df)]
+```
+
+We visualise differences in estimated elpd and associated standard errors for all models and the remaining set of models indistinguishable by predictive performance. 
+Models coloured in <span style="color:red;">red</span> are models with one or more Pareto-$\hat{k}$ greater than 0.7.  
+
+```{r}
+#| code-fold: true
+# settings for all plots
+theme_set(theme_classic() +
+            theme(legend.position = "none", 
+                  panel.grid.major = element_blank(),
+                  panel.grid.minor = element_blank(),
+                  strip.background = element_blank(),
+                  panel.background = element_blank(), 
+                  text = element_text(size=8),
+                  plot.title = element_text(size=8),
+                  axis.title = element_text(size=8),
+                  axis.text = element_text(size=8)))
+
+# prepare data for plotting 
+df_plot <- full_df |>
+  mutate(high_pareto_ks = ifelse(n_high_pareto_ks > 0, "yes", "no")) |>
+  arrange(elpd_diff) |>
+  mutate(model_id = forcats::fct_inorder(model_id)) |>
+  select(modelnames, family, elpd_diff, se_diff, n_high_pareto_ks, model_id, high_pareto_ks)
+  
+# create plot for all models
+plot_elpddiffs <- 
+  ggplot(data = df_plot, aes(elpd_diff, model_id, col = high_pareto_ks, shape = family)) +
+  geom_pointrange(aes(xmin=elpd_diff-se_diff, xmax=elpd_diff+se_diff), fatten = .5, size = 3) + 
+  geom_vline(xintercept = 0, linetype = "dashed", color = "gray") + 
+  labs(subtitle = "All models") + 
+  ylab("Models") + 
+  xlab(TeX("$\\Delta \\widehat{elpd}$")) +
+  scale_color_manual(values=c("yes" = "red", "no" = "black")) + 
+  scale_shape_manual(values=c("poisson" = 1, "negbinomial" = 6))
+
+# create plot for filtered set of models 
+df_plot_filtered <- df_plot |>
+  filter(elpd_diff + 2*se_diff >= 0) 
+
+plot_elpddiffs_filtered <- 
+  ggplot(data = df_plot_filtered, aes(elpd_diff, model_id, col = high_pareto_ks, shape = family)) +
+  geom_pointrange(aes(xmin=elpd_diff-se_diff, xmax=elpd_diff+se_diff), fatten = .5, size = 3) + 
+  geom_vline(xintercept = 0, linetype = "dashed", color = "gray") + 
+  labs(subtitle = "Filtered set of models") + 
+  xlab(TeX("$\\Delta \\widehat{elpd}$")) +
+  scale_color_manual(values=c("yes" = "red", "no" = "black")) + 
+  scale_shape_manual(values=c("poisson" = 1, "negbinomial" = 6)) + 
+  theme(axis.title.y = element_blank())
+
+plot <- plot_elpddiffs | plot_elpddiffs_filtered
+plot 
+```
+
+## Filtering with posterior predictive checks
+
+In the left subplot, elpd results where Pareto-$\hat k$ diagnostic indicated unreliable computation for PSIS-LOO-CV are highlighted with <span style="color:red;">red</span> colour.
+Instead of using computationally more intensive CV approaches, we can use posterior predictive checking to rule out these models. 
+For the given multiverse, all models with high Pareto-$\hat k$ assume a Poisson distribution as the distributional family for the observations. 
+
+```{r}
+#| code-fold: true
+#| warning: false
+#| message: false
+
+# helper function
+get_one_ecdf_overlay <- function(df, y, model_char = "", fontsize=8){
+  # set ggplot theme
+  theme_set(theme_classic() +
+              theme(panel.grid.major = element_blank(),
+                    panel.grid.minor = element_blank(),
+                    strip.background = element_blank(),
+                    panel.background = element_blank(),
+                    text = element_text(size=fontsize),
+                    plot.title = element_text(size=fontsize),
+                    axis.title = element_text(size=fontsize),
+                    axis.text = element_text(size=fontsize)))
+  
+  # bayesplot colour scheme
+  bayesplot::color_scheme_set("gray")
+  
+  # get predictions for one model 
+  yrep <- df |>
+    filter(model_id == model_char) |>
+    pull(ypred)
+  
+  # get model family
+  modelfamily <- df |>
+    filter(model_id == model_char) |>
+    mutate(family = recode(family, "poisson" = "Poisson", "negbinomial" = "Negative Binomial")) |>
+    pull(family)
+  
+  # get model name 
+  modelname_long <- df |>
+    filter(model_id == model_char) |>
+    pull(modelnames)
+  
+  # remove info on prior for plotting 
+  modelname <- substr(modelname_long,1,regexpr(",",modelname_long)-1)
+  
+  # create plot
+  plot <- ppc_ecdf_overlay(y = y, yrep = yrep[[1]][1:100,], discrete = TRUE) +
+    scale_x_continuous(trans="pseudo_log", 
+                       breaks=c(0, 5, 20, 50, 100), 
+                       limits=c(0,110)) +
+    labs(title = paste0(modelfamily))
+  
+  return(plot)
+}
+
+# create two example plots 
+plot_ppc_ecdf_model_22 <- get_one_ecdf_overlay(full_df, brms::epilepsy$count, model_char = "Model 22") +
+  theme(legend.position="none")
+plot_ppc_ecdf_model_21 <- get_one_ecdf_overlay(full_df, brms::epilepsy$count, model_char = "Model 21") + 
+  theme(axis.text.y = element_blank())
+
+# arrange 
+plot_ppc_ecdf_model_22_21 <- plot_ppc_ecdf_model_22 | plot_ppc_ecdf_model_21
+plot_ppc_ecdf_model_22_21
+```
+
+The above plot shows posterior predictive checking results for the best performing model among models assuming a Poisson distribution (Model 21) and its counterpart that differs only with respect to the chosen distributional family for the observations (Model 22). 
+The results suggest that the Poisson model is not an appropriate choice for this data. 
 
 ## What comes next? 
 
