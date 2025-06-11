@@ -262,6 +262,7 @@ names(loos_default) <- initial_multiverse$modelnames
 ```
 
 The above code uses the following helper function `build_loos()` as a wrapper around `loo::loo()` to obtain estimates for elpd with PSIS-LOO-CV for one row in `initial_multiverse`. 
+
 ```{r}
 #| code-fold: true
 #| eval: false
