@@ -1,0 +1,285 @@
+---
+title: "WIP: Approximating leave-one-group-out cross-validation"
+date: 2025-06-11
+author: 
+  - name: 
+      given: Anna Elisabeth
+      family: Riha
+    url: https://anna.riha.github.io
+    orcid: 0009-0003-8396-906X
+bibliography: references.bib
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+categories: [LOGO-CV, Bayesian workflows, brms]
+citation: true
+---
+
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 10px;
+margin-right: 25px;
+border-radius: 5px;
+font-style: italic;
+}
+</style>
+
+```{css}
+#| echo: false
+p {
+  text-align: justify
+}
+```
+
+<p class="comment">
+How can we approximate LOGO-CV reliably beyond 2D varying coefficients and for different model types?
+<p>
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+#| output: false
+#| code-fold: true
+
+# load packages ####
+library(dplyr) 
+library(tidyr)
+library(ggplot2)
+library(patchwork)
+library(brms)
+library(loo) 
+library(aghq)
+# set seed 
+set.seed(424242)
+# plot theme 
+theme_set(theme_bw())
+```
+
+## Setting up a model for responses to a verbal aggression questionnaire
+
+The `VerbAgg` dataset available in the `lme4` package [] contains item responses to a questionnaire on verbal aggression with a subject identifier `VerbAgg$id` for each of the 316 participants with 24 observations each. 
+The outcome of interest, `VerbAgg$resp`, is the subject's response to the item as an ordered factor with levels no < perhaps < yes. 
+To speed up the computation, we select only the first 20 participants for now. 
+
+```{r}
+#| label: load-data 
+
+data("VerbAgg", package = "lme4")
+
+# make sure that no response levels can be dropped later on
+VerbAgg$r3 <- as.numeric(VerbAgg$resp)
+
+# filter for 20 participants for illustration purposes 
+VerbAgg_reduced <- VerbAgg |>
+  filter(id %in% 1:20) |>
+  mutate(id = factor(id))
+```
+
+We assume an ordinal cumulative model with a varying effect based on the subject identifier `id` as well as a varying slope for the behaviour type `btype` (a factor with three levels `curse`, `scold`, `shout`). In `brms::brm()`, we achieve this by using `family =  cumulative()`, and adding the term `(btype | id)` to the formula. 
+
+```{r}
+#| label: fit_cumulative
+#| output: false
+#| cache: true
+
+fit_cumulative <- brm(
+  r3 ~ Gender + btype + mode + situ + (btype || id), 
+  data = VerbAgg_reduced, 
+  family = cumulative(),
+  chains = 4, cores = 4, warmup = 1000, iter = 2000,
+  init = 0 # all parameters initialised to zero on unconstrained space
+)
+```
+
+## Evaluating predictions for a new observation with PSIS-LOO-CV
+
+We can use Pareto-smoothed importance sampling leave-one-out cross-validation (PSIS-LOO-CV) [] but this only allows us to evaluate the predictive abilities for individual observations. 
+
+```{r}
+loo_psis <- loo(fit_cumulative)
+loo_psis
+```
+
+## Evaluating predictions for a new individual 
+
+We can visualise the responses for all 20 participants and highlight that, in our modelling scenario, leaving one individual out means leaving one group of observations out. 
+
+```{r}
+#| label: plot-responses
+#| code-fold: true
+
+specified_id <- 5
+max_resp <- 3
+y_lower_bound <- 0.5 
+y_upper_bound <- 3.35 
+
+custom_colors <- c(
+  "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2",
+  "#D55E00", "#CC79A7", "#999999", "#DDCC77", "#B0E0E6",
+  "#FFA07A", "#6495ED", "#E6A5CC", "#F4C842", "#AAF0D1",
+  "#61D0D1", "#D4A5E2", "#8B8D7A", "#FC84A9", "#A3A48F"
+)
+
+plot_data_with_group <- VerbAgg_reduced |>
+  ggplot(aes(x = id, y = factor(r3), color = id)) +
+  geom_point(alpha = 0.2) + 
+  geom_jitter(width = 0.2, height = 0.3) + 
+  geom_rect(aes(xmin = specified_id - 0.5, 
+                xmax = specified_id + 0.5, 
+                ymin = y_lower_bound, 
+                ymax = y_upper_bound), 
+            fill = NA, color = "black", linetype = "dashed") +
+  annotate("text", x = specified_id + 0.5, y = y_upper_bound + 0.12,
+           label = "Leave-one-group-out", size = 3, hjust = 0.5) +
+  scale_color_manual(values = custom_colors) +
+  theme(legend.position = "none") + 
+  xlab("Group IDs") + 
+  ylab("Response")
+
+plot_data_with_group
+```
+
+### Brute-force LOGO-CV 
+
+First, we use k-fold CV with k equal to the number of groups in our data to compute the leave-one-group-out predictive distributions. 
+We can use `brms::kfold()` to perform brute-force LOGO-CV. 
+In particular, if the argument `folds` is `NULL`, but we specify `group = "id"`, the data is split up into subsets, each time omitting all observations of one of the levels of `VerbAgg::id`, while ignoring argument `K`.
+To perform brute-force LOGO-CV, we need to evaluate the likelihood for each group. 
+In our case, this means that we need to refit the model 316 times. 
+
+```{r}
+#| label: logo-brute-kfold
+#| cache: true 
+#| output: false
+
+logo_brute <- kfold(
+  fit_cumulative, 
+  group = "id", 
+  joint = TRUE, 
+  chains = 1, 
+  init = 0)
+```
+
+```{r}
+#| label: logo-brute-results 
+logo_brute
+```
+
+### PSIS-LOGO-CV 
+
+Now, we compute the leave-one-group-out predictive distributions using Pareto-smoothed importance sampling (PSIS). 
+
+```{r}
+#| label: psis-logo
+
+# matrix of pointwise log likelihood values
+log_lik_pointwise <- log_lik(fit_cumulative)
+
+# 20 individuals answered 24 question items each 
+gids <- rep(1:20, times = 24) 
+  
+# grouped log likelihood values
+log_lik_g <- t(apply(log_lik_pointwise, 1, function(row) {
+  tapply(row, INDEX = gids, FUN = sum)
+}))
+
+# compute log ratios from grouped log likelihood values 
+log_ratios <- -1 * log_lik_g
+r_eff <- relative_eff(
+  exp(-log_ratios), # exp(-log_ratios) is the reciprocal of the importance ratios
+  chain_id = rep(1:nchains(fit_cumulative), each = ndraws(fit_cumulative) / nchains(fit_cumulative))) 
+
+logo_psis <- psis(log_ratios, r_eff = r_eff)
+logo_psis
+```
+
+We can visualise the Pareto $\hat{k}$ values. Whenever values are above 0.7, our obtained estimates are not reliable. 
+
+```{r}
+#| label: plot-pareto-k-psis-logo
+#| code-fold: true 
+
+plot_data <- data.frame(
+  pareto_k_hats = logo_psis$diagnostics$pareto_k, 
+  group_ids = seq_along(logo_psis$diagnostics$pareto_k)
+)
+
+plot_pareto_k_psis_logo <- 
+  ggplot(data = plot_data, aes(x = group_ids, y = pareto_k_hats)) +
+  geom_point(shape = 3, color = "darkblue") +
+  geom_hline(yintercept = 0.7, linetype = "dashed", color = "darkred") +
+  scale_y_continuous(breaks = seq(0, 1.4, by = 0.1), limits = c(0, 1.4)) + 
+  ylab("") +
+  xlab("Group IDs") +
+  ggtitle("Unreliable results with PSIS-LOGO-CV") 
+
+plot_pareto_k_psis_logo
+```
+
+### Bridgesampling + PSIS-LOGO-CV 
+
+tbc 
+
+### Laplace approximation + PSIS-LOGO-CV 
+
+tbc 
+
+## Comparing to brute-force LOGO-CV 
+
+```{r}
+#| label: plot-df-comparisons
+
+# plot_df_logos <- 
+#   data.frame(group_id = group_ids,
+#              brute = logo_brute$pointwise[,"elpd_kfold"], 
+#              psis = logo_psis$pointwise[, "elpd_loo"], 
+#              bridgesampling = logo_bridge_parallel_groups$pointwise[,"elpd_loo"], 
+#              laplace = logo_laplace_parallel_groups$pointwise[,"elpd_loo"]) 
+```
+
+```{r}
+#| label: plot-psis-vs-brute
+#| code-fold: true
+
+# plot_poster_psis_vs_brute <- 
+#   ggplot(data = plot_df_logos, aes(x = psis, y = brute)) + 
+#   geom_point() + 
+#   geom_abline(intercept = 0, slope = 1) + 
+#   labs(x = "PSIS-LOGO-CV", 
+#        y = "brute-force LOGO-CV")
+# 
+# plot_poster_psis_vs_brute
+```
+
+```{r}
+#| label: plot-laplace-vs-bridge
+#| code-fold: true
+
+# plot_poster_laplace_vs_brute <- 
+#   ggplot(data = plot_df_logos, aes(x = laplace, y = brute)) + 
+#   geom_point() + 
+#   geom_abline(intercept = 0, slope = 1) + 
+#   labs(x = "Laplace + PSIS-LOGO-CV", 
+#        y = "brute-force LOGO-CV")
+# 
+# plot_poster_laplace_vs_brute
+```
+
+```{r}
+#| label: plot-bridge-vs-brute
+#| code-fold: true
+
+# plot_poster_bridge_vs_brute <- 
+#   ggplot(data = plot_df_logos, aes(x = bridgesampling, y = brute)) + 
+#   geom_point() + 
+#   geom_abline(intercept = 0, slope = 1) + 
+#   labs(x = "Bridge sampling + PSIS-LOGO-CV", 
+#        y = "brute-force LOGO-CV")
+# 
+# plot_poster_bridge_vs_brute
+```
