@@ -76,7 +76,7 @@ In case of a single coefficient per group, numerical 1D quadrature has been used
 We discuss alternative approaches to integrate out the group-specific coefficients, which scale well beyond 1D and work well with non-normal latent distributions. 
 Our goal is to make the approach as automated as possible in `brms` [@brms-package2017], a widely used \texttt{R} package for Bayesian data analysis using the probabilistic programming language \texttt{Stan} [@stan-2025].
 
-## Setting up a model for responses to a verbal aggression questionnaire
+## Dataset `verbAgg`
 
 The `VerbAgg` dataset available in the `lme4` package [@lme4-package-2015] contains item responses to a questionnaire on verbal aggression with a subject identifier `VerbAgg$id` for each of the 316 participants with 24 observations each. 
 The outcome of interest, `VerbAgg$resp`, is the subject's response to the item as an ordered factor with levels no < perhaps < yes. 
@@ -96,7 +96,111 @@ VerbAgg_reduced <- VerbAgg |>
   mutate(id = factor(id))
 ```
 
-We assume an ordinal cumulative model using `family =  cumulative()` in `brms::brm()` with a varying effect based on the subject identifier `id` as well as a varying slope for the behaviour type `btype` (a factor with three levels `curse`, `scold`, `shout`).
+## Illustration: Why is importance sampling hard for LOGO-CV? 
+
+To illustrate that importance sampling can fail when target and proposal differ a lot, we use a simple example with one group-level parameter but more than one observation in each group by looking at a simpler version of the model that we fitted above. We compare the results for the full-data posterior, the leave-one-out posterior and the leave-one-group-out posterior. 
+
+We build an ordinal cumulative model using `family = cumulative()` in `brms::brm()` and, for simplicity, only include a varying intercept on the level of each group of observations for each individual. 
+
+```{r}
+# full-data posterior 
+fit_cumulative_simple <- brm(
+  r3 ~ Gender + btype + mode + situ + (1 | id), 
+  data = VerbAgg_reduced, 
+  family = cumulative(),
+  chains = 4, cores = 4, warmup = 1000, iter = 2000,
+  file = here::here("data", "approx-logo-cv", "fit_verbagg_cumulative_simple"),
+  init = 0 # all parameters are initialised to zero on the unconstrained space
+)
+posterior_draws <- posterior::as_draws_df(fit_cumulative_simple)
+```
+
+Now, we remove one observation to obtain the LOO posterior. 
+
+```{r}
+# LOO posterior 
+row_id <- 5
+VerbAgg_reduced_loo <- VerbAgg_reduced[-row_id, ]
+  
+fit_cumulative_simple_loo <- brm(
+  r3 ~ Gender + btype + mode + situ + (1 | id), 
+  data = VerbAgg_reduced_loo, 
+  family = cumulative(),
+  chains = 4, cores = 4, warmup = 1000, iter = 2000,
+  file = here::here("data", "approx-logo-cv", "fit_verbagg_cumulative_simple_loo"),
+  init = 0 # all parameters are initialised to zero on the unconstrained space
+)
+
+posterior_draws_loo <- posterior::as_draws_df(fit_cumulative_simple_loo)
+```
+
+To obtain the LOGO posterior, we fit a model without the data for grouping level 5 and use the posterior draws for the standard deviation of the varying intercept to obtain LOGO posterior samples. 
+
+```{r}
+# LOGO posterior 
+leave_out_id <- 5 
+VerbAgg_reduced_logo <- filter(VerbAgg_reduced, id != leave_out_id) 
+
+# fit model without one of the groups 
+fit_cumulative_simple_logo <- brm(
+  r3 ~ Gender + btype + mode + situ + (1 | id), 
+  data = VerbAgg_reduced_logo, 
+  family = cumulative(),
+  chains = 4, cores = 4, warmup = 1000, iter = 2000,
+  file = here::here("data", "approx-logo-cv", "fit_verbagg_cumulative_simple_logo"),
+  init = 0 # all parameters are initialised to zero on the unconstrained space
+)
+
+# extract posterior samples for varying intercept sd 
+posterior_draws_logo <- posterior::as_draws_df(fit_cumulative_simple_logo)
+sd_draws <- posterior_draws_logo[, "sd_id__Intercept"]$sd_id__Intercept
+```
+
+Since we assume Normal priors, we can obtain the LOGO posterior results via `rnorm(brms::ndraws(fit_cumulative_simple_logo), 0, sd = sd_draws)`. We store all the information in one data frame for easier plotting later on. 
+
+```{r}
+# Create df for plotting 
+name_coeff <- paste0("r_id[", leave_out_id, ",Intercept]")
+
+df_plot_posteriors_rs <- as.data.frame(rbind(
+  tibble(r_values = posterior_draws[, "r_id[5,Intercept]"]$`r_id[5,Intercept]`, 
+         posterior_type = rep("full-data posterior", length = NROW(posterior_draws))), 
+  tibble(r_values = posterior_draws_loo[, "r_id[5,Intercept]"]$`r_id[5,Intercept]`, 
+         posterior_type = rep("LOO posterior", length = NROW(posterior_draws_loo))), 
+  tibble(r_values = rnorm(brms::ndraws(fit_cumulative_simple_logo), 0, sd = sd_draws), 
+         posterior_type = rep("LOGO posterior", length = brms::ndraws(fit_cumulative_simple_logo)))
+)) |>
+  mutate(posterior_type = factor(posterior_type, levels = c("full-data posterior", "LOO posterior", "LOGO posterior")))
+```
+
+We visualise the three different posterior results, and observe that while the full-data posterior and the LOO posterior are rather close to one another, the LOGO posterior differs considerable from the two. 
+
+```{r}
+# Visualise 
+custom_colors <- c("#8B8D7A","#D55E00","#0072B2")
+
+plot_posterior_rs_comparison <- ggplot(data = df_plot_posteriors_rs, aes(x = r_values, color = posterior_type, fill = NULL)) +
+  geom_density(linewidth = 2) + 
+  geom_vline(aes(xintercept = 0), size = 0.7, linetype = "dashed") + 
+  scale_color_manual(values = custom_colors) +
+  xlab("Posterior results for rid[5,Intercept]") +
+  theme_classic() +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(0.8,0.7),
+    legend.title = element_blank(), 
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.line.y = element_blank()
+  )
+
+plot_posterior_rs_comparison
+```
+
+## Example: Analysing repsonses to a verbal aggression questionnaire
+
+We now assume a more complex model with a varying effect based on the subject identifier `id` as well as a varying slope for the behaviour type `btype` (a factor with three levels `curse`, `scold`, `shout`).
 
 ```{r}
 #| label: fit_cumulative
@@ -114,7 +218,7 @@ fit_cumulative <- brm(
 )
 ```
 
-## Evaluating predictions for a new observation with PSIS-LOO-CV
+### Evaluating predictions for a new observation with PSIS-LOO-CV
 
 We can use PSIS-LOO-CV to evaluate the predictive performance of our model, but this only allows us to evaluate the predictive abilities for individual observations. 
 
@@ -122,7 +226,8 @@ We can use PSIS-LOO-CV to evaluate the predictive performance of our model, but 
 loo_psis <- loo(fit_cumulative)
 loo_psis
 ```
-## Evaluating predictions for a new individual 
+
+### Evaluating predictions for a new individual 
 
 We can visualise the responses for all 20 participants and highlight that, in our modelling scenario, leaving one individual out means leaving one group of observations out. 
 
@@ -161,7 +266,7 @@ plot_data_with_group <- VerbAgg_reduced |>
 plot_data_with_group
 ```
 
-### Brute-force LOGO-CV 
+#### Brute-force LOGO-CV 
 
 First, we use k-fold CV with k equal to the number of groups in our data to compute the leave-one-group-out predictive distributions. 
 We can use `brms::kfold()` to perform brute-force LOGO-CV. 
@@ -196,7 +301,7 @@ if (file.exists(path_logo_brute)) {
 logo_brute
 ```
 
-### PSIS-LOGO-CV 
+#### PSIS-LOGO-CV 
 
 Now, we compute the leave-one-group-out predictive distributions using Pareto-smoothed importance sampling (PSIS). 
 
@@ -272,7 +377,7 @@ plot_pareto_k_logo_psis
 
 Plain PSIS-LOGO-CV has issues. We need to stabilise the importance weights by modifying the log-likelihood computation using, for example, integration. 
 
-## Approximate LOGO-CV 
+### Approximate LOGO-CV 
 
 First, we need to extract information from the `brmsfit` object and set up an empty fit object that will be updated later on.
 
@@ -363,7 +468,7 @@ group_ids <- unique(fit_cumulative$data[group_name])[,1]
 draw_ids <- seq(1, ndraws(fit_cumulative))
 ```
 
-### Bridgesampling + PSIS-LOGO-CV 
+#### Bridgesampling + PSIS-LOGO-CV 
 
 We first set up a helper function that takes in our previously generated setup for our fit object `fit_cumulative` and returns one log likelihood value. 
 
@@ -476,7 +581,7 @@ plot_poster_pareto_k_bridge <-
 plot_poster_pareto_k_bridge
 ```
 
-### Laplace approximation + PSIS-LOGO-CV 
+#### Laplace approximation + PSIS-LOGO-CV 
 
 We first set up a helper function that takes in our previously generated setup for our fit object `fit_cumulative` and returns a single entry of the log likelihood marginal using Laplace approximation. 
 
@@ -662,7 +767,7 @@ plot_poster_pareto_k_laplace <-
 plot_poster_pareto_k_laplace
 ```
 
-## Comparing to brute-force LOGO-CV 
+### Comparing to brute-force LOGO-CV 
 
 We compare the results obtained with brute-force LOGO-CV to the results obtained with PSIS-LOGO-CV as well as our new approaches using bridge sampling and Laplace approximation in combination with PSIS-LOGO-CV. 
 
@@ -715,4 +820,3 @@ plot_poster_bridge_vs_brute | plot_poster_laplace_vs_brute
 ```
 
 The approaches using bridge sampling and Laplace approximation lead to similarly high accuracy in comparison to the brute-force results, and are closer to the brute-force results compared to PSIS-LOGO-CV. 
-
