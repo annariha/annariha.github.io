@@ -116,7 +116,7 @@ fit_cumulative <- brm(
 
 ## Evaluating predictions for a new observation with PSIS-LOO-CV
 
-We can use Pareto-smoothed importance sampling leave-one-out cross-validation (PSIS-LOO-CV) [] but this only allows us to evaluate the predictive abilities for individual observations. 
+We can use PSIS-LOO-CV to evaluate the predictive performance of our model, but this only allows us to evaluate the predictive abilities for individual observations. 
 
 ```{r}
 loo_psis <- loo(fit_cumulative)
@@ -226,7 +226,7 @@ psis_logo <- psis(log_ratios, r_eff = r_eff)
 psis_logo
 ```
 
-We can visualise the Pareto $\hat{k}$ values. Whenever values are above 0.7, our obtained estimates are not reliable. 
+We can visualise the Pareto $\hat{k}$ values which are the estimated shape parameters of the generalised Pareto distribution that is fitted to the tails of the distribution of importance weights. Whenever we observe values above the threshold $0.7$, this informs us that the estimates obtained with Pareto-smoothed importance sampling are not reliable (see, e.g., @vehtari_pareto_2024). 
 
 ```{r}
 #| label: plot-pareto-k-psis-logo
@@ -640,7 +640,7 @@ if (file.exists(path_logo_laplace_parallel)) {
 logo_laplace_parallel_groups
 ```
 
-We visualise the Pareto-$\hat{k}$ values again, and observe that, in contrast to the results obtained with PSIS-LOGO-CV, they are largely below our chosen threshold of $0.7$. 
+We visualise the Pareto-$\hat{k}$ values again, and observe that, in contrast to the results obtained with PSIS-LOGO-CV, they are largely below the threshold of $0.7$, but, in contrast to bridge sampling, there are still few values above $0.7$. 
 
 ```{r}
 #| code-fold: true 
