@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://annariha.github.io/casestudies/workflows-multiverse/index.html</loc>
-    <lastmod>2024-04-09T14:05:04.015Z</lastmod>
-  </url>
-  <url>
-    <loc>https://annariha.github.io/index.html</loc>
-    <lastmod>2024-03-22T14:11:23.380Z</lastmod>
-  </url>
-  <url>
-    <loc>https://annariha.github.io/blogposts/index.html</loc>
-    <lastmod>2024-03-22T16:28:41.788Z</lastmod>
-  </url>
-  <url>
     <loc>https://annariha.github.io/projects/index.html</loc>
-    <lastmod>2025-02-05T16:52:35.642Z</lastmod>
+    <lastmod>2025-03-23T17:43:39.808Z</lastmod>
+  </url>
+  <url>
+    <loc>https://annariha.github.io/casestudies/workflows-multiverse/index.html</loc>
+    <lastmod>2025-06-11T07:38:27.980Z</lastmod>
   </url>
   <url>
     <loc>https://annariha.github.io/casestudies/index.html</loc>
-    <lastmod>2024-04-02T13:31:19.697Z</lastmod>
+    <lastmod>2025-03-23T17:43:39.807Z</lastmod>
+  </url>
+  <url>
+    <loc>https://annariha.github.io/blogposts/index.html</loc>
+    <lastmod>2025-03-23T17:43:39.807Z</lastmod>
+  </url>
+  <url>
+    <loc>https://annariha.github.io/casestudies/approx-logo-cv/index.html</loc>
+    <lastmod>2025-06-19T01:52:27.848Z</lastmod>
+  </url>
+  <url>
+    <loc>https://annariha.github.io/index.html</loc>
+    <lastmod>2025-03-23T17:43:39.808Z</lastmod>
   </url>
 </urlset>

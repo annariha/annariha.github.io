@@ -1,12 +1,13 @@
 [
   {
-    "listing": "/blogposts/index.html",
-    "items": []
-  },
-  {
     "listing": "/casestudies/index.html",
     "items": [
+      "/casestudies/approx-logo-cv/index.html",
       "/casestudies/workflows-multiverse/index.html"
     ]
+  },
+  {
+    "listing": "/blogposts/index.html",
+    "items": []
   }
 ]
