@@ -1,0 +1,204 @@
+@misc{riha2024supportingbayesianmodellingworkflows,
+      title={Supporting Bayesian modelling workflows with iterative filtering for multiverse analysis}, 
+      author={Anna Elisabeth Riha and Nikolas Siccha and Antti Oulasvirta and Aki Vehtari},
+      year={2024},
+      eprint={2404.01688},
+      archivePrefix={arXiv},
+      primaryClass={stat.ME},
+      url={https://arxiv.org/abs/2404.01688}, 
+}
+
+@Article{brms-package2017,
+    title = {{brms}: An {R} Package for {Bayesian} Multilevel Models
+      Using {Stan}},
+    author = {Paul-Christian Bürkner},
+    journal = {Journal of Statistical Software},
+    year = {2017},
+    volume = {80},
+    number = {1},
+    pages = {1--28},
+    doi = {10.18637/jss.v080.i01},
+    encoding = {UTF-8},
+  }
+
+  @Manual{cmdstanr-package-2025,
+    title = {cmdstanr: R Interface to 'CmdStan'},
+    author = {Jonah Gabry and Rok Češnovar and Andrew Johnson and Steve
+      Bronder},
+    year = {2025},
+    note = {R package version 0.9.0},
+    url = {https://github.com/stan-dev/cmdstanr},
+  }
+
+@misc{stan-2025,
+title = {{Stan Reference Manual}},
+author = {{Stan Development Team}},
+note = {Version 2.36.0},
+year = {2025},
+url = {http://mc-stan.org/},
+}
+
+  @Article{lme4-package-2015,
+    title = {Fitting Linear Mixed-Effects Models Using {lme4}},
+    author = {Douglas Bates and Martin M{\"a}chler and Ben Bolker and
+      Steve Walker},
+    journal = {Journal of Statistical Software},
+    year = {2015},
+    volume = {67},
+    number = {1},
+    pages = {1--48},
+    doi = {10.18637/jss.v067.i01},
+  }
+  
+  @article{gronau_bridgesampling_2020,
+	title = {bridgesampling: {An} {R} {Package} for {Estimating} {Normalizing} {Constants}},
+	volume = {92},
+	doi = {10.18637/jss.v092.i10},
+	abstract = {Statistical procedures such as Bayes factor model selection and Bayesian model averaging require the computation of normalizing constants (e.g., marginal likelihoods). These normalizing constants are notoriously difficult to obtain, as they usually involve highdimensional integrals that cannot be solved analytically. Here we introduce an R package that uses bridge sampling (Meng and Wong 1996; Meng and Schilling 2002) to estimate normalizing constants in a generic and easy-to-use fashion. For models implemented in Stan, the estimation procedure is automatic. We illustrate the functionality of the package with three examples.},
+	number = {10},
+	journal = {Journal of Statistical Software},
+	author = {Gronau, Quentin and Singmann, Henrik and Wagenmakers, Eric-Jan},
+	month = feb,
+	year = {2020},
+}
+
+
+@article{vehtari_pareto_2024,
+	title = {Pareto {Smoothed} {Importance} {Sampling}},
+	volume = {25},
+	url = {https://arxiv.org/abs/1507.02646v9},
+	doi = {10.48550/arXiv.1507.02646},
+	abstract = {Importance weighting is a general way to adjust Monte Carlo integration to account for draws from the wrong distribution, but the resulting estimate can be highly variable when the importance ratios have a heavy right tail. This routinely occurs when there are aspects of the target distribution that are not well captured by the approximating distribution, in which case more stable estimates can be obtained by modifying extreme importance ratios. We present a new method for stabilizing importance weights using a generalized Pareto distribution fit to the upper tail of the distribution of the simulated importance ratios. The method, which empirically performs better than existing methods for stabilizing importance sampling estimates, includes stabilized effective sample size estimates, Monte Carlo error estimates, and convergence diagnostics. The presented Pareto khat finite sample convergence rate diagnostic is useful for any Monte Carlo estimator.},
+	number = {72},
+	journal = {Journal of Machine Learning Research},
+	author = {Vehtari, Aki and Simpson, Daniel and Gelman, Andrew and Yao, Yuling and Gabry, Jonah},
+	year = {2024},
+	pages = {1--58},
+}
+
+@article{fruhwirth-schnatter_estimating_2004,
+	title = {Estimating marginal likelihoods for mixture and {Markov} switching models using bridge sampling techniques},
+	volume = {7},
+	url = {https://www.jstor.org/stable/23115004},
+	abstract = {This paper discusses the problem of estimating marginal likelihoods for mixture
+and Markov switching model. Estimation is based on the method of bridge sampling (Meng and
+Wong 1996; Statistica Sinica 11, 552-86.) where Markov Chain Monte Carlo (MCMC) draws
+from the posterior density are combined with an i.i.d. sample from an importance density. The
+importance density is constructed in an unsupervised manner from the MCMC draws using a
+mixture of complete data posteriors. Whereas the importance sampling estimator as well as the
+reciprocal importance sampling estimator are sensitive to the tail behaviour of the importance
+density, we demonstrate that the bridge sampling estimator is far more robust. Our case studies
+range from computing marginal likelihoods for a mixture of multivariate normal distributions,
+testing for the inhomogeneity of a discrete time Poisson process, to testing for the presence of
+Markov switching and order selection in the MSAR model.},
+	language = {English},
+	number = {1},
+	journal = {The Econometrics Journal},
+	author = {Frühwirth-Schnatter, Sylvia},
+	month = feb,
+	year = {2004},
+	pages = {143--167},
+}
+
+@article{gronau_tutorial_2017,
+	title = {A tutorial on bridge sampling},
+	volume = {81},
+	issn = {0022-2496},
+	url = {https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5699790/},
+	doi = {10.1016/j.jmp.2017.09.005},
+	abstract = {The marginal likelihood plays an important role in many areas of Bayesian statistics such as parameter estimation, model comparison, and model averaging. In most applications, however, the marginal likelihood is not analytically tractable and must be approximated using numerical methods. Here we provide a tutorial on bridge sampling (Bennett, 1976; Meng \& Wong, 1996), a reliable and relatively straightforward sampling method that allows researchers to obtain the marginal likelihood for models of varying complexity. First, we introduce bridge sampling and three related sampling methods using the beta-binomial model as a running example. We then apply bridge sampling to estimate the marginal likelihood for the Expectancy Valence (EV) model—a popular model for reinforcement learning. Our results indicate that bridge sampling provides accurate estimates for both a single participant and a hierarchical version of the EV model. We conclude that bridge sampling is an attractive method for mathematical psychologists who typically aim to approximate the marginal likelihood for a limited set of possibly high-dimensional models., 
+          
+            
+              •
+              We provide a tutorial on bridge sampling for estimating marginal likelihoods.
+            
+            
+              •
+              We use the beta-binomial model as a running example.
+            
+            
+              •
+              We estimate the marginal likelihood for the Expectancy Valence (EV) model.
+            
+            
+              •
+              We obtain accurate results for individual-level and hierarchical EV model versions.},
+	urldate = {2024-06-06},
+	journal = {Journal of Mathematical Psychology},
+	author = {Gronau, Quentin F. and Sarafoglou, Alexandra and Matzke, Dora and Ly, Alexander and Boehm, Udo and Marsman, Maarten and Leslie, David S. and Forster, Jonathan J. and Wagenmakers, Eric-Jan and Steingroever, Helen},
+	month = dec,
+	year = {2017},
+	pmid = {29200501},
+	pmcid = {PMC5699790},
+	pages = {80--97},
+}
+
+
+@misc{gelman_bayesian_2020,
+	title = {Bayesian {Workflow}},
+	url = {http://arxiv.org/abs/2011.01808},
+	doi = {10.48550/arXiv.2011.01808},
+	abstract = {The Bayesian approach to data analysis provides a powerful way to handle uncertainty in all observations, model parameters, and model structure using probability theory. Probabilistic programming languages make it easier to specify and fit Bayesian models, but this still leaves us with many options regarding constructing, evaluating, and using these models, along with many remaining challenges in computation. Using Bayesian inference to solve real-world problems requires not only statistical skills, subject matter knowledge, and programming, but also awareness of the decisions made in the process of data analysis. All of these aspects can be understood as part of a tangled workflow of applied Bayesian statistics. Beyond inference, the workflow also includes iterative model building, model checking, validation and troubleshooting of computational problems, model understanding, and model comparison. We review all these aspects of workflow in the context of several examples, keeping in mind that in practice we will be fitting many models for any given problem, even if only a subset of them will ultimately be relevant for our conclusions.},
+	urldate = {2024-01-29},
+	publisher = {arXiv},
+	author = {Gelman, Andrew and Vehtari, Aki and Simpson, Daniel and Margossian, Charles C. and Carpenter, Bob and Yao, Yuling and Kennedy, Lauren and Gabry, Jonah and Bürkner, Paul-Christian and Modrák, Martin},
+	month = nov,
+	year = {2020},
+	note = {arXiv:2011.01808 [stat]},
+	keywords = {Statistics - Methodology},
+}
+
+
+@article{vehtari_bayesian_2016,
+	title = {Bayesian {Leave}-{One}-{Out} {Cross}-{Validation} {Approximations} for {Gaussian} {Latent} {Variable} {Models}},
+	volume = {17},
+	issn = {1533-7928},
+	url = {http://jmlr.org/papers/v17/14-540.html},
+	abstract = {The future predictive performance of a Bayesian model can be estimated using Bayesian cross-validation. In this article, we consider Gaussian latent variable models where the integration over the latent values is approximated using the Laplace method or expectation propagation (EP). We study the properties of several Bayesian leave-one-out (LOO) cross-validation approximations that in most cases can be computed with a small additional cost after forming the posterior approximation given the full data. Our main objective is to assess the accuracy of the approximative LOO cross-validation estimators. That is, for each method (Laplace and EP) we compare the approximate fast computation with the exact brute force LOO computation. Secondarily, we evaluate the accuracy of the Laplace and EP approximations themselves against a ground truth established through extensive Markov chain Monte Carlo simulation. Our empirical results show that the approach based upon a Gaussian approximation to the LOO marginal distribution (the so-called cavity distribution) gives the most accurate and reliable results among the fast methods.},
+	number = {103},
+	urldate = {2024-01-29},
+	journal = {Journal of Machine Learning Research},
+	author = {Vehtari, Aki and Mononen, Tommi and Tolvanen, Ville and Sivula, Tuomas and Winther, Ole},
+	year = {2016},
+	pages = {1--38},
+}
+
+@article{merkle_bayesian_2019,
+	title = {Bayesian {Comparison} of {Latent} {Variable} {Models}: {Conditional} {Versus} {Marginal} {Likelihoods}},
+	volume = {84},
+	shorttitle = {Bayesian {Comparison} of {Latent} {Variable} {Models}},
+	url = {https://ideas.repec.org//a/spr/psycho/v84y2019i3d10.1007_s11336-019-09679-0.html},
+	abstract = {Typical Bayesian methods for models with latent variables (or random effects) involve directly sampling the latent variables along with the model parameters. In high-level software code for model definitions (using, e.g., BUGS, JAGS, Stan), the likelihood is therefore specified as conditional on the latent variables. This can lead researchers to perform model comparisons via conditional likelihoods, where the latent variables are considered model parameters. In other settings, however, typical model comparisons involve marginal likelihoods where the latent variables are integrated out. This distinction is often overlooked despite the fact that it can have a large impact on the comparisons of interest. In this paper, we clarify and illustrate these issues, focusing on the comparison of conditional and marginal Deviance Information Criteria (DICs) and Watanabe–Akaike Information Criteria (WAICs) in psychometric modeling. The conditional/marginal distinction corresponds to whether the model should be predictive for the clusters that are in the data or for new clusters (where “clusters” typically correspond to higher-level units like people or schools). Correspondingly, we show that marginal WAIC corresponds to leave-one-cluster out cross-validation, whereas conditional WAIC corresponds to leave-one-unit out. These results lead to recommendations on the general application of the criteria to models with latent variables.},
+	language = {en},
+	number = {3},
+	urldate = {2024-01-24},
+	journal = {Psychometrika},
+	author = {Merkle, Edgar C. and Furr, Daniel and Rabe-Hesketh, Sophia},
+	year = {2019},
+	note = {Publisher: Springer \& The Psychometric Society},
+	keywords = {Bayesian information criteria, DIC, IRT, MCMC, SEM, WAIC, conditional likelihood, cross-validation, leave-one-cluster out, marginal likelihood},
+	pages = {802--829},
+}
+
+@article{meng_simulating_1996,
+	title = {Simulating {Ratios} of {Normalizing} {Constants} {Via} a {Simple} {Identity}: {A} {Theoretical} {Exploration}},
+	volume = {6},
+	issn = {1017-0405},
+	shorttitle = {Simulating {Ratios} of {Normalizing} {Constants} {Via} a {Simple} {Identity}},
+	url = {https://www.jstor.org/stable/24306045},
+	abstract = {Let pi(w),i = 1,2, be two densities with common support where each density is known up to a normalizing constant: pi(w) = qi(w)/ci. We have draws from each density (e.g., via Markov chain Monte Carlo), and we want to use these draws to simulate the ratio of the normalizing constants, c1/c2. Such a computational problem is often encountered in likelihood and Bayesian inference, and arises in fields such as physics and genetics. Many methods proposed in statistical and other literature (e.g., computational physics) for dealing with this problem are based on various special cases of the following simple identity: \${\textbackslash}frac\{c\_\{1\}\}\{c\_\{2\}\} = {\textbackslash}frac\{E\_\{2\}[q\_\{1\}(w){\textbackslash}alpha (w)]\}\{E\_\{1\}[q\_\{2\}(w){\textbackslash}alpha (w)]\}\$ Here Ei denotes the expectation with respect to pi (i = 1,2), and α is an arbitrary function such that the denominator is non-zero. A main purpose of this paper is to provide a theoretical study of the usefulness of this identity, with focus on (asymptotically) optimal and practical choices of α. Using a simple but informative example, we demonstrate that with sensible (not necessarily optimal) choices of α, we can reduce the simulation error by orders of magnitude when compared to the conventional importance sampling method, which corresponds to α = 1/q2. We also introduce several generalizations of this identity for handling more complicated settings (e.g., estimating several ratios simultaneously) and pose several open problems that appear to have practical as well as theoretical value. Furthermore, we discuss related theoretical and empirical work.},
+	number = {4},
+	urldate = {2024-01-23},
+	journal = {Statistica Sinica},
+	author = {Meng, Xiao-Li and Wong, Wing Hung},
+	year = {1996},
+	note = {Publisher: Institute of Statistical Science, Academia Sinica},
+	pages = {831--860},
+}
+
+@misc{vehtari_loo_2020,
+	title = {loo: {Efficient} leave-one-out cross-validation and {WAIC} for {Bayesian} models},
+	url = {https://mc-stan.org/loo},
+	author = {Vehtari, Aki and Gabry, Jonah and Magnusson, Mans and Yao, Yuling and Bürkner, Paul-Christian and Paananen, Topi and Gelman, Andrew},
+	year = {2020},
+}
