@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.25">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="Anna Elisabeth Riha">
 <meta name="dcterms.date" content="2024-04-05">
-
 <title>Iterative filtering for multiverse analyses of treatment effects – Anna Elisabeth Riha</title>
 <style>
 code{white-space: pre-wrap;}
@@ -79,7 +76,6 @@ div.csl-indent {
   margin-left: 2em;
 }</style>
 
-
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -96,8 +92,7 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-83ea6aa68fddaf81bf8826cdc338fca6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="../../site_libs/bootstrap/bootstrap-83ea6aa68fddaf81bf8826cdc338fca6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -122,12 +117,7 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -153,15 +143,11 @@ window.Quarto = {
   typesetMath
 };
 </script>
-
 </head>
-
 <body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     </a>
@@ -175,7 +161,7 @@ window.Quarto = {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link" href="../../projects/index.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
@@ -188,8 +174,8 @@ window.Quarto = {
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
     <a class="nav-link" href="https://github.com/annariha"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
@@ -200,15 +186,11 @@ window.Quarto = {
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
+    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Iterative filtering for multiverse analyses of treatment effects</h1>
                                 <div class="quarto-categories">
@@ -244,34 +226,28 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#analysing-an-anticonvulsant-for-patients-with-epilepsy" id="toc-analysing-an-anticonvulsant-for-patients-with-epilepsy" class="nav-link active" data-scroll-target="#analysing-an-anticonvulsant-for-patients-with-epilepsy">Analysing an anticonvulsant for patients with epilepsy</a></li>
+<li><a href="#analysing-an-anticonvulsant-for-patients-with-epilepsy" id="toc-analysing-an-anticonvulsant-for-patients-with-epilepsy" class="nav-link active" data-scroll-target="#analysing-an-anticonvulsant-for-patients-with-epilepsy">Analysing an anticonvulsant for patients with epilepsy</a></li>
   <li><a href="#an-initial-multiverse-of-models" id="toc-an-initial-multiverse-of-models" class="nav-link" data-scroll-target="#an-initial-multiverse-of-models">An initial multiverse of models</a></li>
   <li><a href="#evaluating-the-multiverse" id="toc-evaluating-the-multiverse" class="nav-link" data-scroll-target="#evaluating-the-multiverse">Evaluating the multiverse</a></li>
   <li><a href="#filtering-with-predictive-density-estimates" id="toc-filtering-with-predictive-density-estimates" class="nav-link" data-scroll-target="#filtering-with-predictive-density-estimates">Filtering with predictive density estimates</a></li>
   <li><a href="#filtering-with-posterior-predictive-checks" id="toc-filtering-with-posterior-predictive-checks" class="nav-link" data-scroll-target="#filtering-with-posterior-predictive-checks">Filtering with posterior predictive checks</a></li>
   <li><a href="#what-comes-next" id="toc-what-comes-next" class="nav-link" data-scroll-target="#what-comes-next">What comes next?</a></li>
-  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix">Appendix</a>
+  <li>
+<a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix">Appendix</a>
   <ul class="collapse">
-  <li><a href="#existing-work" id="toc-existing-work" class="nav-link" data-scroll-target="#existing-work">Existing work</a></li>
+<li><a href="#existing-work" id="toc-existing-work" class="nav-link" data-scroll-target="#existing-work">Existing work</a></li>
   <li><a href="#challenges-in-bayesian-workflows" id="toc-challenges-in-bayesian-workflows" class="nav-link" data-scroll-target="#challenges-in-bayesian-workflows">Challenges in Bayesian workflows</a></li>
   <li><a href="#transparent-exploration-with-multiverse-analysis" id="toc-transparent-exploration-with-multiverse-analysis" class="nav-link" data-scroll-target="#transparent-exploration-with-multiverse-analysis">Transparent Exploration with multiverse analysis</a></li>
   <li><a href="#differences-and-structure-in-a-set-of-models" id="toc-differences-and-structure-in-a-set-of-models" class="nav-link" data-scroll-target="#differences-and-structure-in-a-set-of-models">Differences and structure in a set of models</a></li>
-  </ul></li>
   </ul>
-</nav>
+</li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
-
-
-
-
-
-<style>
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content"><style>
 p.comment {
 background-color: #DBDBDB;
 padding: 10px;
@@ -291,56 +267,61 @@ p {
 </div>
 <p class="comment">
 Can we combine <strong>transparent creation of sets of models</strong> (multiverse analysis) with <strong>recipes for model building and evaluation</strong> (Bayesian workflows) to support Bayesian modelling?
-</p><p>
-</p><p>Bayesian modelling workflows consist of several intertwined tasks and can involve the iterative consideration of various candidate models (see, e.g., <span class="citation" data-cites="gelmanetal2020">Gelman et al. (<a href="#ref-gelmanetal2020" role="doc-biblioref">2020</a>)</span>, <span class="citation" data-cites="martinetal2021">Martin, Kumar, and Lao (<a href="#ref-martinetal2021" role="doc-biblioref">2021</a>)</span>). Aspects like computation checks, model evaluation, model criticism and model comparison can motivate the consideration of multiple models and are essential when searching for models that are sufficient for obtaining accurate predictions and enabling robust decision-making (see, e.g., <span class="citation" data-cites="ohaganbayesian2004">O’Hagan and Forster (<a href="#ref-ohaganbayesian2004" role="doc-biblioref">2004</a>)</span>, <span class="citation" data-cites="vehtariojanen2012">Vehtari and Ojanen (<a href="#ref-vehtariojanen2012" role="doc-biblioref">2012</a>)</span>, <span class="citation" data-cites="piironenvehtari2017">Piironen and Vehtari (<a href="#ref-piironenvehtari2017" role="doc-biblioref">2017</a>)</span>, <span class="citation" data-cites="burknermodels2023">Bürkner, Scholz, and Radev (<a href="#ref-burknermodels2023" role="doc-biblioref">2023</a>)</span>).</p>
+</p>
+<p>
+</p>
+<p>Bayesian modelling workflows consist of several intertwined tasks and can involve the iterative consideration of various candidate models (see, e.g., <span class="citation" data-cites="gelmanetal2020">Gelman et al. (<a href="#ref-gelmanetal2020" role="doc-biblioref">2020</a>)</span>, <span class="citation" data-cites="martinetal2021">Martin, Kumar, and Lao (<a href="#ref-martinetal2021" role="doc-biblioref">2021</a>)</span>). Aspects like computation checks, model evaluation, model criticism and model comparison can motivate the consideration of multiple models and are essential when searching for models that are sufficient for obtaining accurate predictions and enabling robust decision-making (see, e.g., <span class="citation" data-cites="ohaganbayesian2004">O’Hagan and Forster (<a href="#ref-ohaganbayesian2004" role="doc-biblioref">2004</a>)</span>, <span class="citation" data-cites="vehtariojanen2012">Vehtari and Ojanen (<a href="#ref-vehtariojanen2012" role="doc-biblioref">2012</a>)</span>, <span class="citation" data-cites="piironenvehtari2017">Piironen and Vehtari (<a href="#ref-piironenvehtari2017" role="doc-biblioref">2017</a>)</span>, <span class="citation" data-cites="burknermodels2023">Bürkner, Scholz, and Radev (<a href="#ref-burknermodels2023" role="doc-biblioref">2023</a>)</span>).</p>
 <p>Multiverse analysis provides a framework to transparently investigate several models at once (<span class="citation" data-cites="steegenetal2016">Steegen et al. (<a href="#ref-steegenetal2016" role="doc-biblioref">2016</a>)</span>). But reasoning on a set of models can be challenging, and dependence structures and different weights of modelling choices are not immediately clear when confronted with a large collection of possible models (see e.g., <span class="citation" data-cites="halletal2022">Hall et al. (<a href="#ref-halletal2022" role="doc-biblioref">2022</a>)</span>).</p>
 <p>In this <a href="https://arxiv.org/abs/2404.01688">preprint</a>, we propose iterative filtering for multiverse analysis to balance the advantages of a joint investigation of multiple candidate models with the potentially overwhelming tasks of evaluating and comparing multiple models at once.</p>
-<section id="analysing-an-anticonvulsant-for-patients-with-epilepsy" class="level2">
-<h2 class="anchored" data-anchor-id="analysing-an-anticonvulsant-for-patients-with-epilepsy">Analysing an anticonvulsant for patients with epilepsy</h2>
+<section id="analysing-an-anticonvulsant-for-patients-with-epilepsy" class="level2"><h2 class="anchored" data-anchor-id="analysing-an-anticonvulsant-for-patients-with-epilepsy">Analysing an anticonvulsant for patients with epilepsy</h2>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tictoc)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tinytable)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reactable)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(htmltools)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(brms)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(future)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(furrr)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cmdstanr)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggdist)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(latex2exp)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesplot)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jabiru/tictoc">tictoc</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://haozhu233.github.io/kableExtra/">kableExtra</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/tinytable/">tinytable</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://glin.github.io/reactable/">reactable</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/htmltools">htmltools</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paul-buerkner/brms">brms</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://future.futureverse.org">future</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/futureverse/furrr">furrr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/cmdstanr/">cmdstanr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/ggdist/">ggdist</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.stefanom.io/latex2exp/">latex2exp</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/bayesplot/">bayesplot</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Let’s see how iterative filtering can be applied to multiverse analyses of anticonvulsant therapy for patients with epilepsy.</p>
-<p>We use the dataset <code>brms::epilepsy</code> from the <code>brms</code> package <span class="citation" data-cites="buerknerbrms2017">(<a href="#ref-buerknerbrms2017" role="doc-biblioref">Bürkner 2017</a>)</span> with 236 observations of 59 patients. It was initially published by <span class="citation" data-cites="leppikcontrolled1987">Leppik et al. (<a href="#ref-leppikcontrolled1987" role="doc-biblioref">1987</a>)</span>, and previously analysed, for example, by <span class="citation" data-cites="thallcovariance1990">Thall and Vail (<a href="#ref-thallcovariance1990" role="doc-biblioref">1990</a>)</span> and <span class="citation" data-cites="breslowapproximate1993">Breslow and Clayton (<a href="#ref-breslowapproximate1993" role="doc-biblioref">1993</a>)</span>.</p>
+<p>We use the dataset <code><a href="https://paulbuerkner.com/brms/reference/epilepsy.html">brms::epilepsy</a></code> from the <code>brms</code> package <span class="citation" data-cites="buerknerbrms2017">(<a href="#ref-buerknerbrms2017" role="doc-biblioref">Bürkner 2017</a>)</span> with 236 observations of 59 patients. It was initially published by <span class="citation" data-cites="leppikcontrolled1987">Leppik et al. (<a href="#ref-leppikcontrolled1987" role="doc-biblioref">1987</a>)</span>, and previously analysed, for example, by <span class="citation" data-cites="thallcovariance1990">Thall and Vail (<a href="#ref-thallcovariance1990" role="doc-biblioref">1990</a>)</span> and <span class="citation" data-cites="breslowapproximate1993">Breslow and Clayton (<a href="#ref-breslowapproximate1993" role="doc-biblioref">1993</a>)</span>.</p>
 <p>The data contains information on:</p>
 <ul>
-<li><span class="math inline">\(\texttt{Trt}\)</span>: 0 or 1 if patient received anticonvulsant therapy</li>
-<li><span class="math inline">\(\texttt{Age}\)</span>: age of patients in years</li>
-<li><span class="math inline">\(\texttt{Base}\)</span>: seizure count at 8-week baseline</li>
-<li><span class="math inline">\(\texttt{zAge}\)</span>: standardised age</li>
-<li><span class="math inline">\(\texttt{zBase}\)</span>: standardised baseline</li>
-<li><span class="math inline">\(\texttt{patient}\)</span>: patient number</li>
-<li><span class="math inline">\(\texttt{visit}\)</span>: session number from 1 (first visit) to 4 (last visit)</li>
-<li><span class="math inline">\(\texttt{obs}\)</span>: unique identifier for each observation</li>
-<li><span class="math inline">\(\texttt{count}\)</span>: seizure count between two visits.</li>
+<li>
+<span class="math inline">\(\texttt{Trt}\)</span>: 0 or 1 if patient received anticonvulsant therapy</li>
+<li>
+<span class="math inline">\(\texttt{Age}\)</span>: age of patients in years</li>
+<li>
+<span class="math inline">\(\texttt{Base}\)</span>: seizure count at 8-week baseline</li>
+<li>
+<span class="math inline">\(\texttt{zAge}\)</span>: standardised age</li>
+<li>
+<span class="math inline">\(\texttt{zBase}\)</span>: standardised baseline</li>
+<li>
+<span class="math inline">\(\texttt{patient}\)</span>: patient number</li>
+<li>
+<span class="math inline">\(\texttt{visit}\)</span>: session number from 1 (first visit) to 4 (last visit)</li>
+<li>
+<span class="math inline">\(\texttt{obs}\)</span>: unique identifier for each observation</li>
+<li>
+<span class="math inline">\(\texttt{count}\)</span>: seizure count between two visits.</li>
 </ul>
 <p>Here is a quick glimpse:</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tt</span>(<span class="fu">head</span>(brms<span class="sc">::</span>epilepsy, <span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tt</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu">brms</span><span class="fu">::</span><span class="va"><a href="https://paulbuerkner.com/brms/reference/epilepsy.html">epilepsy</a></span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
 <!-- preamble start -->
 
     <script>
@@ -406,19 +387,15 @@ Can we combine <strong>transparent creation of sets of models</strong> (multiver
               });
           });
       });
-    </script>
-
-    <style>
+    </script><style>
       /* tinytable css entries after */
       .table td.tinytable_css_4f7nsexr3hoxzr3lgelh, .table th.tinytable_css_4f7nsexr3hoxzr3lgelh { border-bottom: solid #d3d8dc 0.1em; }
       .table td.tinytable_css_ieyiwebedbb0368wfay4, .table th.tinytable_css_ieyiwebedbb0368wfay4 { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
     </style>
-    <div class="container">
+<div class="container">
       <table class="table table-borderless" id="tinytable_b2ucr5bq6t2swmxvol5v" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
-        <thead>
-        
-              <tr>
-                <th scope="col">Age</th>
+<thead><tr>
+<th scope="col">Age</th>
                 <th scope="col">Base</th>
                 <th scope="col">Trt</th>
                 <th scope="col">patient</th>
@@ -427,12 +404,10 @@ Can we combine <strong>transparent creation of sets of models</strong> (multiver
                 <th scope="col">obs</th>
                 <th scope="col">zAge</th>
                 <th scope="col">zBase</th>
-              </tr>
-        </thead>
-        
-        <tbody>
-                <tr>
-                  <td>31</td>
+              </tr></thead>
+<tbody>
+<tr>
+<td>31</td>
                   <td>11</td>
                   <td>0</td>
                   <td>1</td>
@@ -442,8 +417,8 @@ Can we combine <strong>transparent creation of sets of models</strong> (multiver
                   <td>0.4249950</td>
                   <td>-0.7571728</td>
                 </tr>
-                <tr>
-                  <td>30</td>
+<tr>
+<td>30</td>
                   <td>11</td>
                   <td>0</td>
                   <td>2</td>
@@ -453,8 +428,8 @@ Can we combine <strong>transparent creation of sets of models</strong> (multiver
                   <td>0.2652835</td>
                   <td>-0.7571728</td>
                 </tr>
-                <tr>
-                  <td>25</td>
+<tr>
+<td>25</td>
                   <td>6</td>
                   <td>0</td>
                   <td>3</td>
@@ -464,183 +439,165 @@ Can we combine <strong>transparent creation of sets of models</strong> (multiver
                   <td>-0.5332740</td>
                   <td>-0.9444033</td>
                 </tr>
-        </tbody>
-      </table>
-    </div>
+</tbody>
+</table>
+</div>
 <!-- hack to avoid NA insertion in last line -->
 </div>
 </div>
-</section>
-<section id="an-initial-multiverse-of-models" class="level2">
-<h2 class="anchored" data-anchor-id="an-initial-multiverse-of-models">An initial multiverse of models</h2>
+</section><section id="an-initial-multiverse-of-models" class="level2"><h2 class="anchored" data-anchor-id="an-initial-multiverse-of-models">An initial multiverse of models</h2>
 <p>To analyse the effect of anticonvulsant therapy on seizure counts, we choose models with Poisson and negative Binomial distributional families for the observations because they are suitable for non-negative integers. Additionally, we want to investigate default prior settings in <code>brms</code> as well as models with a horseshoe prior with three degrees of freedom for the population-level effects. Additionally, we evaluate different combinations of covariates as well as models with and without interaction effect <code>zBase*Trt</code>. The combination of these modelling choices leads to <span class="math inline">\(2 \times 2 \times 6 = 24\)</span> candidate models.</p>
 <div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create dataframe of combinations of model components ####</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>combinations_df <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">names</span>(<span class="fu">list</span>(<span class="at">poisson =</span> <span class="fu">poisson</span>(), <span class="at">negbinomial =</span> <span class="fu">negbinomial</span>())),</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">prior =</span> <span class="fu">list</span>(<span class="at">brms_default =</span> <span class="st">"NULL"</span>, <span class="at">brms_horseshoe =</span> <span class="st">"horseshoe(3)"</span>),</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># population-level effects</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Trt =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"Trt"</span>), </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">zBase =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"zBase"</span>),</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">zAge =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"zAge"</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>combinations_df <span class="ot">&lt;-</span> combinations_df <span class="sc">|&gt;</span> </span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add interaction effect</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">zBaseTrt =</span> <span class="fu">factor</span>(</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">case_when</span>(</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>      Trt <span class="sc">==</span> <span class="st">"Trt"</span> <span class="sc">~</span> <span class="st">""</span>,</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>      Trt <span class="sc">==</span> <span class="st">""</span> <span class="sc">~</span> <span class="st">"zBase * Trt"</span>))) <span class="sc">|&gt;</span> </span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter out rows with interaction and zBase</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(zBaseTrt <span class="sc">==</span> <span class="st">"zBase * Trt"</span> <span class="sc">&amp;</span> combinations_df<span class="sc">$</span>zBase <span class="sc">==</span> <span class="st">"zBase"</span>))</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>outcome_str <span class="ot">&lt;-</span> <span class="st">"count"</span> </span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>combinations_df <span class="ot">&lt;-</span> combinations_df <span class="sc">|&gt;</span>  </span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add outcome name </span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">outcome =</span> <span class="fu">rep_len</span>(outcome_str, <span class="fu">NROW</span>(combinations_df))) <span class="sc">|&gt;</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add prior names for easier summarising, plotting etc. </span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">priors =</span> <span class="fu">names</span>(combinations_df<span class="sc">$</span>prior)) <span class="sc">|&gt;</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># reorder to have outcome name, family and treatment effects first </span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(outcome, family, priors, prior, Trt, zBaseTrt, <span class="fu">everything</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># create dataframe of combinations of model components ####</span></span>
+<span><span class="va">combinations_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html">expand.grid</a></span><span class="op">(</span></span>
+<span>  family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>poisson <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html">poisson</a></span><span class="op">(</span><span class="op">)</span>, negbinomial <span class="op">=</span> <span class="fu"><a href="https://paulbuerkner.com/brms/reference/brmsfamily.html">negbinomial</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  prior <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>brms_default <span class="op">=</span> <span class="st">"NULL"</span>, brms_horseshoe <span class="op">=</span> <span class="st">"horseshoe(3)"</span><span class="op">)</span>,</span>
+<span>  <span class="co"># population-level effects</span></span>
+<span>  Trt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">"Trt"</span><span class="op">)</span>, </span>
+<span>  zBase <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">"zBase"</span><span class="op">)</span>,</span>
+<span>  zAge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">"zAge"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">combinations_df</span> <span class="op">&lt;-</span> <span class="va">combinations_df</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="co"># add interaction effect</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>zBaseTrt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when</a></span><span class="op">(</span></span>
+<span>      <span class="va">Trt</span> <span class="op">==</span> <span class="st">"Trt"</span> <span class="op">~</span> <span class="st">""</span>,</span>
+<span>      <span class="va">Trt</span> <span class="op">==</span> <span class="st">""</span> <span class="op">~</span> <span class="st">"zBase * Trt"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="co"># filter out rows with interaction and zBase</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="op">(</span><span class="va">zBaseTrt</span> <span class="op">==</span> <span class="st">"zBase * Trt"</span> <span class="op">&amp;</span> <span class="va">combinations_df</span><span class="op">$</span><span class="va">zBase</span> <span class="op">==</span> <span class="st">"zBase"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">outcome_str</span> <span class="op">&lt;-</span> <span class="st">"count"</span> </span>
+<span></span>
+<span><span class="va">combinations_df</span> <span class="op">&lt;-</span> <span class="va">combinations_df</span> <span class="op">|&gt;</span>  </span>
+<span>  <span class="co"># add outcome name </span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>outcome <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep_len</a></span><span class="op">(</span><span class="va">outcome_str</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">NROW</a></span><span class="op">(</span><span class="va">combinations_df</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="co"># add prior names for easier summarising, plotting etc. </span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>priors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">combinations_df</span><span class="op">$</span><span class="va">prior</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="co"># reorder to have outcome name, family and treatment effects first </span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">outcome</span>, <span class="va">family</span>, <span class="va">priors</span>, <span class="va">prior</span>, <span class="va">Trt</span>, <span class="va">zBaseTrt</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>For the sake of simplicity, we do not fit all the models here but only show the code to obtain the modelfits and load a dataframe containing the modelfits for all 24 models.</p>
 <div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load results for an initial multiverse of 24 models </span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>initial_multiverse <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_rds</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"initial_multiverse.rds"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># load results for an initial multiverse of 24 models </span></span>
+<span><span class="va">initial_multiverse</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"initial_multiverse.rds"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Below is the code that generates this dataframe. We set <code>#| eval: false</code> in the chunk options since we are not evaluating the code chunk here.</p>
 <div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>initial_multiverse <span class="ot">&lt;-</span> combinations_df <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">modelnames =</span> <span class="fu">apply</span>(combinations_df, <span class="dv">1</span>, build_name))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># workhorse: fit models ####</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tic</span>()</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>future<span class="sc">::</span><span class="fu">plan</span>(multisession, <span class="at">workers =</span> parallel<span class="sc">::</span><span class="fu">detectCores</span>()<span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>initial_multiverse<span class="sc">$</span>modelfits <span class="ot">&lt;-</span> combinations_df <span class="sc">|&gt;</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_nest</span>(<span class="fu">row_number</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(data) <span class="sc">|&gt;</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  furrr<span class="sc">::</span><span class="fu">future_map</span>(<span class="sc">~</span><span class="fu">build_fit</span>(.x, <span class="at">dataset =</span> brms<span class="sc">::</span>epilepsy), <span class="at">.options=</span><span class="fu">furrr_options</span>(<span class="at">seed=</span><span class="cn">TRUE</span>))</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>future<span class="sc">::</span><span class="fu">plan</span>(sequential)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span>()</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co"># add draws df ####</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>initial_multiverse <span class="ot">&lt;-</span> initial_multiverse <span class="sc">|&gt;</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model_id =</span> <span class="fu">paste0</span>(<span class="st">"Model "</span>, <span class="fu">row_number</span>())) <span class="sc">|&gt;</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">draws_df =</span> purrr<span class="sc">::</span><span class="fu">map</span>(purrr<span class="sc">::</span><span class="fu">map</span>(modelfits, pluck), posterior<span class="sc">::</span>as_draws_df))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">initial_multiverse</span> <span class="op">&lt;-</span> <span class="va">combinations_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>modelnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">combinations_df</span>, <span class="fl">1</span>, <span class="va">build_name</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># workhorse: fit models ####</span></span>
+<span><span class="fu">tic</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">future</span><span class="fu">::</span><span class="fu"><a href="https://future.futureverse.org/reference/plan.html">plan</a></span><span class="op">(</span><span class="va">multisession</span>, workers <span class="op">=</span> <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html">detectCores</a></span><span class="op">(</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">initial_multiverse</span><span class="op">$</span><span class="va">modelfits</span> <span class="op">&lt;-</span> <span class="va">combinations_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_nest.html">group_nest</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/row_number.html">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">furrr</span><span class="fu">::</span><span class="fu">future_map</span><span class="op">(</span><span class="op">~</span><span class="fu">build_fit</span><span class="op">(</span><span class="va">.x</span>, dataset <span class="op">=</span> <span class="fu">brms</span><span class="fu">::</span><span class="va"><a href="https://paulbuerkner.com/brms/reference/epilepsy.html">epilepsy</a></span><span class="op">)</span>, .options<span class="op">=</span><span class="fu">furrr_options</span><span class="op">(</span>seed<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">future</span><span class="fu">::</span><span class="fu"><a href="https://future.futureverse.org/reference/plan.html">plan</a></span><span class="op">(</span><span class="va">sequential</span><span class="op">)</span></span>
+<span><span class="fu">toc</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># add draws df ####</span></span>
+<span><span class="va">initial_multiverse</span> <span class="op">&lt;-</span> <span class="va">initial_multiverse</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>model_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Model "</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/row_number.html">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>draws_df <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">modelfits</span>, <span class="va">pluck</span><span class="op">)</span>, <span class="fu">posterior</span><span class="fu">::</span><span class="va"><a href="https://mc-stan.org/posterior/reference/draws_df.html">as_draws_df</a></span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>To fit the models, we use the below helper functions <code>build_name()</code>, <code>build_brms_formula()</code> and <code>build_fit()</code> for each row vector of modelling choices recorded in the initial dataframe. We set <code>#| eval: false</code> in the chunk options since we are not evaluating the code chunk here.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>build_name <span class="ot">&lt;-</span> <span class="cf">function</span>(row, ...){</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  outcome <span class="ot">=</span> row[[<span class="st">"outcome"</span>]]</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># prior names</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  priornames <span class="ot">=</span> row[[<span class="st">"priors"</span>]]</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  in_id <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">which</span>(<span class="sc">!</span>(<span class="fu">names</span>(row) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"outcome"</span>, <span class="st">"family"</span>, <span class="st">"prior"</span>, <span class="st">"priors"</span>)) <span class="sc">&amp;</span> row <span class="sc">!=</span> <span class="st">""</span>))</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># cells that are included in the formula</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  covars <span class="ot">&lt;-</span> row[in_id]</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># extract levels for formula</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  covars <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="fu">unlist</span>(covars))</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># paste formula</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  formula1 <span class="ot">=</span> <span class="fu">paste</span>(outcome, <span class="st">"~"</span>, <span class="fu">paste</span>(covars, <span class="at">collapse =</span> <span class="st">"+"</span>)) </span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># build name</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  name <span class="ot">=</span> <span class="fu">paste0</span>(row[[<span class="st">"family"</span>]], <span class="st">"("</span>, formula1, <span class="st">"), "</span>, priornames)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> name</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>build_brms_formula <span class="ot">&lt;-</span> <span class="cf">function</span>(row, ...){</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  outcome <span class="ot">=</span> row[[<span class="st">"outcome"</span>]]</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  fam <span class="ot">=</span> <span class="fu">as.character</span>(<span class="fu">unlist</span>(row[<span class="st">"family"</span>]))</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  in_id <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">which</span>(<span class="sc">!</span>(<span class="fu">names</span>(row) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"outcome"</span>, <span class="st">"family"</span>, <span class="st">"prior"</span>, <span class="st">"priors"</span>, <span class="st">"model_name"</span>)) <span class="sc">&amp;</span> row <span class="sc">!=</span> <span class="st">""</span>))</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># cells that are included in the formula</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  covars <span class="ot">&lt;-</span> row[in_id]</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># extract levels for formula</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  covars <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="fu">unlist</span>(covars))</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># paste formula</span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  formula_str <span class="ot">=</span> <span class="fu">paste</span>(outcome, <span class="st">"~"</span>, <span class="fu">paste</span>(covars, <span class="at">collapse =</span> <span class="st">"+"</span>)) </span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># turn string into formula </span></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  formula <span class="ot">=</span> brms<span class="sc">::</span><span class="fu">brmsformula</span>(<span class="fu">as.formula</span>(formula_str), <span class="at">family=</span>fam)</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> formula </span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>} </span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>build_fit <span class="ot">&lt;-</span> <span class="cf">function</span>(row, dataset, ...){</span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set priors </span></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (row[[<span class="st">"priors"</span>]] <span class="sc">==</span> <span class="st">"brms_horseshoe"</span>){</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    prior <span class="ot">=</span> brms<span class="sc">::</span><span class="fu">set_prior</span>(<span class="st">"horseshoe(3)"</span>)</span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (row[[<span class="st">"priors"</span>]] <span class="sc">==</span> <span class="st">"brms_default"</span>){</span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    prior <span class="ot">=</span> <span class="cn">NULL</span></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>  <span class="co"># fit model with brms</span></span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">brm</span>(</span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">formula =</span> <span class="fu">build_brms_formula</span>(row), </span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> dataset, </span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">prior =</span> prior,</span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">seed =</span> <span class="dv">424242</span>,</span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">backend =</span> <span class="st">"cmdstanr"</span>, </span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">silent =</span> <span class="dv">2</span>, </span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">refresh =</span> <span class="dv">0</span></span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>  ) </span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">build_name</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">row</span>, <span class="va">...</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">outcome</span> <span class="op">=</span> <span class="va">row</span><span class="op">[[</span><span class="st">"outcome"</span><span class="op">]</span><span class="op">]</span></span>
+<span>  <span class="co"># prior names</span></span>
+<span>  <span class="va">priornames</span> <span class="op">=</span> <span class="va">row</span><span class="op">[[</span><span class="st">"priors"</span><span class="op">]</span><span class="op">]</span></span>
+<span>  <span class="va">in_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="op">!</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">row</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"outcome"</span>, <span class="st">"family"</span>, <span class="st">"prior"</span>, <span class="st">"priors"</span><span class="op">)</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">row</span> <span class="op">!=</span> <span class="st">""</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="co"># cells that are included in the formula</span></span>
+<span>  <span class="va">covars</span> <span class="op">&lt;-</span> <span class="va">row</span><span class="op">[</span><span class="va">in_id</span><span class="op">]</span></span>
+<span>  <span class="co"># extract levels for formula</span></span>
+<span>  <span class="va">covars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">covars</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="co"># paste formula</span></span>
+<span>  <span class="va">formula1</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">outcome</span>, <span class="st">"~"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">covars</span>, collapse <span class="op">=</span> <span class="st">"+"</span><span class="op">)</span><span class="op">)</span> </span>
+<span>  <span class="co"># build name</span></span>
+<span>  <span class="va">name</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">row</span><span class="op">[[</span><span class="st">"family"</span><span class="op">]</span><span class="op">]</span>, <span class="st">"("</span>, <span class="va">formula1</span>, <span class="st">"), "</span>, <span class="va">priornames</span><span class="op">)</span></span>
+<span>  <span class="va">out</span> <span class="op">&lt;-</span> <span class="va">name</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">build_brms_formula</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">row</span>, <span class="va">...</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">outcome</span> <span class="op">=</span> <span class="va">row</span><span class="op">[[</span><span class="st">"outcome"</span><span class="op">]</span><span class="op">]</span></span>
+<span>  <span class="va">fam</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">row</span><span class="op">[</span><span class="st">"family"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">in_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="op">!</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">row</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"outcome"</span>, <span class="st">"family"</span>, <span class="st">"prior"</span>, <span class="st">"priors"</span>, <span class="st">"model_name"</span><span class="op">)</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">row</span> <span class="op">!=</span> <span class="st">""</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="co"># cells that are included in the formula</span></span>
+<span>  <span class="va">covars</span> <span class="op">&lt;-</span> <span class="va">row</span><span class="op">[</span><span class="va">in_id</span><span class="op">]</span></span>
+<span>  <span class="co"># extract levels for formula</span></span>
+<span>  <span class="va">covars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">covars</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="co"># paste formula</span></span>
+<span>  <span class="va">formula_str</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">outcome</span>, <span class="st">"~"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">covars</span>, collapse <span class="op">=</span> <span class="st">"+"</span><span class="op">)</span><span class="op">)</span> </span>
+<span>  <span class="co"># turn string into formula </span></span>
+<span>  <span class="va">formula</span> <span class="op">=</span> <span class="fu">brms</span><span class="fu">::</span><span class="fu"><a href="https://paulbuerkner.com/brms/reference/brmsformula.html">brmsformula</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/formula.html">as.formula</a></span><span class="op">(</span><span class="va">formula_str</span><span class="op">)</span>, family<span class="op">=</span><span class="va">fam</span><span class="op">)</span></span>
+<span>  <span class="va">out</span> <span class="op">&lt;-</span> <span class="va">formula</span> </span>
+<span><span class="op">}</span> </span>
+<span></span>
+<span><span class="va">build_fit</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">row</span>, <span class="va">dataset</span>, <span class="va">...</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="co"># set priors </span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">row</span><span class="op">[[</span><span class="st">"priors"</span><span class="op">]</span><span class="op">]</span> <span class="op">==</span> <span class="st">"brms_horseshoe"</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">prior</span> <span class="op">=</span> <span class="fu">brms</span><span class="fu">::</span><span class="fu"><a href="https://paulbuerkner.com/brms/reference/set_prior.html">set_prior</a></span><span class="op">(</span><span class="st">"horseshoe(3)"</span><span class="op">)</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">row</span><span class="op">[[</span><span class="st">"priors"</span><span class="op">]</span><span class="op">]</span> <span class="op">==</span> <span class="st">"brms_default"</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">prior</span> <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="co"># fit model with brms</span></span>
+<span>  <span class="fu"><a href="https://paulbuerkner.com/brms/reference/brm.html">brm</a></span><span class="op">(</span></span>
+<span>    formula <span class="op">=</span> <span class="fu">build_brms_formula</span><span class="op">(</span><span class="va">row</span><span class="op">)</span>, </span>
+<span>    data <span class="op">=</span> <span class="va">dataset</span>, </span>
+<span>    prior <span class="op">=</span> <span class="va">prior</span>,</span>
+<span>    seed <span class="op">=</span> <span class="fl">424242</span>,</span>
+<span>    backend <span class="op">=</span> <span class="st">"cmdstanr"</span>, </span>
+<span>    silent <span class="op">=</span> <span class="fl">2</span>, </span>
+<span>    refresh <span class="op">=</span> <span class="fl">0</span></span>
+<span>  <span class="op">)</span> </span>
+<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section>
-<section id="evaluating-the-multiverse" class="level2">
-<h2 class="anchored" data-anchor-id="evaluating-the-multiverse">Evaluating the multiverse</h2>
-<p>We use the <code>loo</code> package <span class="citation" data-cites="vehtariloo2020">(<a href="#ref-vehtariloo2020" role="doc-biblioref">Vehtari et al. 2020</a>)</span> to obtain estimates of expected log predictive densities (elpd) with PSIS-LOO-CV using <code>loo::loo()</code>. For the purpose of this illustration, we load the loo-objects for all models that have been previously obtained and just present the code that was used to get the results for all models below.</p>
+</section><section id="evaluating-the-multiverse" class="level2"><h2 class="anchored" data-anchor-id="evaluating-the-multiverse">Evaluating the multiverse</h2>
+<p>We use the <code>loo</code> package <span class="citation" data-cites="vehtariloo2020">(<a href="#ref-vehtariloo2020" role="doc-biblioref">Vehtari et al. 2020</a>)</span> to obtain estimates of expected log predictive densities (elpd) with PSIS-LOO-CV using <code><a href="https://mc-stan.org/loo/reference/loo.html">loo::loo()</a></code>. For the purpose of this illustration, we load the loo-objects for all models that have been previously obtained and just present the code that was used to get the results for all models below.</p>
 <div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>loos_default <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_rds</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"loos_default.rds"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">loos_default</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"loos_default.rds"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Again, we set <code>#| eval: false</code> in the chunk options since we are not evaluating the code chunk here.</p>
 <div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># workhorse: default PSIS-LOO-CV for all models ####</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tic</span>()</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>future<span class="sc">::</span><span class="fu">plan</span>(multisession, <span class="at">workers =</span> parallel<span class="sc">::</span><span class="fu">detectCores</span>()<span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>loos_default <span class="ot">&lt;-</span> initial_multiverse <span class="sc">|&gt;</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_nest</span>(<span class="fu">row_number</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(data) <span class="sc">|&gt;</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  furrr<span class="sc">::</span><span class="fu">future_map</span>(<span class="sc">~</span><span class="fu">build_loos</span>(.x, <span class="at">dataset =</span> brms<span class="sc">::</span>epilepsy), <span class="at">.options=</span><span class="fu">furrr_options</span>(<span class="at">seed=</span><span class="cn">TRUE</span>))</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span>()</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>future<span class="sc">::</span><span class="fu">plan</span>(sequential)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># set names for loo objects</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(loos_default) <span class="ot">&lt;-</span> initial_multiverse<span class="sc">$</span>modelnames</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># workhorse: default PSIS-LOO-CV for all models ####</span></span>
+<span><span class="fu">tic</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">future</span><span class="fu">::</span><span class="fu"><a href="https://future.futureverse.org/reference/plan.html">plan</a></span><span class="op">(</span><span class="va">multisession</span>, workers <span class="op">=</span> <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html">detectCores</a></span><span class="op">(</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">loos_default</span> <span class="op">&lt;-</span> <span class="va">initial_multiverse</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_nest.html">group_nest</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/row_number.html">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">furrr</span><span class="fu">::</span><span class="fu">future_map</span><span class="op">(</span><span class="op">~</span><span class="fu">build_loos</span><span class="op">(</span><span class="va">.x</span>, dataset <span class="op">=</span> <span class="fu">brms</span><span class="fu">::</span><span class="va"><a href="https://paulbuerkner.com/brms/reference/epilepsy.html">epilepsy</a></span><span class="op">)</span>, .options<span class="op">=</span><span class="fu">furrr_options</span><span class="op">(</span>seed<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">toc</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">future</span><span class="fu">::</span><span class="fu"><a href="https://future.futureverse.org/reference/plan.html">plan</a></span><span class="op">(</span><span class="va">sequential</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># set names for loo objects</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">loos_default</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">initial_multiverse</span><span class="op">$</span><span class="va">modelnames</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p>The above code uses the following helper function <code>build_loos()</code> as a wrapper around <code>loo::loo()</code> to obtain estimates for elpd with PSIS-LOO-CV for one row in <code>initial_multiverse</code>.</p>
+<p>The above code uses the following helper function <code>build_loos()</code> as a wrapper around <code><a href="https://mc-stan.org/loo/reference/loo.html">loo::loo()</a></code> to obtain estimates for elpd with PSIS-LOO-CV for one row in <code>initial_multiverse</code>.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># loo: elpd and model comparison ####</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>build_loos <span class="ot">&lt;-</span> <span class="cf">function</span>(row, dataset, ...){</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  modelfit <span class="ot">=</span> row[[<span class="st">"modelfits"</span>]][[<span class="dv">1</span>]]</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  loo_object <span class="ot">=</span> <span class="fu">loo</span>(modelfit)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(loo_object)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>} </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># loo: elpd and model comparison ####</span></span>
+<span><span class="va">build_loos</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">row</span>, <span class="va">dataset</span>, <span class="va">...</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">modelfit</span> <span class="op">=</span> <span class="va">row</span><span class="op">[[</span><span class="st">"modelfits"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<span>  <span class="va">loo_object</span> <span class="op">=</span> <span class="fu"><a href="https://mc-stan.org/loo/reference/loo.html">loo</a></span><span class="op">(</span><span class="va">modelfit</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">loo_object</span><span class="op">)</span></span>
+<span><span class="op">}</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p>We compare models in the set of models <span class="math inline">\(M = \{M_1, \cdots, M_K\}\)</span> with <span class="math inline">\(K = 24\)</span> using the difference in estimated <span class="math inline">\(\mathrm{elpd}^k\)</span> of each model <span class="math inline">\(M_k\)</span> compared to the model with the highest estimated . Given the estimates of elpd for all 24 models, we assess differences in elpd and associated standard errors of the differences for each model using <code>loo::loo_compare()</code>.</p>
+<p>We compare models in the set of models <span class="math inline">\(M = \{M_1, \cdots, M_K\}\)</span> with <span class="math inline">\(K = 24\)</span> using the difference in estimated <span class="math inline">\(\mathrm{elpd}^k\)</span> of each model <span class="math inline">\(M_k\)</span> compared to the model with the highest estimated . Given the estimates of elpd for all 24 models, we assess differences in elpd and associated standard errors of the differences for each model using <code><a href="https://mc-stan.org/loo/reference/loo_compare.html">loo::loo_compare()</a></code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>comparisons_df <span class="ot">&lt;-</span> loo<span class="sc">::</span><span class="fu">loo_compare</span>(loos_default)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">comparisons_df</span> <span class="op">&lt;-</span> <span class="fu">loo</span><span class="fu">::</span><span class="fu"><a href="https://mc-stan.org/loo/reference/loo_compare.html">loo_compare</a></span><span class="op">(</span><span class="va">loos_default</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Difference in performance potentially due to chance.See McLatchie and
 Vehtari (2023) for details.</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>comparisons_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">comparisons_df</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                                      elpd_diff se_diff
 negbinomial(count ~ Trt+zBase+zAge), brms_default        0.0       0.0 
@@ -669,270 +626,241 @@ poisson(count ~ Trt+zAge), brms_default               -999.2     234.5
 poisson(count ~ Trt+zAge), brms_horseshoe             -999.6     233.9 </code></pre>
 </div>
 </div>
-</section>
-<section id="filtering-with-predictive-density-estimates" class="level2">
-<h2 class="anchored" data-anchor-id="filtering-with-predictive-density-estimates">Filtering with predictive density estimates</h2>
-<p>To filter out models with largely inferior predictive abilities, we can identify a set of models with indistinguishable predictive performance compared to the best model as<br>
-<span class="math display">\[ \left\{ M_l: 0 \in \left[\Delta \widehat{\textrm{elpd}}^l \pm 2 \widehat{\text{se}}\left(\Delta \widehat{\textrm{elpd}}^l\right)\right] \right\}_{l=1, \cdots, L \leq K}.\]</span> To assess the reliability of the estimates for elpd, we count the number of Pareto-<span class="math inline">\(\hat{k}\)</span> diagnostics <span class="math inline">\(&gt; 0.7\)</span> for each of the models.</p>
+</section><section id="filtering-with-predictive-density-estimates" class="level2"><h2 class="anchored" data-anchor-id="filtering-with-predictive-density-estimates">Filtering with predictive density estimates</h2>
+<p>To filter out models with largely inferior predictive abilities, we can identify a set of models with indistinguishable predictive performance compared to the best model as<br><span class="math display">\[ \left\{ M_l: 0 \in \left[\Delta \widehat{\textrm{elpd}}^l \pm 2 \widehat{\text{se}}\left(\Delta \widehat{\textrm{elpd}}^l\right)\right] \right\}_{l=1, \cdots, L \leq K}.\]</span> To assess the reliability of the estimates for elpd, we count the number of Pareto-<span class="math inline">\(\hat{k}\)</span> diagnostics <span class="math inline">\(&gt; 0.7\)</span> for each of the models.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add sum of Pareto k's &gt; 0.7 for all models with default LOO ####</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>comparisons_df <span class="ot">&lt;-</span> <span class="fu">merge</span>(</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  comparisons_df, </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_dbl</span>(purrr<span class="sc">::</span><span class="fu">map</span>(loos_default, <span class="sc">~</span>.x<span class="sc">$</span>diagnostics<span class="sc">$</span>pareto_k), <span class="sc">~</span><span class="fu">sum</span>(.x<span class="sc">&gt;</span><span class="fl">0.7</span>)),</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">by=</span><span class="st">"row.names"</span>) </span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># set rownames to model names for merging</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(comparisons_df) <span class="ot">&lt;-</span> comparisons_df<span class="sc">$</span>Row.names</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"># select everything despite Row.names</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>comparisons_df <span class="ot">&lt;-</span> comparisons_df[<span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(comparisons_df)]</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># set descriptive name for new column </span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(comparisons_df)[<span class="fu">ncol</span>(comparisons_df)] <span class="ot">&lt;-</span> <span class="st">"n_high_pareto_ks"</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># add loo comparison table with default LOO ####</span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>full_df <span class="ot">=</span> <span class="fu">merge</span>(initial_multiverse, comparisons_df, <span class="at">by=</span><span class="dv">0</span>)</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co"># set row names to model names</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(full_df) <span class="ot">&lt;-</span> full_df<span class="sc">$</span>Row.names</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="co"># select everything despite Row.names</span></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>full_df <span class="ot">=</span> full_df[<span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(full_df)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># add sum of Pareto k's &gt; 0.7 for all models with default LOO ####</span></span>
+<span><span class="va">comparisons_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span></span>
+<span>  <span class="va">comparisons_df</span>, </span>
+<span>  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">loos_default</span>, <span class="op">~</span><span class="va">.x</span><span class="op">$</span><span class="va">diagnostics</span><span class="op">$</span><span class="va">pareto_k</span><span class="op">)</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">.x</span><span class="op">&gt;</span><span class="fl">0.7</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  by<span class="op">=</span><span class="st">"row.names"</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="co"># set rownames to model names for merging</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">comparisons_df</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">comparisons_df</span><span class="op">$</span><span class="va">Row.names</span></span>
+<span><span class="co"># select everything despite Row.names</span></span>
+<span><span class="va">comparisons_df</span> <span class="op">&lt;-</span> <span class="va">comparisons_df</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">comparisons_df</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="co"># set descriptive name for new column </span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">comparisons_df</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">comparisons_df</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"n_high_pareto_ks"</span></span>
+<span></span>
+<span><span class="co"># add loo comparison table with default LOO ####</span></span>
+<span><span class="va">full_df</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">initial_multiverse</span>, <span class="va">comparisons_df</span>, by<span class="op">=</span><span class="fl">0</span><span class="op">)</span></span>
+<span><span class="co"># set row names to model names</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">full_df</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">full_df</span><span class="op">$</span><span class="va">Row.names</span></span>
+<span><span class="co"># select everything despite Row.names</span></span>
+<span><span class="va">full_df</span> <span class="op">=</span> <span class="va">full_df</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">full_df</span><span class="op">)</span><span class="op">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We visualise differences in estimated elpd and associated standard errors for all models and the remaining set of models indistinguishable by predictive performance. Models coloured in <span style="color:red;">red</span> are models with one or more Pareto-<span class="math inline">\(\hat{k}\)</span> greater than 0.7.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># settings for all plots</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>            <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>, </span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">strip.background =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">panel.background =</span> <span class="fu">element_blank</span>(), </span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">8</span>),</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>                  <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">8</span>),</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>                  <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">8</span>),</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>                  <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">8</span>)))</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co"># prepare data for plotting </span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>df_plot <span class="ot">&lt;-</span> full_df <span class="sc">|&gt;</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">high_pareto_ks =</span> <span class="fu">ifelse</span>(n_high_pareto_ks <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="st">"yes"</span>, <span class="st">"no"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(elpd_diff) <span class="sc">|&gt;</span></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model_id =</span> forcats<span class="sc">::</span><span class="fu">fct_inorder</span>(model_id)) <span class="sc">|&gt;</span></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(modelnames, family, elpd_diff, se_diff, n_high_pareto_ks, model_id, high_pareto_ks)</span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="co"># create plot for all models</span></span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>plot_elpddiffs <span class="ot">&lt;-</span> </span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> df_plot, <span class="fu">aes</span>(elpd_diff, model_id, <span class="at">col =</span> high_pareto_ks, <span class="at">shape =</span> family)) <span class="sc">+</span></span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">xmin=</span>elpd_diff<span class="sc">-</span>se_diff, <span class="at">xmax=</span>elpd_diff<span class="sc">+</span>se_diff), <span class="at">fatten =</span> .<span class="dv">5</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"gray"</span>) <span class="sc">+</span> </span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"All models"</span>) <span class="sc">+</span> </span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Models"</span>) <span class="sc">+</span> </span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">TeX</span>(<span class="st">"$</span><span class="sc">\\</span><span class="st">Delta </span><span class="sc">\\</span><span class="st">widehat{elpd}$"</span>)) <span class="sc">+</span></span>
-<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"yes"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"no"</span> <span class="ot">=</span> <span class="st">"black"</span>)) <span class="sc">+</span> </span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"poisson"</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"negbinomial"</span> <span class="ot">=</span> <span class="dv">6</span>))</span>
-<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a><span class="co"># create plot for filtered set of models </span></span>
-<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>df_plot_filtered <span class="ot">&lt;-</span> df_plot <span class="sc">|&gt;</span></span>
-<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(elpd_diff <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>se_diff <span class="sc">&gt;=</span> <span class="dv">0</span>) </span>
-<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>plot_elpddiffs_filtered <span class="ot">&lt;-</span> </span>
-<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> df_plot_filtered, <span class="fu">aes</span>(elpd_diff, model_id, <span class="at">col =</span> high_pareto_ks, <span class="at">shape =</span> family)) <span class="sc">+</span></span>
-<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">xmin=</span>elpd_diff<span class="sc">-</span>se_diff, <span class="at">xmax=</span>elpd_diff<span class="sc">+</span>se_diff), <span class="at">fatten =</span> .<span class="dv">5</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"gray"</span>) <span class="sc">+</span> </span>
-<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Filtered set of models"</span>) <span class="sc">+</span> </span>
-<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">TeX</span>(<span class="st">"$</span><span class="sc">\\</span><span class="st">Delta </span><span class="sc">\\</span><span class="st">widehat{elpd}$"</span>)) <span class="sc">+</span></span>
-<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"yes"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"no"</span> <span class="ot">=</span> <span class="st">"black"</span>)) <span class="sc">+</span> </span>
-<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"poisson"</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"negbinomial"</span> <span class="ot">=</span> <span class="dv">6</span>)) <span class="sc">+</span> </span>
-<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.y =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>plot <span class="ot">&lt;-</span> plot_elpddiffs <span class="sc">|</span> plot_elpddiffs_filtered</span>
-<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>plot </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># settings for all plots</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/get_theme.html">theme_set</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>            <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span>, </span>
+<span>                  panel.grid.major <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>                  panel.grid.minor <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>                  strip.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>                  panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>, </span>
+<span>                  text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">8</span><span class="op">)</span>,</span>
+<span>                  plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">8</span><span class="op">)</span>,</span>
+<span>                  axis.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">8</span><span class="op">)</span>,</span>
+<span>                  axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># prepare data for plotting </span></span>
+<span><span class="va">df_plot</span> <span class="op">&lt;-</span> <span class="va">full_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>high_pareto_ks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">n_high_pareto_ks</span> <span class="op">&gt;</span> <span class="fl">0</span>, <span class="st">"yes"</span>, <span class="st">"no"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">elpd_diff</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>model_id <span class="op">=</span> <span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_inorder</a></span><span class="op">(</span><span class="va">model_id</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">modelnames</span>, <span class="va">family</span>, <span class="va">elpd_diff</span>, <span class="va">se_diff</span>, <span class="va">n_high_pareto_ks</span>, <span class="va">model_id</span>, <span class="va">high_pareto_ks</span><span class="op">)</span></span>
+<span>  </span>
+<span><span class="co"># create plot for all models</span></span>
+<span><span class="va">plot_elpddiffs</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_plot</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">elpd_diff</span>, <span class="va">model_id</span>, col <span class="op">=</span> <span class="va">high_pareto_ks</span>, shape <span class="op">=</span> <span class="va">family</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_pointrange</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xmin<span class="op">=</span><span class="va">elpd_diff</span><span class="op">-</span><span class="va">se_diff</span>, xmax<span class="op">=</span><span class="va">elpd_diff</span><span class="op">+</span><span class="va">se_diff</span><span class="op">)</span>, fatten <span class="op">=</span> <span class="fl">.5</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span>, color <span class="op">=</span> <span class="st">"gray"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>subtitle <span class="op">=</span> <span class="st">"All models"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Models"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="fu">TeX</span><span class="op">(</span><span class="st">"$\\Delta \\widehat{elpd}$"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>values<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"yes"</span> <span class="op">=</span> <span class="st">"red"</span>, <span class="st">"no"</span> <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_shape_manual</a></span><span class="op">(</span>values<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"poisson"</span> <span class="op">=</span> <span class="fl">1</span>, <span class="st">"negbinomial"</span> <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># create plot for filtered set of models </span></span>
+<span><span class="va">df_plot_filtered</span> <span class="op">&lt;-</span> <span class="va">df_plot</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">elpd_diff</span> <span class="op">+</span> <span class="fl">2</span><span class="op">*</span><span class="va">se_diff</span> <span class="op">&gt;=</span> <span class="fl">0</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="va">plot_elpddiffs_filtered</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_plot_filtered</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">elpd_diff</span>, <span class="va">model_id</span>, col <span class="op">=</span> <span class="va">high_pareto_ks</span>, shape <span class="op">=</span> <span class="va">family</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_pointrange</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xmin<span class="op">=</span><span class="va">elpd_diff</span><span class="op">-</span><span class="va">se_diff</span>, xmax<span class="op">=</span><span class="va">elpd_diff</span><span class="op">+</span><span class="va">se_diff</span><span class="op">)</span>, fatten <span class="op">=</span> <span class="fl">.5</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span>, color <span class="op">=</span> <span class="st">"gray"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>subtitle <span class="op">=</span> <span class="st">"Filtered set of models"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="fu">TeX</span><span class="op">(</span><span class="st">"$\\Delta \\widehat{elpd}$"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>values<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"yes"</span> <span class="op">=</span> <span class="st">"red"</span>, <span class="st">"no"</span> <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_shape_manual</a></span><span class="op">(</span>values<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"poisson"</span> <span class="op">=</span> <span class="fl">1</span>, <span class="st">"negbinomial"</span> <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.title.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="va">plot_elpddiffs</span> <span class="op">|</span> <span class="va">plot_elpddiffs_filtered</span></span>
+<span><span class="va">plot</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section id="filtering-with-posterior-predictive-checks" class="level2">
-<h2 class="anchored" data-anchor-id="filtering-with-posterior-predictive-checks">Filtering with posterior predictive checks</h2>
+</section><section id="filtering-with-posterior-predictive-checks" class="level2"><h2 class="anchored" data-anchor-id="filtering-with-posterior-predictive-checks">Filtering with posterior predictive checks</h2>
 <p>In the left subplot, elpd results where Pareto-<span class="math inline">\(\hat k\)</span> diagnostic indicated unreliable computation for PSIS-LOO-CV are highlighted with <span style="color:red;">red</span> colour. Instead of using computationally more intensive CV approaches, we can use posterior predictive checking to rule out these models. For the given multiverse, all models with high Pareto-<span class="math inline">\(\hat k\)</span> assume a Poisson distribution as the distributional family for the observations.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># helper function</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>get_one_ecdf_overlay <span class="ot">&lt;-</span> <span class="cf">function</span>(df, y, <span class="at">model_char =</span> <span class="st">""</span>, <span class="at">fontsize=</span><span class="dv">8</span>){</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set ggplot theme</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_set</span>(<span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>              <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">strip.background =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">panel.background =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span>fontsize),</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span>fontsize),</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>                    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span>fontsize),</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>                    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span>fontsize)))</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># bayesplot colour scheme</span></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  bayesplot<span class="sc">::</span><span class="fu">color_scheme_set</span>(<span class="st">"gray"</span>)</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get predictions for one model </span></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>  yrep <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(model_id <span class="sc">==</span> model_char) <span class="sc">|&gt;</span></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(ypred)</span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get model family</span></span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>  modelfamily <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(model_id <span class="sc">==</span> model_char) <span class="sc">|&gt;</span></span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">family =</span> <span class="fu">recode</span>(family, <span class="st">"poisson"</span> <span class="ot">=</span> <span class="st">"Poisson"</span>, <span class="st">"negbinomial"</span> <span class="ot">=</span> <span class="st">"Negative Binomial"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(family)</span>
-<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get model name </span></span>
-<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>  modelname_long <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(model_id <span class="sc">==</span> model_char) <span class="sc">|&gt;</span></span>
-<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(modelnames)</span>
-<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># remove info on prior for plotting </span></span>
-<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>  modelname <span class="ot">&lt;-</span> <span class="fu">substr</span>(modelname_long,<span class="dv">1</span>,<span class="fu">regexpr</span>(<span class="st">","</span>,modelname_long)<span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># create plot</span></span>
-<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>  plot <span class="ot">&lt;-</span> <span class="fu">ppc_ecdf_overlay</span>(<span class="at">y =</span> y, <span class="at">yrep =</span> yrep[[<span class="dv">1</span>]][<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>,], <span class="at">discrete =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">trans=</span><span class="st">"pseudo_log"</span>, </span>
-<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>                       <span class="at">breaks=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">20</span>, <span class="dv">50</span>, <span class="dv">100</span>), </span>
-<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>                       <span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">110</span>)) <span class="sc">+</span></span>
-<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste0</span>(modelfamily))</span>
-<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(plot)</span>
-<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a><span class="co"># create two example plots </span></span>
-<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>plot_ppc_ecdf_model_22 <span class="ot">&lt;-</span> <span class="fu">get_one_ecdf_overlay</span>(full_df, brms<span class="sc">::</span>epilepsy<span class="sc">$</span>count, <span class="at">model_char =</span> <span class="st">"Model 22"</span>) <span class="sc">+</span></span>
-<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>)</span>
-<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>plot_ppc_ecdf_model_21 <span class="ot">&lt;-</span> <span class="fu">get_one_ecdf_overlay</span>(full_df, brms<span class="sc">::</span>epilepsy<span class="sc">$</span>count, <span class="at">model_char =</span> <span class="st">"Model 21"</span>) <span class="sc">+</span> </span>
-<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a><span class="co"># arrange </span></span>
-<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>plot_ppc_ecdf_model_22_21 <span class="ot">&lt;-</span> plot_ppc_ecdf_model_22 <span class="sc">|</span> plot_ppc_ecdf_model_21</span>
-<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>plot_ppc_ecdf_model_22_21</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># helper function</span></span>
+<span><span class="va">get_one_ecdf_overlay</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span>, <span class="va">y</span>, <span class="va">model_char</span> <span class="op">=</span> <span class="st">""</span>, <span class="va">fontsize</span><span class="op">=</span><span class="fl">8</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="co"># set ggplot theme</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/get_theme.html">theme_set</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>              <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>panel.grid.major <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>                    panel.grid.minor <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>                    strip.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>                    panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>                    text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="va">fontsize</span><span class="op">)</span>,</span>
+<span>                    plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="va">fontsize</span><span class="op">)</span>,</span>
+<span>                    axis.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="va">fontsize</span><span class="op">)</span>,</span>
+<span>                    axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="va">fontsize</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># bayesplot colour scheme</span></span>
+<span>  <span class="fu">bayesplot</span><span class="fu">::</span><span class="fu"><a href="https://mc-stan.org/bayesplot/reference/bayesplot-colors.html">color_scheme_set</a></span><span class="op">(</span><span class="st">"gray"</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># get predictions for one model </span></span>
+<span>  <span class="va">yrep</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">model_id</span> <span class="op">==</span> <span class="va">model_char</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">ypred</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># get model family</span></span>
+<span>  <span class="va">modelfamily</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">model_id</span> <span class="op">==</span> <span class="va">model_char</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>family <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode.html">recode</a></span><span class="op">(</span><span class="va">family</span>, <span class="st">"poisson"</span> <span class="op">=</span> <span class="st">"Poisson"</span>, <span class="st">"negbinomial"</span> <span class="op">=</span> <span class="st">"Negative Binomial"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">family</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># get model name </span></span>
+<span>  <span class="va">modelname_long</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">model_id</span> <span class="op">==</span> <span class="va">model_char</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">modelnames</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># remove info on prior for plotting </span></span>
+<span>  <span class="va">modelname</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span><span class="va">modelname_long</span>,<span class="fl">1</span>,<span class="fu"><a href="https://rdrr.io/r/base/grep.html">regexpr</a></span><span class="op">(</span><span class="st">","</span>,<span class="va">modelname_long</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># create plot</span></span>
+<span>  <span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/bayesplot/reference/PPC-distributions.html">ppc_ecdf_overlay</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">y</span>, yrep <span class="op">=</span> <span class="va">yrep</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span>,<span class="op">]</span>, discrete <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>trans<span class="op">=</span><span class="st">"pseudo_log"</span>, </span>
+<span>                       breaks<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">5</span>, <span class="fl">20</span>, <span class="fl">50</span>, <span class="fl">100</span><span class="op">)</span>, </span>
+<span>                       limits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">110</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">modelfamily</span><span class="op">)</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">plot</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># create two example plots </span></span>
+<span><span class="va">plot_ppc_ecdf_model_22</span> <span class="op">&lt;-</span> <span class="fu">get_one_ecdf_overlay</span><span class="op">(</span><span class="va">full_df</span>, <span class="fu">brms</span><span class="fu">::</span><span class="va"><a href="https://paulbuerkner.com/brms/reference/epilepsy.html">epilepsy</a></span><span class="op">$</span><span class="va">count</span>, model_char <span class="op">=</span> <span class="st">"Model 22"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position<span class="op">=</span><span class="st">"none"</span><span class="op">)</span></span>
+<span><span class="va">plot_ppc_ecdf_model_21</span> <span class="op">&lt;-</span> <span class="fu">get_one_ecdf_overlay</span><span class="op">(</span><span class="va">full_df</span>, <span class="fu">brms</span><span class="fu">::</span><span class="va"><a href="https://paulbuerkner.com/brms/reference/epilepsy.html">epilepsy</a></span><span class="op">$</span><span class="va">count</span>, model_char <span class="op">=</span> <span class="st">"Model 21"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># arrange </span></span>
+<span><span class="va">plot_ppc_ecdf_model_22_21</span> <span class="op">&lt;-</span> <span class="va">plot_ppc_ecdf_model_22</span> <span class="op">|</span> <span class="va">plot_ppc_ecdf_model_21</span></span>
+<span><span class="va">plot_ppc_ecdf_model_22_21</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>The above plot shows posterior predictive checking results for the best performing model among models assuming a Poisson distribution (Model 21) and its counterpart that differs only with respect to the chosen distributional family for the observations (Model 22). The results suggest that the Poisson model is not an appropriate choice for this data.</p>
-</section>
-<section id="what-comes-next" class="level2">
-<h2 class="anchored" data-anchor-id="what-comes-next">What comes next?</h2>
+</section><section id="what-comes-next" class="level2"><h2 class="anchored" data-anchor-id="what-comes-next">What comes next?</h2>
 <p>In part II of this case study, we will extend the filtered set of models by including more complex models and filter again. We will also show how we can use integrated PSIS-LOO-CV to obtain reliable estimates for elpd.</p>
-</section>
-<section id="appendix" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="appendix">Appendix</h2>
-<section id="existing-work" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="existing-work">Existing work</h3>
+</section><section id="appendix" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="appendix">Appendix</h2>
+<section id="existing-work" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="existing-work">Existing work</h3>
 <ul>
-<li>posterior calibration checks with <span class="citation" data-cites="saeilynoja2022">Säilynoja, Bürkner, and Vehtari (<a href="#ref-saeilynoja2022" role="doc-biblioref">2022</a>)</span></li>
-<li>model comparison with <span class="math inline">\(\texttt{R}\)</span>-package <code>loo</code> <span class="citation" data-cites="vehtariloo2020">(<a href="#ref-vehtariloo2020" role="doc-biblioref">Vehtari et al. 2020</a>)</span></li>
-<li>multiverse analysis <span class="citation" data-cites="steegenetal2016">(<a href="#ref-steegenetal2016" role="doc-biblioref">Steegen et al. 2016</a>)</span> and <code>multiverse</code> <span class="math inline">\(\texttt{R}\)</span>-package <span class="citation" data-cites="sarmaetal2021">(<a href="#ref-sarmaetal2021" role="doc-biblioref">Sarma et al. 2021</a>)</span></li>
-<li>explorable multiverse analyses <span class="citation" data-cites="dragicevic2019">(<a href="#ref-dragicevic2019" role="doc-biblioref">Dragicevic et al. 2019</a>)</span></li>
-<li>creating multiverse analysis scripts, exploring results with Boba <span class="citation" data-cites="liu2021">(<a href="#ref-liu2021" role="doc-biblioref">Liu et al. 2021</a>)</span></li>
-<li>survey of visualisation of multiverse analyses <span class="citation" data-cites="halletal2022">(<a href="#ref-halletal2022" role="doc-biblioref">Hall et al. 2022</a>)</span></li>
-<li>modular STAN <span class="citation" data-cites="bernstein2020">(<a href="#ref-bernstein2020" role="doc-biblioref">Bernstein, Vákár, and Wing 2020</a>)</span></li>
-<li>modelling multiverse analysis for machine learning <span class="citation" data-cites="belletal2022">(<a href="#ref-belletal2022" role="doc-biblioref">Bell et al. 2022</a>)</span></li>
+<li>posterior calibration checks with <span class="citation" data-cites="saeilynoja2022">Säilynoja, Bürkner, and Vehtari (<a href="#ref-saeilynoja2022" role="doc-biblioref">2022</a>)</span>
+</li>
+<li>model comparison with <span class="math inline">\(\texttt{R}\)</span>-package <code>loo</code> <span class="citation" data-cites="vehtariloo2020">(<a href="#ref-vehtariloo2020" role="doc-biblioref">Vehtari et al. 2020</a>)</span>
+</li>
+<li>multiverse analysis <span class="citation" data-cites="steegenetal2016">(<a href="#ref-steegenetal2016" role="doc-biblioref">Steegen et al. 2016</a>)</span> and <code>multiverse</code> <span class="math inline">\(\texttt{R}\)</span>-package <span class="citation" data-cites="sarmaetal2021">(<a href="#ref-sarmaetal2021" role="doc-biblioref">Sarma et al. 2021</a>)</span>
+</li>
+<li>explorable multiverse analyses <span class="citation" data-cites="dragicevic2019">(<a href="#ref-dragicevic2019" role="doc-biblioref">Dragicevic et al. 2019</a>)</span>
+</li>
+<li>creating multiverse analysis scripts, exploring results with Boba <span class="citation" data-cites="liu2021">(<a href="#ref-liu2021" role="doc-biblioref">Liu et al. 2021</a>)</span>
+</li>
+<li>survey of visualisation of multiverse analyses <span class="citation" data-cites="halletal2022">(<a href="#ref-halletal2022" role="doc-biblioref">Hall et al. 2022</a>)</span>
+</li>
+<li>modular STAN <span class="citation" data-cites="bernstein2020">(<a href="#ref-bernstein2020" role="doc-biblioref">Bernstein, Vákár, and Wing 2020</a>)</span>
+</li>
+<li>modelling multiverse analysis for machine learning <span class="citation" data-cites="belletal2022">(<a href="#ref-belletal2022" role="doc-biblioref">Bell et al. 2022</a>)</span>
+</li>
 </ul>
 <p>The following figures show two variants of flowcharts for Bayesian workflows with different levels of detail<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. The most apparent similarities are (1) the possibility to iterate when needed, and (2) connecting the tasks of modelling and checking and tending to computational issues.</p>
 <div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Another flowchart for Bayesian workflow can be found in Michael Betancourt’s <a href="https://betanalpha.github.io/assets/case_studies/principled_bayesian_workflow.html#1_Questioning_Authority">blogpost</a> “Principled Bayesian Workflow”.</p></div></div><div id="fig-workflows" class="quarto-layout-panel page-columns page-full">
-<figure class="quarto-float quarto-float-fig figure page-columns page-full">
-<div aria-describedby="fig-workflows-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full"><div aria-describedby="fig-workflows-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-workflows" style="flex-basis: 42.1%;justify-content: flex-start;">
 <div id="fig-bw-gelman" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-bw-gelman-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-bw-gelman-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="bayesworkflow-illu.png" class="img-fluid figure-img" data-ref-parent="fig-workflows">
 </div>
 <figcaption class="quarto-float-caption-margin quarto-subfloat-caption quarto-subfloat-fig" id="fig-bw-gelman-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Bayesian Workflow in <span class="citation" data-cites="gelmanetal2020">(<a href="#ref-gelmanetal2020" role="doc-biblioref">Gelman et al. 2020</a>)</span>
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-workflows" style="flex-basis: 57.9%;justify-content: flex-start;">
 <div id="fig-bw-martin" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-bw-martin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-bw-martin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="workflow-bayescompbook.png" class="img-fluid figure-img" data-ref-parent="fig-workflows">
 </div>
 <figcaption class="quarto-float-caption-margin quarto-subfloat-caption quarto-subfloat-fig" id="fig-bw-martin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Bayesian Workflow in <span class="citation" data-cites="martinetal2021">(<a href="#ref-martinetal2021" role="doc-biblioref">Martin, Kumar, and Lao 2021</a>)</span>.
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-margin quarto-float-caption quarto-float-fig quarto-uncaptioned margin-caption" id="fig-workflows-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
-</section>
-<section id="challenges-in-bayesian-workflows" class="level3">
-<h3 class="anchored" data-anchor-id="challenges-in-bayesian-workflows">Challenges in Bayesian workflows</h3>
+</section><section id="challenges-in-bayesian-workflows" class="level3"><h3 class="anchored" data-anchor-id="challenges-in-bayesian-workflows">Challenges in Bayesian workflows</h3>
 <ul>
 <li>multi-attribute multi-objective scenarios</li>
 <li>navigating necessary vs.&nbsp;“nice-to-have” steps</li>
 <li>stopping criteria and sufficient exploration</li>
 <li>iterative model building, while transparent and robust</li>
 <li>communicating results of multiple models</li>
-</ul>
-</section>
-<section id="transparent-exploration-with-multiverse-analysis" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="transparent-exploration-with-multiverse-analysis">Transparent Exploration with multiverse analysis</h3>
+</ul></section><section id="transparent-exploration-with-multiverse-analysis" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="transparent-exploration-with-multiverse-analysis">Transparent Exploration with multiverse analysis</h3>
 <div id="fig-multiverse" class="quarto-layout-panel page-columns page-full">
-<figure class="quarto-float quarto-float-fig figure page-columns page-full">
-<div aria-describedby="fig-multiverse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full"><div aria-describedby="fig-multiverse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-multiverse" style="flex-basis: 75.0%;justify-content: flex-start;">
 <div id="fig-mvd" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-mvd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-mvd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="multiverse-illu.png" class="img-fluid figure-img" style="width:70.0%" data-ref-parent="fig-multiverse">
 </div>
 <figcaption class="quarto-float-caption-margin quarto-subfloat-caption quarto-subfloat-fig" id="fig-mvd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Multiverse analysis compared to other approaches, from <span class="citation" data-cites="dragicevic2019">(<a href="#ref-dragicevic2019" role="doc-biblioref">Dragicevic et al. 2019</a>)</span>.
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-multiverse" style="flex-basis: 25.0%;justify-content: flex-start;">
 <div id="fig-mvbw" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-mvbw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-mvbw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="multiverse-in-bw.png" class="img-fluid figure-img" style="width:70.0%" data-ref-parent="fig-multiverse">
 </div>
 <figcaption class="quarto-float-caption-margin quarto-subfloat-caption quarto-subfloat-fig" id="fig-mvbw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Multiverse analysis in Bayesian workflow in <span class="citation" data-cites="gelmanetal2020">(<a href="#ref-gelmanetal2020" role="doc-biblioref">Gelman et al. 2020</a>)</span>.
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-margin quarto-float-caption quarto-float-fig quarto-uncaptioned margin-caption" id="fig-multiverse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 <p>Multiverse analysis provides a way to transparently define and fit several models at once (<span class="citation" data-cites="steegenetal2016">Steegen et al. (<a href="#ref-steegenetal2016" role="doc-biblioref">2016</a>)</span>). In a workflow that requires iterations, this could allow parallel exploration, thereby, increasing efficiency. On the other hand, this exploration of sets of models necessarily depends on researcher/data analyst/user choices, and is subject to computational and cognitive constraints.</p>
 <p>Reasoning on a set of models can be challenging, and dependence structures and different weights of modelling choices are not immediately clear when confronted with a large collection of possible models (see e.g., <span class="citation" data-cites="halletal2022">Hall et al. (<a href="#ref-halletal2022" role="doc-biblioref">2022</a>)</span>).</p>
-</section>
-<section id="differences-and-structure-in-a-set-of-models" class="level3">
-<h3 class="anchored" data-anchor-id="differences-and-structure-in-a-set-of-models">Differences and structure in a set of models</h3>
+</section><section id="differences-and-structure-in-a-set-of-models" class="level3"><h3 class="anchored" data-anchor-id="differences-and-structure-in-a-set-of-models">Differences and structure in a set of models</h3>
 <p>Given a set of <span class="math inline">\(m\)</span> models <span class="math inline">\(\mathcal{M} = \{M_1, M_2, ..., M_m\}\)</span>, let <span class="math inline">\(C_1, \cdots, C_k\)</span> denote <span class="math inline">\(k\)</span> different modelling choices. If, for example, <span class="math inline">\(C_1 = \{\text{"poisson"}, \text{"negbinomial"}\}\)</span>, <span class="math inline">\(C_2 = \{\text{"Trt"}\}\)</span> and <span class="math inline">\(C_3 = \{ \text{"no zAge"}, \text{"zAge"} \}\)</span>, one could draw networks of the resulting four models solely based on how much they differ in each of the conditions.</p>
 <p>Below, the left-hand side shows one step differences, while the right-hand side includes two step differences for models created using the above modelling choices <span class="math inline">\(C_1, C_2\)</span> and <span class="math inline">\(C_3\)</span>.</p>
 <div class="quarto-layout-panel" data-layout-ncol="2">
@@ -940,134 +868,42 @@ Figure&nbsp;2
 <div class="cell quarto-layout-cell" data-fig-width="4" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="cell-output-display">
 <div>
-<p></p><figure class="figure"><p></p>
+<p></p><figure class="figure"></figure><p></p>
 <div>
-<svg width="384" height="480" viewbox="0.00 0.00 250.48 188.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
-<title>D</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-184 246.48,-184 246.48,4 -4,4"></polygon>
-<!-- A -->
-<g id="node1" class="node">
-<title>A</title>
-<polygon fill="none" stroke="black" points="169.72,-180 83.72,-180 83.72,-144 169.72,-144 169.72,-180"></polygon>
-<text text-anchor="middle" x="126.72" y="-157.8" font-family="Times,serif" font-size="14.00">Poisson(Trt)</text>
-</g>
-<!-- B -->
-<g id="node2" class="node">
-<title>B</title>
-<polygon fill="none" stroke="black" points="123.65,-108 -0.22,-108 -0.22,-72 123.65,-72 123.65,-108"></polygon>
-<text text-anchor="middle" x="61.72" y="-85.8" font-family="Times,serif" font-size="14.00">Poisson(Trt+zAge)</text>
-</g>
-<!-- A&#45;&#45;B -->
-<g id="edge1" class="edge">
-<title>A--B</title>
-<path fill="none" stroke="black" d="M110.65,-143.7C100.57,-132.85 87.64,-118.92 77.6,-108.1"></path>
-</g>
-<!-- C -->
-<g id="node3" class="node">
-<title>C</title>
-<polygon fill="none" stroke="black" points="242.25,-108 141.18,-108 141.18,-72 242.25,-72 242.25,-108"></polygon>
-<text text-anchor="middle" x="191.72" y="-85.8" font-family="Times,serif" font-size="14.00">Negbinom(Trt)</text>
-</g>
-<!-- A&#45;&#45;C -->
-<g id="edge2" class="edge">
-<title>A--C</title>
-<path fill="none" stroke="black" d="M142.78,-143.7C152.86,-132.85 165.79,-118.92 175.83,-108.1"></path>
-</g>
-<!-- D -->
-<g id="node4" class="node">
-<title>D</title>
-<polygon fill="none" stroke="black" points="196.18,-36 57.25,-36 57.25,0 196.18,0 196.18,-36"></polygon>
-<text text-anchor="middle" x="126.72" y="-13.8" font-family="Times,serif" font-size="14.00">Negbinom(Trt+zAge)</text>
-</g>
-<!-- B&#45;&#45;D -->
-<g id="edge4" class="edge">
-<title>B--D</title>
-<path fill="none" stroke="black" d="M77.78,-71.7C87.86,-60.85 100.79,-46.92 110.83,-36.1"></path>
-</g>
-<!-- C&#45;&#45;D -->
-<g id="edge3" class="edge">
-<title>C--D</title>
-<path fill="none" stroke="black" d="M175.65,-71.7C165.57,-60.85 152.64,-46.92 142.6,-36.1"></path>
-</g>
-</g>
-</svg>
+<svg width="384" height="480" viewbox="0.00 0.00 250.48 188.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)"><title>D</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-184 246.48,-184 246.48,4 -4,4"></polygon><!-- A --><g id="node1" class="node"><title>A</title>
+<polygon fill="none" stroke="black" points="169.72,-180 83.72,-180 83.72,-144 169.72,-144 169.72,-180"></polygon><text text-anchor="middle" x="126.72" y="-157.8" font-family="Times,serif" font-size="14.00">Poisson(Trt)</text></g><!-- B --><g id="node2" class="node"><title>B</title>
+<polygon fill="none" stroke="black" points="123.65,-108 -0.22,-108 -0.22,-72 123.65,-72 123.65,-108"></polygon><text text-anchor="middle" x="61.72" y="-85.8" font-family="Times,serif" font-size="14.00">Poisson(Trt+zAge)</text></g><!-- A&#45;&#45;B --><g id="edge1" class="edge"><title>A--B</title>
+<path fill="none" stroke="black" d="M110.65,-143.7C100.57,-132.85 87.64,-118.92 77.6,-108.1"></path></g><!-- C --><g id="node3" class="node"><title>C</title>
+<polygon fill="none" stroke="black" points="242.25,-108 141.18,-108 141.18,-72 242.25,-72 242.25,-108"></polygon><text text-anchor="middle" x="191.72" y="-85.8" font-family="Times,serif" font-size="14.00">Negbinom(Trt)</text></g><!-- A&#45;&#45;C --><g id="edge2" class="edge"><title>A--C</title>
+<path fill="none" stroke="black" d="M142.78,-143.7C152.86,-132.85 165.79,-118.92 175.83,-108.1"></path></g><!-- D --><g id="node4" class="node"><title>D</title>
+<polygon fill="none" stroke="black" points="196.18,-36 57.25,-36 57.25,0 196.18,0 196.18,-36"></polygon><text text-anchor="middle" x="126.72" y="-13.8" font-family="Times,serif" font-size="14.00">Negbinom(Trt+zAge)</text></g><!-- B&#45;&#45;D --><g id="edge4" class="edge"><title>B--D</title>
+<path fill="none" stroke="black" d="M77.78,-71.7C87.86,-60.85 100.79,-46.92 110.83,-36.1"></path></g><!-- C&#45;&#45;D --><g id="edge3" class="edge"><title>C--D</title>
+<path fill="none" stroke="black" d="M175.65,-71.7C165.57,-60.85 152.64,-46.92 142.6,-36.1"></path></g></g></svg>
 </div>
-<p></p></figure><p></p>
+<p></p>
 </div>
 </div>
 </div>
 <div class="cell quarto-layout-cell" data-fig-width="3" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="cell-output-display">
 <div>
-<p></p><figure class="figure"><p></p>
+<p></p><figure class="figure"></figure><p></p>
 <div>
-<svg width="288" height="480" viewbox="0.00 0.00 229.20 260.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 256)">
-<title>D</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-256 225.2,-256 225.2,4 -4,4"></polygon>
-<!-- A -->
-<g id="node1" class="node">
-<title>A</title>
-<polygon fill="none" stroke="black" points="168.72,-252 82.72,-252 82.72,-216 168.72,-216 168.72,-252"></polygon>
-<text text-anchor="middle" x="125.72" y="-229.8" font-family="Times,serif" font-size="14.00">Poisson(Trt)</text>
-</g>
-<!-- B -->
-<g id="node2" class="node">
-<title>B</title>
-<polygon fill="none" stroke="black" points="123.65,-108 -0.22,-108 -0.22,-72 123.65,-72 123.65,-108"></polygon>
-<text text-anchor="middle" x="61.72" y="-85.8" font-family="Times,serif" font-size="14.00">Poisson(Trt+zAge)</text>
-</g>
-<!-- A&#45;&#45;B -->
-<g id="edge1" class="edge">
-<title>A--B</title>
-<path fill="none" stroke="black" d="M97.75,-215.83C85.64,-206.79 72.67,-194.54 65.72,-180 54.71,-156.98 56.23,-126.66 58.7,-108.02"></path>
-</g>
-<!-- C -->
-<g id="node3" class="node">
-<title>C</title>
-<polygon fill="none" stroke="black" points="176.25,-180 75.18,-180 75.18,-144 176.25,-144 176.25,-180"></polygon>
-<text text-anchor="middle" x="125.72" y="-157.8" font-family="Times,serif" font-size="14.00">Negbinom(Trt)</text>
-</g>
-<!-- A&#45;&#45;C -->
-<g id="edge3" class="edge">
-<title>A--C</title>
-<path fill="none" stroke="black" d="M125.72,-215.7C125.72,-204.85 125.72,-190.92 125.72,-180.1"></path>
-</g>
-<!-- D -->
-<g id="node4" class="node">
-<title>D</title>
-<polygon fill="none" stroke="black" points="221.18,-36 82.25,-36 82.25,0 221.18,0 221.18,-36"></polygon>
-<text text-anchor="middle" x="151.72" y="-13.8" font-family="Times,serif" font-size="14.00">Negbinom(Trt+zAge)</text>
-</g>
-<!-- B&#45;&#45;D -->
-<g id="edge2" class="edge">
-<title>B--D</title>
-<path fill="none" stroke="black" d="M83.96,-71.7C97.91,-60.85 115.82,-46.92 129.73,-36.1"></path>
-</g>
-<!-- C&#45;&#45;B -->
-<g id="edge5" class="edge">
-<title>C--B</title>
-<path fill="none" stroke="grey" d="M108.42,-145.05C98.5,-134.2 85.76,-120.27 75.88,-109.45"></path>
-<path fill="none" stroke="transparent" d="M109.9,-143.7C99.98,-132.85 87.24,-118.92 77.36,-108.1"></path>
-<path fill="none" stroke="grey" d="M111.37,-142.35C101.45,-131.5 88.72,-117.57 78.83,-106.75"></path>
-</g>
-<!-- C&#45;&#45;D -->
-<g id="edge4" class="edge">
-<title>C--D</title>
-<path fill="none" stroke="black" d="M128.85,-143.87C133.85,-116.58 143.57,-63.52 148.57,-36.19"></path>
-</g>
-<!-- D&#45;&#45;A -->
-<g id="edge6" class="edge">
-<title>D--A</title>
-<path fill="none" stroke="grey" d="M163.8,-35.23C180.62,-65.66 209.73,-129.95 187.54,-180.82 180.46,-196.15 167.52,-208.41 155.17,-217.58"></path>
-<path fill="none" stroke="transparent" d="M162.05,-36.2C178.8,-66.48 207.91,-130.78 185.72,-180 179.09,-194.7 166.15,-206.96 153.98,-215.97"></path>
-<path fill="none" stroke="grey" d="M160.3,-37.17C176.98,-67.31 206.09,-131.6 183.89,-179.18 177.71,-193.25 164.77,-205.51 152.79,-214.36"></path>
-</g>
-</g>
-</svg>
+<svg width="288" height="480" viewbox="0.00 0.00 229.20 260.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 256)"><title>D</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-256 225.2,-256 225.2,4 -4,4"></polygon><!-- A --><g id="node1" class="node"><title>A</title>
+<polygon fill="none" stroke="black" points="168.72,-252 82.72,-252 82.72,-216 168.72,-216 168.72,-252"></polygon><text text-anchor="middle" x="125.72" y="-229.8" font-family="Times,serif" font-size="14.00">Poisson(Trt)</text></g><!-- B --><g id="node2" class="node"><title>B</title>
+<polygon fill="none" stroke="black" points="123.65,-108 -0.22,-108 -0.22,-72 123.65,-72 123.65,-108"></polygon><text text-anchor="middle" x="61.72" y="-85.8" font-family="Times,serif" font-size="14.00">Poisson(Trt+zAge)</text></g><!-- A&#45;&#45;B --><g id="edge1" class="edge"><title>A--B</title>
+<path fill="none" stroke="black" d="M97.75,-215.83C85.64,-206.79 72.67,-194.54 65.72,-180 54.71,-156.98 56.23,-126.66 58.7,-108.02"></path></g><!-- C --><g id="node3" class="node"><title>C</title>
+<polygon fill="none" stroke="black" points="176.25,-180 75.18,-180 75.18,-144 176.25,-144 176.25,-180"></polygon><text text-anchor="middle" x="125.72" y="-157.8" font-family="Times,serif" font-size="14.00">Negbinom(Trt)</text></g><!-- A&#45;&#45;C --><g id="edge3" class="edge"><title>A--C</title>
+<path fill="none" stroke="black" d="M125.72,-215.7C125.72,-204.85 125.72,-190.92 125.72,-180.1"></path></g><!-- D --><g id="node4" class="node"><title>D</title>
+<polygon fill="none" stroke="black" points="221.18,-36 82.25,-36 82.25,0 221.18,0 221.18,-36"></polygon><text text-anchor="middle" x="151.72" y="-13.8" font-family="Times,serif" font-size="14.00">Negbinom(Trt+zAge)</text></g><!-- B&#45;&#45;D --><g id="edge2" class="edge"><title>B--D</title>
+<path fill="none" stroke="black" d="M83.96,-71.7C97.91,-60.85 115.82,-46.92 129.73,-36.1"></path></g><!-- C&#45;&#45;B --><g id="edge5" class="edge"><title>C--B</title>
+<path fill="none" stroke="grey" d="M108.42,-145.05C98.5,-134.2 85.76,-120.27 75.88,-109.45"></path><path fill="none" stroke="transparent" d="M109.9,-143.7C99.98,-132.85 87.24,-118.92 77.36,-108.1"></path><path fill="none" stroke="grey" d="M111.37,-142.35C101.45,-131.5 88.72,-117.57 78.83,-106.75"></path></g><!-- C&#45;&#45;D --><g id="edge4" class="edge"><title>C--D</title>
+<path fill="none" stroke="black" d="M128.85,-143.87C133.85,-116.58 143.57,-63.52 148.57,-36.19"></path></g><!-- D&#45;&#45;A --><g id="edge6" class="edge"><title>D--A</title>
+<path fill="none" stroke="grey" d="M163.8,-35.23C180.62,-65.66 209.73,-129.95 187.54,-180.82 180.46,-196.15 167.52,-208.41 155.17,-217.58"></path><path fill="none" stroke="transparent" d="M162.05,-36.2C178.8,-66.48 207.91,-130.78 185.72,-180 179.09,-194.7 166.15,-206.96 153.98,-215.97"></path><path fill="none" stroke="grey" d="M160.3,-37.17C176.98,-67.31 206.09,-131.6 183.89,-179.18 177.71,-193.25 164.77,-205.51 152.79,-214.36"></path></g></g></svg>
 </div>
-<p></p></figure><p></p>
+<p></p>
 </div>
 </div>
 </div>
@@ -1076,11 +912,7 @@ Figure&nbsp;2
 
 
 
-</section>
-</section>
-
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+</section></section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-belletal2022" class="csl-entry" role="listitem">
 Bell, Samuel J., Onno P. Kampmana, Jesse Dodge, and Neil D. Lawrence. 2022. <span>“Modeling the Machine Learning Multiverse.”</span> <em>arXiv</em>. <a href="https://doi.org/10.48550/arXiv.2206.05985">https://doi.org/10.48550/arXiv.2206.05985</a>.
 </div>
@@ -1149,8 +981,7 @@ Vehtari, Aki, and Janne Ojanen. 2012. <span>“<span class="nocase">A survey of 
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-riha2024" class="csl-entry quarto-appendix-citeas" role="listitem">
 Riha, Anna Elisabeth. 2024. <span>“Iterative Filtering for Multiverse
 Analyses of Treatment Effects.”</span> April 5, 2024. <a href="https://annariha.github.io/casestudies/workflows-multiverse/">https://annariha.github.io/casestudies/workflows-multiverse/</a>.
-</div></div></section></div></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -1551,8 +1382,7 @@ Analyses of Treatment Effects.”</span> April 5, 2024. <a href="https://annarih
   });
   </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p>Copyright 2026, Anna Elisabeth Riha</p>
 </div>   
@@ -1564,8 +1394,6 @@ Analyses of Treatment Effects.”</span> April 5, 2024. <a href="https://annarih
 </div>
   </div>
 </footer>
-
-
 
 
 </body></html>
