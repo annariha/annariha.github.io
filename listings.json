@@ -1,13 +1,14 @@
 [
   {
+    "listing": "/blogposts/index.html",
+    "items": []
+  },
+  {
     "listing": "/casestudies/index.html",
     "items": [
+      "/casestudies/model-complexity-basis-functions/index.html",
       "/casestudies/approx-logo-cv/index.html",
       "/casestudies/workflows-multiverse/index.html"
     ]
-  },
-  {
-    "listing": "/blogposts/index.html",
-    "items": []
   }
 ]
