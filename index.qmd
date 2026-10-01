@@ -15,13 +15,15 @@ about:
 ::: {#about-block}
 :::
 
-I am a doctoral researcher in the [Probabilistic Machine Learning](https://research.cs.aalto.fi/pml/) group at Aalto University supervised by [Aki Vehtari](https://avehtari.github.io/) and [Antti Oulasvirta](http://users.comnet.aalto.fi/oulasvir/). 
+I am a research scientist at the Natural Resources Institute Finland (Luke) working with [Mari Myllymäki](https://www.luke.fi/en/experts/mari-myllymaki) on Bayesian approaches for quantifying forest structure and assessing biodiversity. 
+I am also a doctoral researcher in the [Probabilistic Machine Learning](https://research.cs.aalto.fi/pml/) and [Bayesian workflow](https://users.aalto.fi/~ave/group.html) groups at Aalto University supervised by [Aki Vehtari](https://avehtari.github.io/) and [Antti Oulasvirta](http://users.comnet.aalto.fi/oulasvir/). 
 
 My research interests lie in Bayesian data analysis, modelling workflows, iteration in model building and metastatistics. 
 I am interested in interdisciplinary perspectives on Bayesian workflows and building bridges between method development and applied research. 
 
-On this website, you will find information about my research projects as well as case studies and a blog with occasional random musings. 
+On this website, you will find information about my research projects as well as case studies and a blog (under construction) with occasional random musings. 
 Please feel free to contact me if you have any questions or would like to discuss potential projects.
+I am also open to review papers relating to any of the topics discussed above.  
 
 Before my current position, I completed my MSc in Statistics at Humboldt University Berlin with a [thesis project](https://edoc.hu-berlin.de/handle/18452/22837) on hyperprior sensitivity of wrapped Gaussian processes including an application to wind data, supervised by [Nadja Klein](https://rc-trust.ai/klein/) and [Thomas Kneib](https://www.uni-goettingen.de/de/prof.+dr.+thomas+kneib/264255.html). 
 During my studies, I also worked as a research assistant in the group of [Andreas Brandmaier](https://www.mpib-berlin.mpg.de/staff/andreas-brandmaier) in the project "Formal Methods in Lifespan Psychology" at Max Planck Institute for Human Development in Berlin. 
