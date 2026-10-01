@@ -864,8 +864,8 @@ See help('pareto-k-diagnostic') for details.</code></pre>
 <span>    <span class="va">th0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">3</span><span class="op">)</span></span>
 <span>    </span>
 <span>    <span class="co"># Laplace approximation ####</span></span>
-<span>    <span class="va">aghq_laplace_marg</span> <span class="op">&lt;-</span> <span class="fu">aghq</span><span class="fu">::</span><span class="fu">laplace_approximation</span><span class="op">(</span><span class="va">ffs</span>, startingvalue <span class="op">=</span> <span class="va">th0</span><span class="op">)</span></span>
-<span>    <span class="va">log_lik_marg_one_group_one_draw</span> <span class="op">&lt;-</span>  <span class="fu">get_log_normconst</span><span class="op">(</span><span class="va">aghq_laplace_marg</span><span class="op">)</span></span>
+<span>    <span class="va">aghq_laplace_marg</span> <span class="op">&lt;-</span> <span class="fu">aghq</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/aghq/man/laplace_approximation.html">laplace_approximation</a></span><span class="op">(</span><span class="va">ffs</span>, startingvalue <span class="op">=</span> <span class="va">th0</span><span class="op">)</span></span>
+<span>    <span class="va">log_lik_marg_one_group_one_draw</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/pkg/aghq/man/get_log_normconst.html">get_log_normconst</a></span><span class="op">(</span><span class="va">aghq_laplace_marg</span><span class="op">)</span></span>
 <span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">log_lik_marg_one_group_one_draw</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
